@@ -184,6 +184,13 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   .nav-cta{display:none}
 }
 @media(max-width:560px){.caps{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:1fr}}
+/* mission space-viz */
+.spacewrap{display:none;margin:6px 2px 10px}
+.spacewrap.open{display:block}
+#spaceCv{width:100%;height:240px;display:block;border-radius:14px;border:1px solid rgba(94,234,212,.22);background:#04060c}
+.stage-label{text-align:center;font-size:13px;color:var(--teal);margin-top:8px;min-height:20px;letter-spacing:.4px}
+.space-progress{height:4px;background:rgba(255,255,255,.07);border-radius:99px;margin-top:6px;overflow:hidden}
+#spaceBar{height:100%;width:0;background:linear-gradient(90deg,#2dd4bf,#a78bfa);border-radius:99px;transition:width .2s}
 </style>
 </head>
 <style>
@@ -241,6 +248,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 
       <div class="chatbar">
         <div class="chat-log" id="chatLog"></div>
+        <div class="spacewrap" id="spaceWrap">
+          <canvas id="spaceCv"></canvas>
+          <div class="stage-label" id="stageLabel">Mia is working…</div>
+          <div class="space-progress"><div id="spaceBar"></div></div>
+        </div>
         <div class="chat-row">
           <input id="chatInput" placeholder="What would you like me to do today?" autocomplete="off" maxlength="300">
           <button class="sendbtn" id="sendBtn" aria-label="Send">↑</button>
@@ -252,7 +264,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
           <button class="chip" data-q="Plan a cold outreach campaign">Outreach</button>
         </div>
       </div>
-      <p class="demo-note">Live demo — Mia's answers here are scripted. Her full brain, with every agent skill wired in, ships with the private preview.</p>
+      <p class="demo-note">Live demo — send a task and watch Mia fly through the data-space as she works. Answers here are scripted; her full brain ships with the private preview.</p>
 
       <div class="crew">
         <p class="crew-title">Agents under Mia's command — tap one, then ask</p>
@@ -444,23 +456,107 @@ function bubble(html, who, tag){
 }
 function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function pick(arr, key){ rIdx[key] = ((rIdx[key]||0)+1) % arr.length; return arr[rIdx[key]]; }
-function reply(text){
-  const t = text.toLowerCase();
-  let out, tag = null;
-  if (/^(hi|hey|hello|salam|yo)\b/.test(t)) { out = pick(MIA.greet,'g'); }
-  else if (t.includes('price')||t.includes('cost')||t.includes('free')||t.includes('pay')||t.includes('credit')) { out = pick(MIA.price,'p'); }
-  else if (t.includes('bye')||t.includes('thanks')||t.includes('shukran')) { out = pick(MIA.bye,'b'); }
-  else {
-    const a = route(t);
-    if (a) { out = pick(AGENTS[a].replies, a); tag = AGENTS[a].label; }
-    else out = pick(MIA.fallback, 'f');
+/* ============ MISSION SPACE-VIZ — watch Mia fly as she works ============ */
+const SpaceViz = (() => {
+  const wrap = document.getElementById('spaceWrap');
+  const cv = document.getElementById('spaceCv');
+  const ctx = cv.getContext('2d');
+  const label = document.getElementById('stageLabel');
+  const bar = document.getElementById('spaceBar');
+  const STAGE_MS = 1400, H = 240;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const PCOLS = [['#5eead4','#0f766e'],['#a78bfa','#5b21b6'],['#f472b6','#9d174d'],['#60a5fa','#1e40af'],['#fbbf24','#b45309']];
+  let stars=[], planets=[], raf=null, t0=0, stages=[], done=null, W=0, trail=[];
+  function setup(){
+    const r = cv.getBoundingClientRect(); W = Math.max(280, r.width);
+    const dpr = Math.min(2, window.devicePixelRatio||1);
+    cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    stars = Array.from({length:150},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.3,p:Math.random()*6.28,s:.6+Math.random()*1.6}));
+    const n = stages.length;
+    planets = stages.map((s,i)=>({x:W*(n===1?.5:(0.1+0.8*i/(n-1))), y:H*(0.52+0.26*Math.sin(i*2.3+1)),
+      r:20+((i*7)%12), c:PCOLS[i%PCOLS.length], ring:i===2, name:s.short}));
   }
-  setTimeout(() => bubble(esc(out), 'm', tag), 450);
+  function pt(t){
+    const pts = planets.map(p=>({x:p.x,y:p.y}));
+    if(pts.length<2) return pts[0]||{x:W/2,y:H/2};
+    const segs=pts.length-1, f=Math.min(.9999,t)*segs, i=Math.floor(f), u=f-i;
+    const a=pts[i], b=pts[i+1], mx=(a.x+b.x)/2, my=(a.y+b.y)/2-34;
+    return { x:(1-u)*(1-u)*a.x+2*(1-u)*u*mx+u*u*b.x, y:(1-u)*(1-u)*a.y+2*(1-u)*u*my+u*u*b.y };
+  }
+  function frame(now){
+    const el=now-t0, total=stages.length*STAGE_MS, t=Math.min(1,el/total);
+    const si=Math.min(stages.length-1, Math.floor(el/STAGE_MS));
+    label.textContent = stages[si].label; bar.style.width=(t*100)+'%';
+    const g=ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,'#04060d'); g.addColorStop(1,'#0a1030');
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    const n1=ctx.createRadialGradient(W*.25,H*.4,10,W*.25,H*.4,W*.5);
+    n1.addColorStop(0,'rgba(94,234,212,.10)'); n1.addColorStop(1,'transparent');
+    ctx.fillStyle=n1; ctx.fillRect(0,0,W,H);
+    const n2=ctx.createRadialGradient(W*.8,H*.7,10,W*.8,H*.7,W*.45);
+    n2.addColorStop(0,'rgba(167,139,250,.10)'); n2.addColorStop(1,'transparent');
+    ctx.fillStyle=n2; ctx.fillRect(0,0,W,H);
+    const tm=now/1000;
+    stars.forEach(s=>{ ctx.globalAlpha=.35+.65*Math.abs(Math.sin(tm*s.s+s.p));
+      ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.29); ctx.fill(); });
+    ctx.globalAlpha=1;
+    ctx.strokeStyle='rgba(94,234,212,.28)'; ctx.setLineDash([6,8]); ctx.lineWidth=1.5; ctx.beginPath();
+    planets.forEach((p,i)=> i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)); ctx.stroke(); ctx.setLineDash([]);
+    planets.forEach((p,i)=>{
+      if(p.ring){ ctx.strokeStyle='rgba(255,255,255,.35)'; ctx.lineWidth=2;
+        ctx.beginPath(); ctx.ellipse(p.x,p.y,p.r*1.5,p.r*.5,-.4,0,6.29); ctx.stroke(); }
+      const pg=ctx.createRadialGradient(p.x-p.r*.35,p.y-p.r*.35,p.r*.15,p.x,p.y,p.r);
+      pg.addColorStop(0,p.c[0]); pg.addColorStop(1,p.c[1]);
+      ctx.fillStyle=pg; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.29); ctx.fill();
+      ctx.fillStyle='rgba(255,255,255,.8)'; ctx.font='10px Inter,sans-serif'; ctx.textAlign='center';
+      ctx.fillText(p.name,p.x,p.y+p.r+15);
+      if(i===si){ ctx.strokeStyle='#5eead4'; ctx.lineWidth=2;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r+6,0,6.29); ctx.stroke(); }
+    });
+    const m=pt(t);
+    trail.push({x:m.x,y:m.y}); if(trail.length>26) trail.shift();
+    trail.forEach((p,i)=>{ const a=i/trail.length;
+      ctx.fillStyle='rgba(94,234,212,'+(a*.5).toFixed(3)+')';
+      ctx.beginPath(); ctx.arc(p.x,p.y,7*a+1,0,6.29); ctx.fill(); });
+    const mg=ctx.createRadialGradient(m.x,m.y,1,m.x,m.y,17);
+    mg.addColorStop(0,'#ffffff'); mg.addColorStop(.35,'#5eead4'); mg.addColorStop(1,'rgba(94,234,212,0)');
+    ctx.fillStyle=mg; ctx.beginPath(); ctx.arc(m.x,m.y,17,0,6.29); ctx.fill();
+    ctx.fillStyle='#04211d'; ctx.font='bold 9px Inter,sans-serif'; ctx.textAlign='center';
+    ctx.fillText('MIA',m.x,m.y+3);
+    if(t<1){ raf=requestAnimationFrame(frame); }
+    else { const d=done; done=null; setTimeout(()=>{ wrap.classList.remove('open'); d&&d(); },550); }
+  }
+  return { start(s,cb){
+    stages=s; done=cb; trail=[];
+    if(reduced || !stages.length){ cb&&cb(); return; }
+    wrap.classList.add('open'); setup(); t0=performance.now();
+    cancelAnimationFrame(raf); raf=requestAnimationFrame(frame);
+  }};
+})();
+function stagesFor(key, agentLabel){
+  const who = agentLabel || 'Mia';
+  return [
+    {short:'Brief',   label:'⚡ '+who+' received your mission…'},
+    {short:'Explore', label:'⚡ Flying through the data nebula…'},
+    {short:'Gather',  label:'⚡ '+who+' collecting what matters…'},
+    {short:'Verify',  label:'⚡ Verify agent cross-checking…'},
+    {short:'Deliver', label:'⚡ Returning with results…'}
+  ];
+}
+function planReply(text){
+  const t = text.toLowerCase();
+  if (/^(hi|hey|hello|salam|yo)\b/.test(t)) return {out:pick(MIA.greet,'g'), tag:null, key:null};
+  if (t.includes('price')||t.includes('cost')||t.includes('free')||t.includes('pay')||t.includes('credit')) return {out:pick(MIA.price,'p'), tag:null, key:null};
+  if (t.includes('bye')||t.includes('thanks')||t.includes('shukran')) return {out:pick(MIA.bye,'b'), tag:null, key:null};
+  const a = route(t);
+  if (a) return {out:pick(AGENTS[a].replies,a), tag:AGENTS[a].label, key:a};
+  return {out:pick(MIA.fallback,'f'), tag:null, key:null};
 }
 function send(){
   const v = input.value.trim(); if(!v) return;
-  bubble(esc(v), 'u'); input.value = '';
-  setTimeout(() => reply(v), 200);
+  bubble(esc(v),'u'); input.value='';
+  const p = planReply(v);
+  SpaceViz.start(stagesFor(p.key,p.tag), ()=> bubble(esc(p.out),'m',p.tag));
 }
 document.getElementById('sendBtn').onclick = send;
 input.addEventListener('keydown', e => { if(e.key === 'Enter') send(); });
@@ -481,14 +577,22 @@ const modal = document.getElementById('modal');
 document.querySelectorAll('[data-modal]').forEach(b => b.onclick = e => { e.preventDefault(); modal.classList.add('open'); });
 document.getElementById('modalX').onclick = () => modal.classList.remove('open');
 modal.onclick = e => { if(e.target === modal) modal.classList.remove('open'); };
-document.getElementById('wSubmit').onclick = () => {
+document.getElementById('wSubmit').onclick = async () => {
   const n = document.getElementById('wName').value.trim(), em = document.getElementById('wEmail').value.trim();
   if(!em || !em.includes('@')) { document.getElementById('wEmail').focus(); document.getElementById('wEmail').style.borderColor = '#f87171'; return; }
-  try {
-    const list = JSON.parse(localStorage.getItem('mia-waitlist') || '[]');
-    list.push({name:n, email:em, at:new Date().toISOString()});
-    localStorage.setItem('mia-waitlist', JSON.stringify(list));
+  let saved = false;
+  try { /* real backend when the site runs on the Mia server */
+    const r = await fetch('/api/waitlist',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:n,email:em})});
+    saved = r.ok;
   } catch(e){}
+  if(!saved){ /* static-host fallback: this browser only */
+    try {
+      const list = JSON.parse(localStorage.getItem('mia-waitlist') || '[]');
+      list.push({name:n, email:em, at:new Date().toISOString()});
+      localStorage.setItem('mia-waitlist', JSON.stringify(list));
+    } catch(e){}
+  }
   document.getElementById('modalForm').style.display = 'none';
   document.getElementById('modalOk').style.display = 'block';
 };

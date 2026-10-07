@@ -1,0 +1,1 @@
+{"dependencies":{"express":"^4.19.2"},"description":"Mia AI backend — serves the site and the waitlist API","main":"index.js","name":"mia-ai-server","scripts":{"start":"node index.js"},"version":"1.0.0"}
