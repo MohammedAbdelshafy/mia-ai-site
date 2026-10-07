@@ -466,7 +466,8 @@ const SpaceViz = (() => {
   const STAGE_MS = 1400, H = 240;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const PCOLS = [['#5eead4','#0f766e'],['#a78bfa','#5b21b6'],['#f472b6','#9d174d'],['#60a5fa','#1e40af'],['#fbbf24','#b45309']];
-  let stars=[], planets=[], raf=null, t0=0, stages=[], done=null, W=0, trail=[];
+  let stars=[], planets=[], raf=null, t0=0, stages=[], done=null, W=0, trail=[],
+      timer=null, watchdog=null, finished=false;
   function setup(){
     const r = cv.getBoundingClientRect(); W = Math.max(280, r.width);
     const dpr = Math.min(2, window.devicePixelRatio||1);
@@ -523,14 +524,28 @@ const SpaceViz = (() => {
     ctx.fillStyle=mg; ctx.beginPath(); ctx.arc(m.x,m.y,17,0,6.29); ctx.fill();
     ctx.fillStyle='#04211d'; ctx.font='bold 9px Inter,sans-serif'; ctx.textAlign='center';
     ctx.fillText('MIA',m.x,m.y+3);
-    if(t<1){ raf=requestAnimationFrame(frame); }
-    else { const d=done; done=null; setTimeout(()=>{ wrap.classList.remove('open'); d&&d(); },550); }
+  }
+  function finish(){ /* the reply MUST always land — never strand the user */
+    if(finished) return; finished=true;
+    clearTimeout(timer); clearTimeout(watchdog); cancelAnimationFrame(raf);
+    const d=done; done=null; wrap.classList.remove('open'); d&&d();
+  }
+  function tick(){
+    let now;
+    try{ now=performance.now(); frame(now); }
+    catch(e){ finish(); return; }
+    if(now-t0 < stages.length*STAGE_MS){ timer=setTimeout(tick,16); }
+    else { timer=setTimeout(finish,450); }
   }
   return { start(s,cb){
-    stages=s; done=cb; trail=[];
-    if(reduced || !stages.length){ cb&&cb(); return; }
-    wrap.classList.add('open'); setup(); t0=performance.now();
-    cancelAnimationFrame(raf); raf=requestAnimationFrame(frame);
+    stages=s; done=cb; trail=[]; finished=false;
+    clearTimeout(timer); clearTimeout(watchdog); cancelAnimationFrame(raf);
+    if(reduced || !stages.length){ finish(); return; }
+    wrap.classList.add('open');
+    try{ setup(); }catch(e){ finish(); return; }
+    t0=performance.now();
+    watchdog=setTimeout(finish, stages.length*STAGE_MS+5000);
+    timer=setTimeout(tick,16);
   }};
 })();
 function stagesFor(key, agentLabel){
