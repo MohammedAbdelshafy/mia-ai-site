@@ -1,0 +1,15 @@
+# Mia AI
+
+Mia AI is an embodied AI employee and mission orchestrator.
+
+## Core pages
+- https://mohammedabdelshafy.github.io/mia-ai-site/
+- https://mohammedabdelshafy.github.io/mia-ai-site/ai-employee/
+- https://mohammedabdelshafy.github.io/mia-ai-site/ai-agent-swarm/
+- https://mohammedabdelshafy.github.io/mia-ai-site/ai-automation/
+
+## Positioning
+Mia turns plain-language outcomes into visible missions using specialist agents, connected tools, execution stages and verification.
+
+## Topics
+AI employee, AI agent swarm, AI automation, MCP tools, digital operations, research automation, build automation, outreach automation.
