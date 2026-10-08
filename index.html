@@ -50,7 +50,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);-w
 .nav-in{max-width:1200px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:28px}
 .logo{font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:.5px}
 .logo b{color:var(--teal);font-weight:700}
-.nav-links{display:flex;gap:24px;margin-left:auto;font-size:14.5px;color:var(--mut)}
+.nav-menu{display:flex;align-items:center;margin-left:auto;gap:28px}
+.nav-links{display:flex;gap:24px;font-size:14.5px;color:var(--mut)}
+.nav-cta{display:flex;gap:12px}
+.nav-cta .btn{padding:9px 20px}
 .nav-links a:hover{color:var(--txt)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;font-weight:600;
   font-size:14.5px;padding:11px 22px;border:1px solid var(--line);background:var(--card);cursor:pointer;transition:.2s;color:var(--txt)}
@@ -153,6 +156,9 @@ section{padding:88px 0}
 .perk b{font-family:var(--disp);font-size:22px;color:var(--teal)}
 .perk span{font-size:13px;color:var(--mut)}
 /* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.price-card.featured{border-color:rgba(94,234,212,.55);box-shadow:0 0 44px rgba(94,234,212,.12);position:relative}
+.badge-pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--teal);color:#04211c;font-size:11px;font-weight:800;letter-spacing:1.5px;padding:5px 14px;border-radius:99px}
 .price-card{max-width:520px;margin:0 auto;background:linear-gradient(180deg,rgba(94,234,212,.09),rgba(94,234,212,.02));
   border:1px solid rgba(94,234,212,.3);border-radius:26px;padding:44px 40px;text-align:center;box-shadow:var(--glow)}
 .price-card .plan{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal)}
@@ -200,13 +206,16 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   .trycard{left:0}
   .steps{grid-template-columns:repeat(2,1fr)}
   .dev-grid{grid-template-columns:1fr}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(5,7,13,.97);
-    padding:18px 22px;gap:16px;border-bottom:1px solid var(--line)}
-  .nav-links.open{display:flex}
+  .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(5,7,13,.97);
+    padding:12px 22px 18px;gap:4px;border-bottom:1px solid var(--line);align-items:stretch}
+  .nav-menu.open{display:flex}
+  .nav-menu .nav-links{flex-direction:column;gap:0;font-size:15px}
+  .nav-menu .nav-links a{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+  .nav-menu .nav-cta{flex-direction:row;gap:10px;margin-top:12px}
+  .nav-menu .nav-cta .btn{flex:1;text-align:center;padding:10px 12px;font-size:14px}
   .burger{display:block}
-  .nav-cta{display:none}
 }
-@media(max-width:560px){.caps{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:1fr}}
+@media(max-width:560px){.caps{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}}
 /* mission space-viz */
 .spacewrap{display:none;margin:6px 2px 10px}
 .spacewrap.open{display:block}
@@ -261,13 +270,15 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 <nav>
   <div class="nav-in">
     <a class="logo" href="#home">MIA <b>AI</b></a>
-    <div class="nav-links" id="navLinks">
-      <a href="#home">Home</a><a href="#features">Features</a><a href="#how">How it Works</a><a href="#agents">Agents</a>
-      <a href="#devices">Devices</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
-    </div>
-    <div class="nav-links nav-cta" style="display:flex">
-      <a href="#" class="btn btn-ghost" data-modal style="padding:9px 20px">Login</a>
-      <a href="#" class="btn btn-teal" data-modal style="padding:9px 20px">Hire Mia →</a>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-links">
+        <a href="#home">Home</a><a href="#features">Features</a><a href="#how">How it Works</a><a href="#agents">Agents</a>
+        <a href="#devices">Devices</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#" class="btn btn-ghost" data-modal>Login</a>
+        <a href="#" class="btn btn-teal" data-modal>Hire Mia →</a>
+      </div>
     </div>
     <button class="burger" id="burger" aria-label="Menu">☰</button>
   </div>
@@ -434,20 +445,47 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 
 <section id="pricing" style="padding-top:20px">
   <div class="wrap">
-    <div class="sec-head rv"><h2>Simple pricing</h2><p>Mia is in private preview. Founding members lock in the best deal forever.</p></div>
-    <div class="price-card rv">
-      <div class="plan">Founding Preview</div>
-      <div class="amt">$0</div>
-      <p style="color:var(--mut);font-size:14px">Free during the private preview</p>
-      <ul>
-        <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>25 free credits at launch</li>
-        <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>All 6 specialist agents</li>
-        <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Custom appearance &amp; voice</li>
-        <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Founding-member pricing for life</li>
-      </ul>
-      <button class="btn btn-teal" data-modal style="width:100%">Hire Mia →</button>
-      <p class="fine">Paid plans will be announced at public launch. No card required to reserve your hire.</p>
+    <div class="sec-head rv"><h2>Hire Mia your way</h2><p>Start free in the private preview. Upgrade when she's indispensable. Founding members lock pricing for life.</p></div>
+    <div class="price-grid rv">
+      <div class="price-card">
+        <div class="plan">Preview</div>
+        <div class="amt">$0</div>
+        <p style="color:var(--mut);font-size:14px">Free during the private preview</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>25 credits at launch</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>All 6 departments</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Custom appearance &amp; voice</li>
+        </ul>
+        <button class="btn btn-ghost" data-modal style="width:100%">Hire Mia free →</button>
+      </div>
+      <div class="price-card featured">
+        <div class="badge-pop">MOST POPULAR</div>
+        <div class="plan">Pro</div>
+        <div class="amt">$49<span>/mo</span></div>
+        <p style="color:var(--mut);font-size:14px">For solo founders &amp; freelancers</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>500 credits / month</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>All 51 agents + departments</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Priority mission queue</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Founding-member pricing for life</li>
+        </ul>
+        <button class="btn btn-teal" data-modal style="width:100%">Hire Mia Pro →</button>
+        <p class="fine">Billed at public launch. No card required to reserve.</p>
+      </div>
+      <div class="price-card">
+        <div class="plan">Founding Lifetime</div>
+        <div class="amt">$499</div>
+        <p style="color:var(--mut);font-size:14px">One payment, yours forever</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Pro, forever</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>2,000 launch credits</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Your own named Mia + world</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Direct line to the founder</li>
+        </ul>
+        <button class="btn btn-ghost" data-modal style="width:100%">Claim founding →</button>
+      </div>
     </div>
+    <p class="fine" style="text-align:center;margin-top:16px">The funnel: free preview → Pro when she's indispensable → Lifetime for believers. Paid billing starts at public launch.</p>
   </div>
 </section>
 
@@ -795,9 +833,9 @@ document.getElementById('wSubmit').onclick = async () => {
   document.getElementById('modalOk').style.display = 'block';
 };
 /* nav + reveal */
-const burger = document.getElementById('burger'), navLinks = document.getElementById('navLinks');
-burger.onclick = () => navLinks.classList.toggle('open');
-navLinks.querySelectorAll('a').forEach(a => a.onclick = () => navLinks.classList.remove('open'));
+const burger = document.getElementById('burger'), navMenu = document.getElementById('navMenu');
+burger.onclick = () => navMenu.classList.toggle('open');
+navMenu.querySelectorAll('a').forEach(a => a.onclick = () => navMenu.classList.remove('open'));
 const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 if('serviceWorker' in navigator){ /* offline cache optional — skipped for static preview */ }
