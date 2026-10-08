@@ -195,9 +195,23 @@ function welcomeBubble(text, who, tag){
   if(!log) return;
   const d = document.createElement('div');
   d.className = 'mia-chat-msg ' + (who === 'u' ? 'mia-chat-user' : 'mia-chat-mia');
-  d.innerHTML = (tag ? '<span>⚡ ' + esc(tag) + '</span>' : '<span>' + (who === 'u' ? 'YOU' : 'MIA') + '</span>') + '<p>' + esc(text) + '</p>';
-  log.appendChild(d);
-  log.scrollTop = log.scrollHeight;
+  const label = (tag ? '<span>\u26a1 ' + esc(tag) + '</span>' : '<span>' + (who === 'u' ? 'YOU' : 'MIA') + '</span>');
+  if(who === 'm'){
+    // typing effect — feels alive
+    d.innerHTML = label + '<p><i class="typing-dots"><i></i><i></i><i></i></i></p>';
+    log.appendChild(d); log.scrollTop = log.scrollHeight;
+    const p = d.querySelector('p');
+    let i = 0;
+    const timer = setInterval(() => {
+      i += 2;
+      p.textContent = text.slice(0, i);
+      log.scrollTop = log.scrollHeight;
+      if(i >= text.length){ clearInterval(timer); }
+    }, 18);
+  } else {
+    d.innerHTML = label + '<p>' + esc(text) + '</p>';
+    log.appendChild(d); log.scrollTop = log.scrollHeight;
+  }
 }
 function sendWelcomeMission(value){
   const v = String(value || '').trim();
@@ -220,6 +234,46 @@ if(miaWelcomeClose) miaWelcomeClose.onclick = () => miaWelcome.classList.remove(
 miaWelcome.addEventListener('click', e => { if(e.target === miaWelcome) miaWelcome.classList.remove('open'); });
 miaWelcome.querySelectorAll('[data-mia-prompt]').forEach(b => b.onclick = () => sendWelcomeMission(b.dataset.miaPrompt));
 document.getElementById('miaWelcomeSend').onclick = () => sendWelcomeMission(miaWelcomeInput.value);
+/* === INTERACTIVE DEMO SCENARIOS === */
+const SCENARIOS = {
+  launch: {
+    prompt: "Show me how you would launch an AI product",
+    stages: ["Brief received — mapping the launch", "Thinking — positioning & channels", "Tools — reaching across the web", "Executing — building the assets", "Verifying — checking every detail"],
+    reply: "Here's how I'd launch it: I research your market across the web, position against competitors, draft the announcement, line up Product Hunt + HN + dev.to, and verify every link before we go live. Pick me and I'll run the real thing."
+  },
+  research: {
+    prompt: "Research the AI coding-assistant market for me",
+    stages: ["Brief received — scoping the market", "Thinking — who are the players?", "Tools — gathering data across planets", "Executing — comparing features & pricing", "Verifying — cross-checking sources"],
+    reply: "Market mapped: I pull from docs, reviews, pricing pages and community chatter across the web — then hand you the players, the gaps, and where you'd win. That's a live mission; say the word."
+  },
+  outreach: {
+    prompt: "Plan a cold outreach campaign for my startup",
+    stages: ["Brief received — who are we reaching?", "Thinking — angles & personalization", "Tools — finding verified contacts", "Executing — writing the sequence", "Verifying — checking deliverability"],
+    reply: "Campaign drafted: verified contacts, personalized openers, 4-touch sequence with opt-outs baked in. I don't do spam — every touch earns the reply. Want me to build yours?"
+  }
+};
+document.querySelectorAll('[data-scenario]').forEach(b => b.onclick = () => {
+  const s = SCENARIOS[b.dataset.scenario];
+  if(!s) return;
+  // open welcome chat if closed
+  const w = document.getElementById('miaWelcome');
+  if(w && !w.classList.contains('open')) w.classList.add('open');
+  // clear log for a clean demo run
+  const log = document.getElementById('miaWelcomeLog');
+  if(log) log.innerHTML = '';
+  welcomeBubble(s.prompt, 'u');
+  // staged theatre
+  const stageEl = document.getElementById('welcomeMissionStage');
+  const promptEl = document.getElementById('welcomeMissionPrompt');
+  if(promptEl) promptEl.textContent = s.prompt;
+  let si = 0;
+  const tick = setInterval(() => {
+    if(stageEl && si < s.stages.length){ stageEl.textContent = s.stages[si]; si++; }
+    else { clearInterval(tick); }
+  }, 1600);
+  startWelcomeMission(s.prompt);
+  setTimeout(() => welcomeBubble(s.reply, 'm', 'DEMO'), s.stages.length * 1600 + 600);
+});
 /* === AGENT PICKER === */
 (function(){
   const sel = document.getElementById('miaAgentPick');

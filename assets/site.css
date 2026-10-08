@@ -581,3 +581,18 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   opacity:0;transform:translateY(14px) scale(.98);transition:opacity .8s ease,transform .8s ease}
 .mission-cine span.show{opacity:1;transform:translateY(0) scale(1)}
 .mission-cine span em{font-style:normal;color:var(--teal)}
+
+/* typing indicator */
+.typing-dots{display:inline-flex;gap:5px;padding:6px 0}
+.typing-dots i{width:7px;height:7px;border-radius:50%;background:var(--teal);opacity:.4;animation:tblink 1.2s infinite}
+.typing-dots i:nth-child(2){animation-delay:.2s}
+.typing-dots i:nth-child(3){animation-delay:.4s}
+@keyframes tblink{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+
+/* interactive demo scenarios */
+.demo-scenarios{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0 4px;justify-content:center}
+.demo-scenarios span{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);font-weight:700}
+.demo-scenarios button{background:rgba(94,234,212,.08);border:1px solid rgba(94,234,212,.4);color:#f2fffd;
+  border-radius:999px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;
+  transition:all .2s;box-shadow:0 0 16px rgba(94,234,212,.1)}
+.demo-scenarios button:hover{background:rgba(94,234,212,.18);box-shadow:0 0 28px rgba(94,234,212,.3);transform:translateY(-2px)}
