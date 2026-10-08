@@ -2,6 +2,8 @@
 
 **Live:** https://mohammedabdelshafy.github.io/mia-ai-site/
 
+**Positioning:** Stop asking AI how. Tell Mia what to do. Mia is presented as an AI digital operator that understands outcomes, plans missions, routes specialists, uses connected tools, verifies work, and returns the result.
+
 Mia isn't software you operate — she's the employee you hire. An embodiment layer for AI: a persistent face, voice, and expressive reactions wrapped around an agent that actually does work. This repo is her public site: a 5-page experience with a live demo chat, a 57-agent directory, and cinematic mission visuals.
 
 ![Mia](https://mohammedabdelshafy.github.io/mia-ai-site/assets/mia-stand-hi.webp)
