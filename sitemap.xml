@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://mohammedabdelshafy.github.io/mia-ai-site/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://mohammedabdelshafy.github.io/mia-ai-site/</loc></url>
+  <url><loc>https://mohammedabdelshafy.github.io/mia-ai-site/ai-employee/</loc></url>
+  <url><loc>https://mohammedabdelshafy.github.io/mia-ai-site/ai-agent-swarm/</loc></url>
+  <url><loc>https://mohammedabdelshafy.github.io/mia-ai-site/ai-automation/</loc></url>
 </urlset>
