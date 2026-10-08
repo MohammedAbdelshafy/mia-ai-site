@@ -275,6 +275,29 @@ window.addEventListener('load', () => {
   setTimeout(() => miaWelcomeInput.focus({preventScroll:true}), 120);
 });
 
+/* === SUSPENSE CAPTIONS over opening video === */
+(function(){
+  const el = document.getElementById('welcomeCineText');
+  if(!el) return;
+  const lines = [
+    "Past <em>planets</em> and <em>moons</em>…",
+    "beneath alien <em>suns</em>, among the <em>stars</em>…",
+    "she gathers what others <em>can't reach</em>.",
+    "She's not software you <em>operate</em>.",
+    "She's <em>Mia</em>. And she's ready."
+  ];
+  let i = 0;
+  function next(){
+    el.classList.remove('show');
+    setTimeout(() => {
+      el.innerHTML = lines[i % lines.length];
+      i++;
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('show')));
+    }, 800);
+  }
+  next();
+  setInterval(next, 4200);
+})();
 function startWelcomeDemo(){
   const demoTask = "Show me how you would launch an AI product";
   welcomeMissionPrompt.textContent = demoTask;

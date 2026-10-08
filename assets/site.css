@@ -570,3 +570,14 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   .mia-welcome-actions{grid-template-columns:repeat(2,1fr)}
   .mia-welcome-chat{padding:20px !important}
 }
+
+/* ============ CINEMATIC SUSPENSE CAPTIONS ============ */
+.mission-screen{position:relative}
+.mission-cine{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;
+  text-align:center;pointer-events:none;padding:0 28px}
+.mission-cine span{font-family:var(--disp);font-size:clamp(20px,3.4vw,34px);font-weight:800;letter-spacing:-.5px;
+  line-height:1.25;color:#f4fffd;max-width:22ch;
+  text-shadow:0 0 30px rgba(94,234,212,.55),0 4px 24px rgba(0,0,0,.9),0 2px 6px rgba(0,0,0,.9);
+  opacity:0;transform:translateY(14px) scale(.98);transition:opacity .8s ease,transform .8s ease}
+.mission-cine span.show{opacity:1;transform:translateY(0) scale(1)}
+.mission-cine span em{font-style:normal;color:var(--teal)}
