@@ -239,12 +239,14 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .rv.in{opacity:1;transform:none}
 /* responsive */
 @media(max-width:960px){
+  .hero{min-height:0;display:block;padding:104px 0 44px}
   .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-mia{display:none}
   .hero-mia{top:70px;bottom:auto;height:52svh;width:auto;right:auto;left:50%;transform:translateX(-50%);opacity:.22;z-index:1}
   .lede{margin-left:auto;margin-right:auto}
   .caps{margin-left:auto;margin-right:auto}
   .embody-frame{margin-left:auto;margin-right:auto}
-  .chatbar{margin-left:auto;margin-right:auto}
+  .chatbar{margin:0 auto 22px}
   .trycard{max-width:calc(100vw - 44px)}
   .phone-col{margin-top:10px}
   .handnote{right:2%}
@@ -344,24 +346,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   <div class="hero-mia"><img src="assets/mia-lean-full.webp" alt="Mia leaning on the chat"></div>
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">● Private preview</span>
-      <h1>Mia <span class="teal">AI</span></h1>
-      <p class="tagline">Give AI a body, presence, and world.</p>
-      <p class="lede">Mia isn't software you operate — she's the employee you hire. Her departments research, create, build, reach out, and verify, and you watch the whole working journey. Give her a mission; she brings back results.</p>
-
-      <div class="caps" id="features">
-        <div class="cap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Research</div>
-        <div class="cap"><svg viewBox="0 0 24 24"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6"/></svg>Build</div>
-        <div class="cap"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 3 3 4-4 4 4"/></svg>Create</div>
-        <div class="cap"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>Outreach</div>
-        <div class="cap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 01-.4 2.4l2 1.6-2 3.4-2.4-1a7 7 0 01-2 1.2L14 21h-4l-.2-2.4a7 7 0 01-2-1.2l-2.4 1-2-3.4 2-1.6A7 7 0 015 12a7 7 0 01.4-2.4l-2-1.6 2-3.4 2.4 1a7 7 0 012-1.2L10 3h4l.2 2.4a7 7 0 012 1.2l2.4-1 2 3.4-2 1.6c.3.8.4 1.6.4 2.4z"/></svg>Operate</div>
-        <div class="cap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg>Verify</div>
-      </div>
-
-      <div class="embody-frame rv">
-        <img src="assets/mia-onduty.webp" alt="Mia on duty at mission control">
-        <span class="embody-badge"><i></i>MIA · ON DUTY</span>
-      </div>
       <div class="chatbar">
         <div class="chat-log" id="chatLog"></div>
         <div class="spacewrap" id="spaceWrap">
@@ -381,6 +365,24 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
         </div>
       </div>
       <p class="demo-note">Live demo — send a task and watch Mia fly through the data-space as she works. Answers here are scripted; her full brain ships with the private preview.</p>
+      <span class="eyebrow">● Private preview</span>
+      <h1>Mia <span class="teal">AI</span></h1>
+      <p class="tagline">Give AI a body, presence, and world.</p>
+      <p class="lede">Mia isn't software you operate — she's the employee you hire. Her departments research, create, build, reach out, and verify, and you watch the whole working journey. Give her a mission; she brings back results.</p>
+
+      <div class="caps" id="features">
+        <div class="cap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Research</div>
+        <div class="cap"><svg viewBox="0 0 24 24"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6"/></svg>Build</div>
+        <div class="cap"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 3 3 4-4 4 4"/></svg>Create</div>
+        <div class="cap"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>Outreach</div>
+        <div class="cap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 01-.4 2.4l2 1.6-2 3.4-2.4-1a7 7 0 01-2 1.2L14 21h-4l-.2-2.4a7 7 0 01-2-1.2l-2.4 1-2-3.4 2-1.6A7 7 0 015 12a7 7 0 01.4-2.4l-2-1.6 2-3.4 2.4 1a7 7 0 012-1.2L10 3h4l.2 2.4a7 7 0 012 1.2l2.4-1 2 3.4-2 1.6c.3.8.4 1.6.4 2.4z"/></svg>Operate</div>
+        <div class="cap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg>Verify</div>
+      </div>
+
+      <div class="embody-frame rv">
+        <img src="assets/mia-onduty.webp" alt="Mia on duty at mission control">
+        <span class="embody-badge"><i></i>MIA · ON DUTY</span>
+      </div>
       <div class="meetrow"><button class="chipbtn" id="meetMiaBtn">▶ Meet Mia</button></div>
 
       <div class="crew">
