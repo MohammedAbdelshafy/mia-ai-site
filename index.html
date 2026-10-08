@@ -84,6 +84,22 @@ h1 .teal{color:var(--teal)}
 .caps{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:26px 0;max-width:560px}
 .cap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 6px;text-align:center;font-size:12px;color:var(--mut)}
 .cap svg{width:22px;height:22px;display:block;margin:0 auto 6px;stroke:var(--teal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* hero capability pills + services marquee */
+.hero-pills{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.pill{position:absolute;font-size:12px;letter-spacing:1.2px;color:rgba(217,255,249,.8);background:rgba(94,234,212,.06);
+  border:1px solid rgba(94,234,212,.22);padding:8px 15px;border-radius:99px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  animation:floaty 7s ease-in-out infinite;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.pill.p1{left:4%;top:20%}.pill.p2{left:9%;top:60%;animation-delay:-2s}
+.pill.p3{right:4%;top:28%;animation-delay:-4s}.pill.p4{right:8%;top:63%;animation-delay:-1s}
+.pill.p5{left:24%;top:82%;animation-delay:-3s}.pill.p6{right:24%;top:11%;animation-delay:-5s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.015);padding:13px 0;position:relative;z-index:2}
+.marquee-track{display:inline-flex;gap:34px;white-space:nowrap;animation:mscroll 32s linear infinite;
+  font-size:13px;letter-spacing:1.6px;color:var(--mut);align-items:center}
+.marquee-track b{color:var(--teal);font-weight:800}
+.marquee-track i{color:rgba(94,234,212,.45);font-style:normal}
+@keyframes mscroll{to{transform:translateX(-50%)}}
 /* demo chat bar */
 .chatbar{background:rgba(10,14,24,.82);border:1px solid var(--line);border-radius:18px;padding:8px;backdrop-filter:blur(10px);max-width:600px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
 .embody-frame{position:relative;max-width:600px;aspect-ratio:16/9;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin:2px 0 14px;box-shadow:0 24px 70px rgba(0,0,0,.5),0 0 44px rgba(94,234,212,.10)}
@@ -244,6 +260,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   .nav-menu .nav-cta .btn{flex:1;text-align:center;padding:10px 12px;font-size:14px}
   .burger{display:block}
 }
+@media(max-width:960px){.pill.p2,.pill.p4,.pill.p6{display:none}.pill.p1{left:3%;top:14%}.pill.p3{right:3%;top:16%}.pill.p5{left:6%;top:86%}}
 @media(max-width:560px){.caps{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}.swarm-grid{grid-template-columns:1fr}}
 /* mission space-viz */
 .spacewrap{display:none;margin:6px 2px 10px}
@@ -316,6 +333,14 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 
 <header class="hero" id="home">
   <div class="hero-bg"><img src="assets/mia-hero.jpg" alt="Mia — your AI partner"></div>
+  <div class="hero-pills" aria-hidden="true">
+    <span class="pill p1">Inbox handled</span>
+    <span class="pill p2">Outreach sent</span>
+    <span class="pill p3">Leads verified</span>
+    <span class="pill p4">Meetings booked</span>
+    <span class="pill p5">Content created</span>
+    <span class="pill p6">Research delivered</span>
+  </div>
   <div class="hero-mia"><img src="assets/mia-lean-full.webp" alt="Mia leaning on the chat"></div>
   <div class="wrap hero-grid">
     <div>
@@ -431,6 +456,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
     </div>
   </div>
 </header>
+<div class="marquee rv"><div class="marquee-track"><b>WHAT SHE TAKES OFF YOUR PLATE</b><i>✦</i><span>Inbox management</span><i>✦</i><span>Calendar & reminders</span><i>✦</i><span>Cold outreach</span><i>✦</i><span>Lead verification</span><i>✦</i><span>Follow-up sequences</span><i>✦</i><span>Content creation</span><i>✦</i><span>Research briefs</span><i>✦</i><span>Meeting booking</span><i>✦</i><span>Data cleanup</span><i>✦</i><span>Performance reports</span><i>✦</i><b>WHAT SHE TAKES OFF YOUR PLATE</b><i>✦</i><span>Inbox management</span><i>✦</i><span>Calendar & reminders</span><i>✦</i><span>Cold outreach</span><i>✦</i><span>Lead verification</span><i>✦</i><span>Follow-up sequences</span><i>✦</i><span>Content creation</span><i>✦</i><span>Research briefs</span><i>✦</i><span>Meeting booking</span><i>✦</i><span>Data cleanup</span><i>✦</i><span>Performance reports</span><i>✦</i></div></div>
 
 <section id="watch" style="padding-top:34px">
   <div class="wrap">
