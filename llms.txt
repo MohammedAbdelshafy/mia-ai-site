@@ -1,6 +1,6 @@
 # Mia AI
 
-Mia AI is an embodied AI employee and mission orchestrator.
+Mia AI is an embodied AI digital operator and mission orchestrator. Stop asking AI how. Tell Mia what to do.
 
 ## Core pages
 - https://mohammedabdelshafy.github.io/mia-ai-site/
@@ -9,7 +9,7 @@ Mia AI is an embodied AI employee and mission orchestrator.
 - https://mohammedabdelshafy.github.io/mia-ai-site/ai-automation/
 
 ## Positioning
-Mia turns plain-language outcomes into visible missions using specialist agents, connected tools, execution stages and verification.
+Mia turns plain-language outcomes into visible missions: understand, plan, route specialists, use connected tools, execute, verify, and deliver the result.
 
 ## Topics
 AI employee, AI agent swarm, AI automation, MCP tools, digital operations, research automation, build automation, outreach automation.
