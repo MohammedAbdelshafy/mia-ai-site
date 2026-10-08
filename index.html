@@ -245,6 +245,28 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .mia-welcome.open{opacity:1;pointer-events:auto}
 .mia-welcome-card{position:relative;width:min(1120px,100%);min-height:min(720px,calc(100svh - 48px));overflow:hidden;border:1px solid rgba(94,234,212,.28);border-radius:30px;background:radial-gradient(700px 500px at 78% 25%,rgba(45,212,191,.13),transparent 60%),linear-gradient(145deg,#070b14,#0b1120 60%,#07131a);box-shadow:0 40px 140px rgba(0,0,0,.72),0 0 90px rgba(94,234,212,.12)}
 .mia-welcome-card::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(5,7,13,.97) 7%,rgba(5,7,13,.72) 46%,rgba(5,7,13,.15) 76%),radial-gradient(500px 700px at 76% 42%,rgba(94,234,212,.08),transparent 65%);pointer-events:none}
+.ob-card{position:relative;width:min(1020px,100%);max-height:calc(100svh - 24px);overflow-y:auto;border:1px solid rgba(94,234,212,.28);border-radius:30px;
+  background:radial-gradient(700px 500px at 78% 25%,rgba(45,212,191,.13),transparent 60%),linear-gradient(145deg,#070b14,#0b1120 60%,#07131a);
+  box-shadow:0 40px 140px rgba(0,0,0,.72),0 0 90px rgba(94,234,212,.12);padding:44px 44px 34px}
+.ob-grid{display:grid;grid-template-columns:minmax(220px,.8fr) 1.2fr;gap:34px;align-items:center}
+.ob-mia{position:relative;text-align:center}
+.ob-mia img{width:min(280px,100%);border-radius:22px;display:block;margin:0 auto;
+  -webkit-mask-image:radial-gradient(ellipse 92% 92% at 50% 50%,#000 78%,transparent 100%);
+  mask-image:radial-gradient(ellipse 92% 92% at 50% 50%,#000 78%,transparent 100%)}
+.ob-hi{position:absolute;top:6%;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:14px;font-weight:800;color:#062b27;
+  background:linear-gradient(135deg,#7df9e2,#34e0c0);padding:9px 18px;border-radius:18px 18px 18px 4px;box-shadow:0 0 26px rgba(94,234,212,.5);animation:floaty 5s ease-in-out infinite}
+.ob-copy h2{font-family:var(--disp);font-size:clamp(30px,4.6vw,52px);line-height:1.05;letter-spacing:-1px;margin-bottom:12px}
+.ob-copy h2 span{color:var(--teal)}
+.ob-copy p{color:var(--mut);font-size:15px;max-width:46ch}
+.ob-vids{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.ob-vid video{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:1px solid rgba(94,234,212,.25);background:#04060c;display:block}
+.ob-vid span{display:block;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--mut);margin-top:7px;text-align:center}
+#obNext{margin-top:4px}
+.ob-fine{font-size:12px;color:var(--mut);opacity:.75;margin-top:10px}
+.ob-dots{display:flex;gap:8px;margin-top:16px}
+.ob-dots i{width:26px;height:5px;border-radius:99px;background:rgba(255,255,255,.14)}
+.ob-dots i.on{background:var(--teal);box-shadow:0 0 12px rgba(94,234,212,.6)}
+@media(max-width:760px){.ob-card{padding:30px 22px 26px}.ob-grid{grid-template-columns:1fr;gap:18px}.ob-mia img{width:min(210px,64vw)}.ob-vids{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}}
 .mia-welcome-close{position:absolute;top:18px;right:18px;z-index:5;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(4,8,15,.65);color:var(--txt);font-size:25px;cursor:pointer}
 .mia-welcome-stage{position:absolute;inset:0;display:grid;grid-template-columns:minmax(340px,.9fr) minmax(380px,1.1fr);align-items:center;gap:22px;padding:58px 58px 44px;z-index:2}
 .mia-welcome-copy{max-width:470px}
@@ -452,7 +474,29 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 <body>
 <div class="stars"></div>
 <div class="mia-welcome" id="miaWelcome" role="dialog" aria-modal="true" aria-labelledby="miaWelcomeTitle">
-  <div class="mia-welcome-card">
+  <div class="ob-card" id="obStep1">
+    <button class="mia-welcome-close" id="obClose" aria-label="Close">×</button>
+    <div class="ob-grid">
+      <div class="ob-mia">
+        <img src="assets/mia-stand-hi.webp" alt="Mia waving hello">
+        <span class="ob-hi">Wassup! 👋</span>
+      </div>
+      <div class="ob-copy">
+        <div class="mia-live"><i></i> Mia is online</div>
+        <h2>Hey, I'm <span>Mia</span>.</h2>
+        <p>I'm not software you operate — I'm the employee you hire. I run your inbox, calendar, outreach and research, commanding 57 specialists while you watch it all happen.</p>
+        <div class="ob-vids">
+          <div class="ob-vid"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4"></video><span>Her mission</span></div>
+          <div class="ob-vid"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-work.mp4"></video><span>Her work</span></div>
+          <div class="ob-vid"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-deliver.mp4"></video><span>Her delivery</span></div>
+        </div>
+        <button class="btn btn-teal" id="obNext">Take me in →</button>
+        <p class="ob-fine">Live demo — my full brain ships with the private preview.</p>
+        <div class="ob-dots"><i class="on"></i><i></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="mia-welcome-card" id="miaWelcomeCard">
     <button class="mia-welcome-close" id="miaWelcomeClose" aria-label="Close">×</button>
     <div class="mia-welcome-stage">
       <div class="mia-welcome-copy">
@@ -1141,8 +1185,15 @@ function startWelcomeMission(task){
 }
 
 window.addEventListener('load', () => {
+  const obStep1 = document.getElementById('obStep1');
+  const obCard = document.getElementById('miaWelcomeCard');
+  const showStep = n => { obStep1.style.display = n===1?'block':'none'; obCard.style.display = n===2?'block':'none'; };
+  const firstVisit = !localStorage.getItem('mia-ob-done');
+  showStep(firstVisit ? 1 : 2);
+  document.getElementById('obNext').onclick = () => { localStorage.setItem('mia-ob-done','1'); showStep(2); setTimeout(() => miaWelcomeInput.focus({preventScroll:true}), 80); };
+  document.getElementById('obClose').onclick = () => { localStorage.setItem('mia-ob-done','1'); miaWelcome.classList.remove('open'); };
   miaWelcome.classList.add('open');
-  setTimeout(() => miaWelcomeInput.focus({preventScroll:true}), 80);
+  if(!firstVisit) setTimeout(() => miaWelcomeInput.focus({preventScroll:true}), 80);
 });
 
 const log = document.getElementById('chatLog'), input = document.getElementById('chatInput');
