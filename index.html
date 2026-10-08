@@ -396,7 +396,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Command her 51-agent departments</li>
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>No credit card required</li>
         </ul>
-        <button class="btn btn-teal" data-modal>Hire Mia →</button>
+        <button class="btn btn-teal" data-modal data-plan="preview">Hire Mia →</button>
       </div>
     </div>
   </div>
@@ -456,7 +456,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>All 6 departments</li>
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Custom appearance &amp; voice</li>
         </ul>
-        <button class="btn btn-ghost" data-modal style="width:100%">Hire Mia free →</button>
+        <button class="btn btn-ghost" data-modal data-plan="preview" style="width:100%">Hire Mia free →</button>
       </div>
       <div class="price-card featured">
         <div class="badge-pop">MOST POPULAR</div>
@@ -469,7 +469,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Priority mission queue</li>
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Founding-member pricing for life</li>
         </ul>
-        <button class="btn btn-teal" data-modal style="width:100%">Hire Mia Pro →</button>
+        <button class="btn btn-teal" data-modal data-plan="pro" style="width:100%">Hire Mia Pro →</button>
         <p class="fine">Billed at public launch. No card required to reserve.</p>
       </div>
       <div class="price-card">
@@ -482,7 +482,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Your own named Mia + world</li>
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Direct line to the founder</li>
         </ul>
-        <button class="btn btn-ghost" data-modal style="width:100%">Claim founding →</button>
+        <button class="btn btn-ghost" data-modal data-plan="lifetime" style="width:100%">Claim founding →</button>
       </div>
     </div>
     <p class="fine" style="text-align:center;margin-top:16px">The funnel: free preview → Pro when she's indispensable → Lifetime for believers. Paid billing starts at public launch.</p>
@@ -635,12 +635,12 @@ const AGENTS = {
   sprint: { name: "SPRINT", role: "AI Consultancy Sprint \u00b7 from $297", flow: ["Audit your workflows","Find the AI wins","Sprint the build","Handoff & train"], replies: ["SPRINT here \u2014 AI Consultancy Sprint (from $297). I audit your workflows, find the AI wins, and sprint-build them. What does your team do all day?"] }
 };
 const MIA = {
-  greet: ["Hey — I'm Mia. In this demo I'm running on a script, but the real me commands 51 specialist agents and gets real work done. Tap an agent below, then give us a task."],
-  price: ["Free during the private preview — 25 launch credits, no card required. Join the waitlist and you're locked in as a founding member."],
-  bye: ["Talk soon. Mia out — well, the demo version of me. The real one is coming."],
+  greet: ["Hey, I'm Mia. This demo runs on a script — the real me commands 51 specialists and does the actual work. Tap an agent below, give us a task, and watch."],
+  price: ["Preview is free — 25 launch credits, no card. Pro is $49 a month, or Founding Lifetime at $499: one payment, yours forever. Paid billing starts at public launch."],
+  bye: ["Talk soon."],
   fallback: [
-    "Good instinct — in the full build I'd route that to the right specialist and get it done. This demo is just a taste; join the waitlist and I'll show you the real thing.",
-    "Noted. My agents are itching for real tasks — the Research one especially. Join the waitlist and put us to work."
+    "In the full build I'd hand that to the right specialist and get it done. This demo is just a taste — the waitlist is open when you're ready.",
+    "Noted. When you're ready for the real thing, the waitlist is open."
   ]
 };
 let activeAgent = null, rIdx = {};
@@ -762,6 +762,7 @@ function planReply(text){
   if (/^(hi|hey|hello|salam|yo)\b/.test(t)) return {out:pick(MIA.greet,'g'), tag:null, key:null};
   if (t.includes('price')||t.includes('cost')||t.includes('free')||t.includes('pay')||t.includes('credit')) return {out:pick(MIA.price,'p'), tag:null, key:null};
   if (t.includes('bye')||t.includes('thanks')||t.includes('shukran')) return {out:pick(MIA.bye,'b'), tag:null, key:null};
+  if (/who are you|your name|about you|what are you/.test(t)) return {out:"I'm Mia — the employee you hire, not software you operate. Research, outreach, build, verify: my departments handle the work while you watch the journey. This site is the demo; the waitlist is the door.", tag:null, key:null};
   const a = route(t);
   if (a) return {out:pick(AGENTS[a].replies,a), tag:AGENTS[a].name, key:a};
   return {out:pick(MIA.fallback,'f'), tag:null, key:null};
@@ -784,7 +785,7 @@ function selectAgent(k){
   activeAgent = k;
   input.placeholder = 'Ask ' + a.name + '…';
   input.focus();
-  bubble('⚡ <b>' + a.name + '</b> standing by — ' + a.role + '. What\'s the mission?', 'm', a.name);
+  bubble('⚡ <b>' + a.name + '</b> — ' + a.role + '. Give me the mission when you\'re ready.', 'm', a.name);
 }
 const crewBtns = document.querySelectorAll('.agent');
 crewBtns.forEach(b => b.onclick = () => selectAgent(b.dataset.agent));
@@ -810,7 +811,8 @@ document.getElementById('vidX').onclick = () => { vidModal.classList.remove('ope
 vidModal.addEventListener('click', e => { if(e.target===vidModal){ vidModal.classList.remove('open'); document.getElementById('hiVideo').pause(); } });
 /* modal + waitlist */
 const modal = document.getElementById('modal');
-document.querySelectorAll('[data-modal]').forEach(b => b.onclick = e => { e.preventDefault(); modal.classList.add('open'); });
+let miaPlan = 'preview';
+document.querySelectorAll('[data-modal]').forEach(b => b.onclick = e => { e.preventDefault(); miaPlan = b.dataset.plan || 'preview'; modal.classList.add('open'); });
 document.getElementById('modalX').onclick = () => modal.classList.remove('open');
 modal.onclick = e => { if(e.target === modal) modal.classList.remove('open'); };
 document.getElementById('wSubmit').onclick = async () => {
@@ -819,13 +821,13 @@ document.getElementById('wSubmit').onclick = async () => {
   let saved = false;
   try { /* real backend when the site runs on the Mia server */
     const r = await fetch('/api/waitlist',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:n,email:em})});
+      body:JSON.stringify({name:n,email:em,plan:miaPlan,source:'site'})});
     saved = r.ok;
   } catch(e){}
   if(!saved){ /* static-host fallback: this browser only */
     try {
       const list = JSON.parse(localStorage.getItem('mia-waitlist') || '[]');
-      list.push({name:n, email:em, at:new Date().toISOString()});
+      list.push({name:n, email:em, plan:miaPlan, source:'site', at:new Date().toISOString()});
       localStorage.setItem('mia-waitlist', JSON.stringify(list));
     } catch(e){}
   }
