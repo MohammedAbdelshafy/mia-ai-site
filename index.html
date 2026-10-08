@@ -294,6 +294,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .dir-card:hover{border-color:var(--teal);transform:translateY(-2px)}
 .dir-card b{display:block;font-size:14px;letter-spacing:.6px;color:var(--teal)}
 .dir-card span{font-size:12px;color:var(--mut)}
+.dir-card em{display:block;font-style:normal;font-size:11.5px;color:rgba(217,255,249,.55);margin-top:8px;line-height:1.45}
 </style>
 </head>
 <style>
@@ -444,13 +445,12 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
         </div>
       </div>
       <div class="trycard">
-        <h3>Hire Mia for Free</h3>
+        <h3>Hire Mia to control your digital life</h3>
         <p>Mia is in private preview — reserve your hire.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Free demo credits</li>
-          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Customize appearance</li>
-          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Choose personality &amp; voice</li>
-          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Command her 51-agent departments</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Inbox, calendar &amp; reminders handled</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Research, outreach &amp; follow-ups on autopilot</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>51 specialist agents under one command</li>
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>No credit card required</li>
         </ul>
         <button class="btn btn-teal" data-modal data-plan="preview">Hire Mia →</button>
@@ -464,8 +464,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   <div class="wrap">
     <div class="sec-head rv"><h2>Watch her work</h2><p>Full missions, on camera — flying out, collecting the data, delivering it verified.</p></div>
     <div class="vidcards">
-      <div class="vidcard rv"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-work.mp4"></video><div class="vc"><b>Watch her work</b><span>Mia at the console, running your mission across the internet.</span></div></div>
-      <div class="vidcard rv"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-deliver.mp4"></video><div class="vc"><b>Watch her deliver</b><span>Results gathered, verified, and presented — every time.</span></div></div>
+      <div class="vidcard rv"><video controls playsinline preload="metadata" poster="assets/mia-onduty.webp" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-work.mp4"></video><div class="vc"><b>Watch her work</b><span>Mia at the console, running your mission across the internet.</span></div></div>
+      <div class="vidcard rv"><video controls playsinline preload="metadata" poster="assets/mia-onduty.webp" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-deliver.mp4"></video><div class="vc"><b>Watch her deliver</b><span>Results gathered, verified, and presented — every time.</span></div></div>
     </div>
   </div>
 </section>
@@ -938,10 +938,13 @@ crewBtns.forEach(b => b.onclick = () => selectAgent(b.dataset.agent));
 (function(){
   const grid = document.getElementById('agentGrid'); if(!grid) return;
   Object.keys(AGENTS).forEach(k => {
+    if (k === 'swarm') return; // SWARM is the command power — it has its own section; directory stays 51
     const a = AGENTS[k];
     const d = document.createElement('button');
     d.className = 'dir-card rv';
-    d.innerHTML = '<b>'+a.name+'</b><span>'+a.role+'</span>';
+    const preview = a.replies && a.replies[0] ? a.replies[0].slice(0, 92) + (a.replies[0].length > 92 ? '…' : '') : '';
+    const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    d.innerHTML = '<b>'+esc(a.name)+'</b><span>'+esc(a.role)+'</span><em>'+esc(preview)+'</em>';
     d.onclick = () => { selectAgent(k); document.getElementById('chat').scrollIntoView({behavior:'smooth'}); };
     grid.appendChild(d);
   });
