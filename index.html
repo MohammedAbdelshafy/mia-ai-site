@@ -239,6 +239,57 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 /* reveal */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
+
+/* === MIA FIRST-CONTACT OVERLAY === */
+.mia-welcome{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(2,4,9,.74);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .35s ease}
+.mia-welcome.open{opacity:1;pointer-events:auto}
+.mia-welcome-card{position:relative;width:min(1120px,100%);min-height:min(720px,calc(100svh - 48px));overflow:hidden;border:1px solid rgba(94,234,212,.28);border-radius:30px;background:radial-gradient(700px 500px at 78% 25%,rgba(45,212,191,.13),transparent 60%),linear-gradient(145deg,#070b14,#0b1120 60%,#07131a);box-shadow:0 40px 140px rgba(0,0,0,.72),0 0 90px rgba(94,234,212,.12)}
+.mia-welcome-card::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(5,7,13,.97) 7%,rgba(5,7,13,.72) 46%,rgba(5,7,13,.15) 76%),radial-gradient(500px 700px at 76% 42%,rgba(94,234,212,.08),transparent 65%);pointer-events:none}
+.mia-welcome-close{position:absolute;top:18px;right:18px;z-index:5;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(4,8,15,.65);color:var(--txt);font-size:25px;cursor:pointer}
+.mia-welcome-stage{position:absolute;inset:0;display:grid;grid-template-columns:minmax(340px,.9fr) minmax(380px,1.1fr);align-items:center;gap:22px;padding:58px 58px 44px;z-index:2}
+.mia-welcome-copy{max-width:470px}
+.mia-live{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;border:1px solid rgba(94,234,212,.32);background:rgba(94,234,212,.06);color:#cffff8;font-size:11px;letter-spacing:1.7px;text-transform:uppercase;margin-bottom:18px}
+.mia-live i{width:7px;height:7px;border-radius:50%;background:#5eead4;box-shadow:0 0 14px #5eead4;animation:epulse 1.6s infinite}
+.mia-welcome-copy h2{font-family:var(--disp);font-size:clamp(34px,5vw,62px);line-height:1.02;letter-spacing:-1.2px;margin-bottom:14px}
+.mia-welcome-copy h2 span{color:var(--teal)}
+.mia-welcome-copy p{color:var(--mut);font-size:15px;max-width:43ch}
+.mia-welcome-scene{position:absolute;right:-5%;bottom:-11%;height:94%;width:56%;pointer-events:none;display:flex;align-items:flex-end;justify-content:center}
+.mia-welcome-scene::after{content:"";position:absolute;left:2%;right:2%;bottom:2%;height:30%;background:radial-gradient(ellipse at center,rgba(94,234,212,.15),transparent 66%);filter:blur(16px)}
+.mia-welcome-scene img{height:100%;width:auto;max-width:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 30px 55px rgba(0,0,0,.55));transform:translateY(2%);mask-image:linear-gradient(90deg,transparent 0%,#000 17%,#000 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 17%,#000 100%)}
+.mia-welcome-chat{position:relative;z-index:4;width:100%;max-width:510px;justify-self:end;background:rgba(6,10,18,.78);border:1px solid rgba(94,234,212,.36);border-radius:24px;padding:16px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 22px 60px rgba(0,0,0,.5),0 0 45px rgba(94,234,212,.08)}
+.mia-welcome-chat .mia-bubble{padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,rgba(94,234,212,.16),rgba(255,255,255,.045));border:1px solid rgba(94,234,212,.18);font-size:14px;line-height:1.55;margin-bottom:12px}
+.mia-welcome-chat .mia-bubble b{color:var(--teal)}
+.mia-welcome-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.mia-welcome-actions button{flex:1 1 calc(50% - 8px);min-width:150px;text-align:left;border:1px solid var(--line);border-radius:14px;padding:11px 12px;background:rgba(255,255,255,.035);color:var(--txt);cursor:pointer}
+.mia-welcome-actions button:hover{border-color:rgba(94,234,212,.4);transform:translateY(-1px)}
+.mia-welcome-actions button b{display:block;font-size:12.5px;color:var(--teal);margin-bottom:2px}
+.mia-welcome-actions button span{display:block;font-size:11px;color:var(--mut)}
+.mia-welcome-input{display:flex;gap:8px}
+.mia-welcome-input input{flex:1;min-width:0;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.12);border-radius:14px;color:var(--txt);outline:none;padding:13px 14px;font:inherit}
+.mia-welcome-input input:focus{border-color:rgba(94,234,212,.45)}
+.mia-welcome-input button{width:48px;border:0;border-radius:14px;background:linear-gradient(135deg,#5eead4,#2dd4bf);color:#04211d;font-size:19px;cursor:pointer;box-shadow:var(--glow)}
+.mia-welcome-foot{font-size:10.5px;color:rgba(154,166,184,.8);margin-top:9px}
+.mia-skill-strip{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.mia-skill-chip{font-size:10px;letter-spacing:.7px;color:#bdebe4;padding:5px 9px;border:1px solid rgba(94,234,212,.2);border-radius:999px;background:rgba(94,234,212,.04)}
+@media(max-width:860px){
+  .mia-welcome-stage{grid-template-columns:1fr;align-items:start;padding:44px 22px 26px;overflow-y:auto}
+  .mia-welcome-copy{max-width:none;padding-right:48px}
+  .mia-welcome-copy h2{font-size:clamp(34px,10vw,48px)}
+  .mia-welcome-chat{justify-self:stretch;max-width:none;margin-top:auto}
+  .mia-welcome-scene{width:78%;height:61%;right:-13%;bottom:21%}
+  .mia-welcome-copy p{font-size:13.5px}
+}
+@media(max-width:560px){
+  .mia-welcome{padding:10px}
+  .mia-welcome-card{min-height:calc(100svh - 20px);border-radius:22px}
+  .mia-welcome-stage{padding:34px 14px 14px;gap:10px}
+  .mia-welcome-copy{padding-right:42px}
+  .mia-welcome-copy h2{font-size:34px}
+  .mia-welcome-scene{height:43%;width:91%;right:-24%;bottom:35%}
+  .mia-welcome-chat{padding:12px}
+  .mia-welcome-actions button{min-width:0;padding:10px}
+  .mia-welcome-actions button span{font-size:10.5px}
+}
 /* responsive */
 @media(max-width:960px){
   .hero{min-height:0;display:block;padding:104px 0 44px}
@@ -317,6 +368,37 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 </style>
 <body>
 <div class="stars"></div>
+<div class="mia-welcome" id="miaWelcome" role="dialog" aria-modal="true" aria-labelledby="miaWelcomeTitle">
+  <div class="mia-welcome-card">
+    <button class="mia-welcome-close" id="miaWelcomeClose" aria-label="Close">×</button>
+    <div class="mia-welcome-stage">
+      <div class="mia-welcome-copy">
+        <div class="mia-live"><i></i> Mia is online</div>
+        <h2 id="miaWelcomeTitle">What would you like to <span>create</span> today?</h2>
+        <p>Tell me the outcome. I’ll choose the right tools, delegate to the right specialists, verify the work, and bring it back ready.</p>
+        <div class="mia-skill-strip">
+          <span class="mia-skill-chip">GitHub</span><span class="mia-skill-chip">Agentic AI</span><span class="mia-skill-chip">GPU / NVIDIA</span><span class="mia-skill-chip">Web</span><span class="mia-skill-chip">Build</span><span class="mia-skill-chip">Research</span>
+        </div>
+      </div>
+      <div class="mia-welcome-scene" aria-hidden="true"><img src="assets/mia-lean-full.webp" alt=""></div>
+      <div class="mia-welcome-chat">
+        <div class="mia-bubble"><b>Mia:</b> Tell me what you want to create. I’ll turn it into a mission.</div>
+        <div class="mia-welcome-actions">
+          <button type="button" data-mia-prompt="Build me a website"><b>Build</b><span>Website, app, automation</span></button>
+          <button type="button" data-mia-prompt="Research this idea"><b>Research</b><span>Investigate, compare, verify</span></button>
+          <button type="button" data-mia-prompt="Grow my business"><b>Grow</b><span>Marketing, sales, outreach</span></button>
+          <button type="button" data-mia-prompt="Create content for me"><b>Create</b><span>Posts, video, design, voice</span></button>
+        </div>
+        <div class="mia-welcome-input">
+          <input id="miaWelcomeInput" placeholder="Describe what you want to create…" maxlength="500" autocomplete="off">
+          <button id="miaWelcomeSend" aria-label="Start mission">↑</button>
+        </div>
+        <div class="mia-welcome-foot">Mia orchestrates. Specialists execute. TRUTH verifies. You stay in control.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <nav>
   <div class="nav-in">
@@ -848,6 +930,27 @@ function route(text){
   if (hit(["idea","brainstorm","slogan"])) return "nova";
   return null;
 }
+
+/* === MIA WELCOME BOOT === */
+const miaWelcome = document.getElementById('miaWelcome');
+const miaWelcomeInput = document.getElementById('miaWelcomeInput');
+function launchMiaPrompt(v){
+  if(!v) return;
+  miaWelcome.classList.remove('open');
+  input.value = v;
+  send();
+  document.getElementById('chat').scrollIntoView({behavior:'smooth',block:'center'});
+}
+document.getElementById('miaWelcomeClose').onclick = () => miaWelcome.classList.remove('open');
+miaWelcome.addEventListener('click', e => { if(e.target === miaWelcome) miaWelcome.classList.remove('open'); });
+miaWelcome.querySelectorAll('[data-mia-prompt]').forEach(b => b.onclick = () => launchMiaPrompt(b.dataset.miaPrompt));
+document.getElementById('miaWelcomeSend').onclick = () => launchMiaPrompt(miaWelcomeInput.value.trim());
+miaWelcomeInput.addEventListener('keydown', e => { if(e.key === 'Enter') document.getElementById('miaWelcomeSend').click(); });
+window.addEventListener('load', () => setTimeout(() => {
+  miaWelcome.classList.add('open');
+  miaWelcomeInput.focus({preventScroll:true});
+}, 220));
+
 const log = document.getElementById('chatLog'), input = document.getElementById('chatInput');
 function bubble(html, who, tag){
   log.classList.add('open');
