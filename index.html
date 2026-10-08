@@ -213,6 +213,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .modal-card input:focus{border-color:var(--teal)}
 .modal-card .btn{width:100%;margin-top:20px}
 .x{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer}
+.modal-perks{list-style:none;margin:0 0 18px;padding:0}
+.modal-perks li{position:relative;padding:7px 0 7px 30px;font-size:14.5px;color:var(--txt)}
+.modal-perks li::before{content:"\2713";position:absolute;left:2px;color:var(--teal);font-weight:800}
 .ok{text-align:center;padding:10px 0}
 .ok .big{font-size:46px;margin-bottom:10px}
 /* reveal */
@@ -633,8 +636,14 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   <div class="modal-card">
     <button class="x" id="modalX" aria-label="Close">×</button>
     <div id="modalForm">
-      <h3>Hire Mia</h3>
-      <p>Mia is in private preview. Leave your email and we'll invite you to hire her — with 25 free credits.</p>
+      <h3 id="modalTitle">Hire Mia to control your digital life</h3>
+      <p id="modalSub">Mia is in private preview — reserve your hire.</p>
+      <ul class="modal-perks">
+        <li>She runs your inbox, calendar &amp; reminders</li>
+        <li>Research, outreach &amp; follow-ups on autopilot</li>
+        <li>51 specialist agents under one command</li>
+        <li>Free demo credits — no card required</li>
+      </ul>
       <label for="wName">Name</label><input id="wName" placeholder="Your name" autocomplete="name">
       <label for="wEmail">Email</label><input id="wEmail" type="email" placeholder="you@example.com" autocomplete="email">
       <button class="btn btn-teal" id="wSubmit">Notify me →</button>
@@ -921,7 +930,19 @@ vidModal.addEventListener('click', e => { if(e.target===vidModal){ vidModal.clas
 /* modal + waitlist */
 const modal = document.getElementById('modal');
 let miaPlan = 'preview';
-document.querySelectorAll('[data-modal]').forEach(b => b.onclick = e => { e.preventDefault(); miaPlan = b.dataset.plan || 'preview'; modal.classList.add('open'); });
+const PLAN_COPY = {
+  preview:    ["Hire Mia to control your digital life", "Mia is in private preview — reserve your hire."],
+  pro:        ["Reserve Mia Pro", "Lock founding-member pricing for life. $49/mo when we launch."],
+  lifetime:   ["Claim Founding Lifetime", "One payment of $499. Yours forever."],
+  team:       ["Hire Mia for your team", "$149/mo for 5 devices when we launch."],
+  agency:     ["Scale your agency with Mia", "$499/mo for 20 devices when we launch."],
+  enterprise: ["Apply for Enterprise Install", "Custom fleet install — onboarding by application."]
+};
+document.querySelectorAll('[data-modal]').forEach(b => b.onclick = e => { e.preventDefault(); miaPlan = b.dataset.plan || 'preview';
+  const c = PLAN_COPY[miaPlan] || PLAN_COPY.preview;
+  document.getElementById('modalTitle').textContent = c[0];
+  document.getElementById('modalSub').textContent = c[1];
+  modal.classList.add('open'); });
 document.getElementById('modalX').onclick = () => modal.classList.remove('open');
 modal.onclick = e => { if(e.target === modal) modal.classList.remove('open'); };
 document.getElementById('wSubmit').onclick = async () => {
