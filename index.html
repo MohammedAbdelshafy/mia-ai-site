@@ -461,7 +461,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
       <div class="mia-welcome-chat">
         <div class="mia-chat-head">
           <span class="mia-chat-signal"><i></i> LIVE MISSION CHAT</span>
-          <span class="mia-chat-count">51 specialists · MCP mesh · verify gate</span>
+          <span class="mia-chat-count">57 specialists · MCP mesh · verify gate</span>
         </div>
         <div class="mia-bubble"><b>Mia:</b> Tell me what you want to create. I’ll turn it into a mission.</div>
         <div class="mia-welcome-actions">
@@ -692,7 +692,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
     </div>
     <div class="perks rv">
       <div class="perk"><b>25</b><span>Free credits<br>at launch</span></div>
-      <div class="perk"><b>51</b><span>Specialist agents<br>under one Mia</span></div>
+      <div class="perk"><b>57</b><span>Specialist agents<br>under one Mia</span></div>
       <div class="perk"><b>$0</b><span>No credit card<br>to join</span></div>
     </div>
   </div>
@@ -1150,7 +1150,7 @@ crewBtns.forEach(b => b.onclick = () => selectAgent(b.dataset.agent));
 (function(){
   const grid = document.getElementById('agentGrid'); if(!grid) return;
   Object.keys(AGENTS).forEach(k => {
-    if (k === 'swarm') return; // SWARM is the command power — it has its own section; directory stays 51
+    if (k === 'swarm') return; // SWARM is the command power — it has its own section; directory stays 57
     const a = AGENTS[k];
     const d = document.createElement('button');
     d.className = 'dir-card rv';
