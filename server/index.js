@@ -17,7 +17,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data', 'waitlist.json');
-const PLANS = ['preview', 'pro', 'lifetime'];
+const PLANS = ['preview', 'pro', 'lifetime', 'team', 'agency', 'enterprise'];
 
 app.use(express.json({ limit: '10kb' }));
 app.use(express.static(path.join(__dirname, '..')));

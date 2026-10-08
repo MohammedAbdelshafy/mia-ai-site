@@ -157,6 +157,9 @@ section{padding:88px 0}
 .perk span{font-size:13px;color:var(--mut)}
 /* pricing */
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.ptabs{display:flex;gap:10px;justify-content:center;margin-bottom:24px}
+.ptab{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--mut);padding:10px 22px;border-radius:99px;font-size:14px;cursor:pointer}
+.ptab.active{background:rgba(94,234,212,.12);border-color:rgba(94,234,212,.5);color:var(--txt)}
 .price-card.featured{border-color:rgba(94,234,212,.55);box-shadow:0 0 44px rgba(94,234,212,.12);position:relative}
 .badge-pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--teal);color:#04211c;font-size:11px;font-weight:800;letter-spacing:1.5px;padding:5px 14px;border-radius:99px}
 .price-card{max-width:520px;margin:0 auto;background:linear-gradient(180deg,rgba(94,234,212,.09),rgba(94,234,212,.02));
@@ -446,7 +449,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 <section id="pricing" style="padding-top:20px">
   <div class="wrap">
     <div class="sec-head rv"><h2>Hire Mia your way</h2><p>Start free in the private preview. Upgrade when she's indispensable. Founding members lock pricing for life.</p></div>
-    <div class="price-grid rv">
+    <div class="ptabs rv">
+      <button class="ptab active" data-ptab="personal">For me</button>
+      <button class="ptab" data-ptab="business">For agencies &amp; companies</button>
+    </div>
+    <div class="price-grid rv" id="gridPersonal">
       <div class="price-card">
         <div class="plan">Preview</div>
         <div class="amt">$0</div>
@@ -485,7 +492,48 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
         <button class="btn btn-ghost" data-modal data-plan="lifetime" style="width:100%">Claim founding →</button>
       </div>
     </div>
-    <p class="fine" style="text-align:center;margin-top:16px">The funnel: free preview → Pro when she's indispensable → Lifetime for believers. Paid billing starts at public launch.</p>
+    <div class="price-grid rv" id="gridBusiness" style="display:none">
+      <div class="price-card">
+        <div class="plan">Team</div>
+        <div class="amt">$149<span>/mo</span></div>
+        <p style="color:var(--mut);font-size:14px">Mia on every teammate's device</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Install on up to 5 devices</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>She works inside the machine — browser, files, apps</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>All 51 agents + shared team brain</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Priority mission queue</li>
+        </ul>
+        <button class="btn btn-ghost" data-modal data-plan="team" style="width:100%">Hire Mia for my team →</button>
+      </div>
+      <div class="price-card featured">
+        <div class="badge-pop">MOST POPULAR</div>
+        <div class="plan">Agency</div>
+        <div class="amt">$499<span>/mo</span></div>
+        <p style="color:var(--mut);font-size:14px">For agencies &amp; studios</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Install on up to 20 devices</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Separate workspace per client</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>White-label mission reports</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Dedicated onboarding call</li>
+        </ul>
+        <button class="btn btn-teal" data-modal data-plan="agency" style="width:100%">Scale my agency →</button>
+        <p class="fine">Billed at public launch. No card required to reserve.</p>
+      </div>
+      <div class="price-card">
+        <div class="plan">Enterprise Install</div>
+        <div class="amt">Custom</div>
+        <p style="color:var(--mut);font-size:14px">Mia across your whole company</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Fleet-wide install — she works on every machine</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Admin console + SSO</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Your data stays on your devices</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Dedicated engineer &amp; SLA</li>
+        </ul>
+        <button class="btn btn-ghost" data-modal data-plan="enterprise" style="width:100%">Apply for install →</button>
+        <p class="fine">Founding install program — limited pilots, onboarding by application.</p>
+      </div>
+    </div>
+    <p class="fine" style="text-align:center;margin-top:16px">The funnel: free preview → Pro when she's indispensable → Lifetime for believers. Teams and agencies hire her per device. Paid billing starts at public launch.</p>
   </div>
 </section>
 
@@ -838,6 +886,14 @@ document.getElementById('wSubmit').onclick = async () => {
 const burger = document.getElementById('burger'), navMenu = document.getElementById('navMenu');
 burger.onclick = () => navMenu.classList.toggle('open');
 navMenu.querySelectorAll('a').forEach(a => a.onclick = () => navMenu.classList.remove('open'));
+/* pricing tabs */
+document.querySelectorAll('.ptab').forEach(t => t.onclick = () => {
+  document.querySelectorAll('.ptab').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  const biz = t.dataset.ptab === 'business';
+  document.getElementById('gridPersonal').style.display = biz ? 'none' : 'grid';
+  document.getElementById('gridBusiness').style.display = biz ? 'grid' : 'none';
+});
 const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 if('serviceWorker' in navigator){ /* offline cache optional — skipped for static preview */ }
