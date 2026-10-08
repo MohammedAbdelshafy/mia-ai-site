@@ -24,7 +24,7 @@
 <meta property="og:image:height" content="864">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mia AI | Your Embodied AI Employee">
-<meta name="twitter:description" content="She's not software you operate — she's the employee you hire. Join the private preview — free.">
+<meta name="twitter:description" content="Give Mia a mission, watch her work, and command a specialist AI agent swarm. Join the private preview.">
 <meta name="twitter:image" content="https://mohammedabdelshafy.github.io/mia-ai-site/assets/mia-onduty.webp">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" href="assets/icon-192.png">
@@ -293,6 +293,30 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .mia-welcome-scene{position:absolute;right:-5%;bottom:-11%;height:94%;width:56%;pointer-events:none;display:flex;align-items:flex-end;justify-content:center}
 .mia-welcome-scene::after{content:"";position:absolute;left:2%;right:2%;bottom:2%;height:30%;background:radial-gradient(ellipse at center,rgba(94,234,212,.15),transparent 66%);filter:blur(16px)}
 .mia-welcome-scene img{height:100%;width:auto;max-width:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 30px 55px rgba(0,0,0,.55));transform:translateY(2%);mask-image:linear-gradient(90deg,transparent 0%,#000 17%,#000 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 17%,#000 100%)}
+.mia-direct-stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:42px 54px 38px;overflow-y:auto}
+.mia-direct-title{position:relative;z-index:4;text-align:center;max-width:850px}
+.mia-direct-title .mia-live{margin-bottom:10px}
+.mia-direct-title h2{font-family:var(--disp);font-size:clamp(34px,5vw,62px);line-height:1.02;letter-spacing:-1.2px;margin-bottom:8px}
+.mia-direct-title h2 span{color:var(--teal)}
+.mia-direct-title p{color:var(--mut);font-size:14px;max-width:70ch;margin:0 auto}
+.mia-welcome-avatar{position:absolute;right:-2%;bottom:-7%;width:min(380px,35vw);z-index:1;pointer-events:none;opacity:.34;filter:saturate(.9) drop-shadow(0 30px 60px rgba(0,0,0,.55))}
+.mia-welcome-avatar img{width:100%;height:auto;display:block;mask-image:linear-gradient(180deg,transparent 0%,#000 16%,#000 78%,transparent 100%);-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 16%,#000 78%,transparent 100%)}
+.mia-welcome-speech{position:absolute;top:13%;left:-6%;padding:10px 14px;border-radius:16px 16px 16px 4px;border:1px solid rgba(94,234,212,.42);background:rgba(4,13,21,.9);color:#eafff9;font-size:12px;font-weight:700;box-shadow:0 0 26px rgba(94,234,212,.2)}
+.mia-live-mission{position:relative;z-index:4;width:min(940px,100%);order:2}
+.mia-welcome-chat{position:relative;z-index:5;max-width:940px;order:3}
+.mia-welcome-log{display:flex;flex-direction:column;gap:8px;max-height:150px;overflow:auto;margin:0 0 10px;padding-right:3px;scrollbar-width:thin}
+.mia-chat-msg{max-width:88%;padding:10px 13px;border-radius:16px;font-size:13px;line-height:1.45;border:1px solid var(--line)}
+.mia-chat-msg span{display:block;font-size:10px;letter-spacing:1.4px;color:var(--teal);font-weight:800;margin-bottom:3px}
+.mia-chat-msg p{margin:0}
+.mia-chat-mia{align-self:flex-start;background:rgba(255,255,255,.045)}
+.mia-chat-user{align-self:flex-end;background:rgba(94,234,212,.11);border-color:rgba(94,234,212,.22)}
+.mia-chat-user span{color:#d8fff8;text-align:right}
+@media(max-width:860px){
+  .mia-direct-stage{padding:30px 16px 18px;gap:10px}
+  .mia-welcome-avatar{display:none}
+  .mia-direct-title{padding-right:8px}
+  .mia-direct-title h2{font-size:34px}
+}
 .mia-welcome-chat{position:relative;z-index:4;width:100%;max-width:560px;justify-self:end;background:rgba(4,9,16,.92);border:1px solid rgba(94,234,212,.36);border-radius:24px;padding:16px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 22px 60px rgba(0,0,0,.5),0 0 45px rgba(94,234,212,.08)}
 .mia-welcome-chat .mia-bubble{padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,rgba(94,234,212,.16),rgba(255,255,255,.045));border:1px solid rgba(94,234,212,.18);font-size:14px;line-height:1.55;margin-bottom:12px}
 .mia-welcome-chat .mia-bubble b{color:var(--teal)}
@@ -528,42 +552,18 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   </div>
   <div class="mia-welcome-card" id="miaWelcomeCard">
     <button class="mia-welcome-close" id="miaWelcomeClose" aria-label="Close">×</button>
-    <div class="mia-welcome-stage">
-      <div class="mia-welcome-copy">
+    <div class="mia-welcome-stage mia-direct-stage">
+      <div class="mia-welcome-avatar" aria-hidden="true">
+        <img src="assets/mia-stand-hi.webp" alt="">
+        <div class="mia-welcome-speech">What would you like to create today?</div>
+      </div>
+
+      <div class="mia-direct-title">
         <div class="mia-live"><i></i> Mia is online</div>
-        <h2 id="miaWelcomeTitle">What would you like to <span>create</span> today?</h2>
-        <p>Tell me the outcome. I’ll choose the right tools, delegate to the right specialists, verify the work, and bring it back ready.</p>
-        <div class="mia-skill-strip" aria-label="Mia skills">
-          <button type="button" class="mia-skill-chip" data-mia-prompt="Connect to GitHub and inspect my repo">GitHub</button>
-          <button type="button" class="mia-skill-chip" data-mia-prompt="Use the MCP tool mesh for this task">MCP Mesh</button>
-          <button type="button" class="mia-skill-chip" data-mia-prompt="Think through the best architecture before executing">Thinking</button>
-          <button type="button" class="mia-skill-chip" data-mia-prompt="Research this on the web and verify the sources">Web Research</button>
-          <button type="button" class="mia-skill-chip" data-mia-prompt="Use NVIDIA GPU skills where they improve this job">NVIDIA GPU</button>
-          <button type="button" class="mia-skill-chip" data-mia-prompt="Build and ship the digital result">Build</button>
-          <button type="button" class="mia-skill-chip" data-mia-prompt="Connect the right specialist agents and verify the result">Agent Swarm</button>
-          <button type="button" class="mia-skill-chip" data-mia-prompt="Publish the finished result and prepare the delivery">Deploy</button>
-        </div>
+        <h2>Tell me what you want to <span>create.</span></h2>
+        <p>Give me the outcome. I’ll think, route the right specialists, use the right tools, execute, and verify the result.</p>
       </div>
-      <div class="mia-command-core" aria-hidden="true">
-        <div class="core-orbit orbit-a"><span></span><span></span><span></span></div>
-        <div class="core-orbit orbit-b"><span></span><span></span><span></span></div>
-        <div class="core-center">
-          <span class="core-pulse"></span>
-          <b>MIA</b>
-          <small>COMMAND CORE</small>
-          <em>ONLINE</em>
-        </div>
-        <div class="core-node n-think"><b>THINK</b><span>plan</span></div>
-        <div class="core-node n-tools"><b>MCP</b><span>tools</span></div>
-        <div class="core-node n-code"><b>CODE</b><span>GitHub</span></div>
-        <div class="core-node n-web"><b>WEB</b><span>research</span></div>
-        <div class="core-node n-gpu"><b>GPU</b><span>NVIDIA</span></div>
-        <div class="core-panel">
-          <div><span>MISSION SYSTEM</span><b>READY</b></div>
-          <p>Think → route → execute → verify</p>
-          <div class="core-bars"><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-      </div>
+
       <div class="mia-live-mission" id="miaLiveMission">
         <div class="mission-topline">
           <span class="mission-kicker"><i></i> MIA MISSION THEATRE</span>
@@ -582,13 +582,16 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
           <span class="active">BRIEF</span><b>→</b><span>THINK</span><b>→</b><span>TOOLS</span><b>→</b><span>EXECUTE</span><b>→</b><span>VERIFY</span>
         </div>
       </div>
+
       <div class="mia-welcome-chat">
         <div class="mia-chat-head">
           <span class="mia-chat-signal"><i></i> TALK TO MIA</span>
           <span class="mia-chat-count">57 specialists · MCP mesh · verify gate</span>
         </div>
-        <div class="mia-chat-intro">Tell Mia the outcome. <b>Watch the mission above.</b></div>
-        <div class="mia-bubble"><b>Mia:</b> Tell me what you want to create. I’ll turn it into a mission.</div>
+        <div class="mia-chat-intro">Your mission starts here. <b>Mia responds in this box.</b></div>
+        <div class="mia-welcome-log" id="miaWelcomeLog" aria-live="polite">
+          <div class="mia-chat-msg mia-chat-mia"><span>MIA</span><p>Tell me the outcome you want. I’ll turn it into a mission and show you what I’m doing.</p></div>
+        </div>
         <div class="mia-welcome-actions">
           <button type="button" data-mia-prompt="Build me a website"><b>Build</b><span>Website, app, automation</span></button>
           <button type="button" data-mia-prompt="Research this idea"><b>Research</b><span>Investigate, compare, verify</span></button>
@@ -1181,20 +1184,30 @@ function route(text){
 /* === MIA WELCOME BOOT === */
 const miaWelcome = document.getElementById('miaWelcome');
 const miaWelcomeInput = document.getElementById('miaWelcomeInput');
-function launchMiaPrompt(v){
-  if(!v) return;
-  startWelcomeMission(v);
-  miaWelcome.classList.remove('open');
-  input.value = v;
-  send();
-  const chatTarget = document.querySelector('#home .chatbar') || document.querySelector('.chatbar');
-  if(chatTarget) chatTarget.scrollIntoView({behavior:'smooth',block:'center'});
+function welcomeBubble(text, who, tag){
+  const log = document.getElementById('miaWelcomeLog');
+  if(!log) return;
+  const d = document.createElement('div');
+  d.className = 'mia-chat-msg ' + (who === 'u' ? 'mia-chat-user' : 'mia-chat-mia');
+  d.innerHTML = (tag ? '<span>⚡ ' + esc(tag) + '</span>' : '<span>' + (who === 'u' ? 'YOU' : 'MIA') + '</span>') + '<p>' + esc(text) + '</p>';
+  log.appendChild(d);
+  log.scrollTop = log.scrollHeight;
 }
-document.getElementById('miaWelcomeClose').onclick = () => miaWelcome.classList.remove('open');
+function sendWelcomeMission(value){
+  const v = String(value || '').trim();
+  if(!v) return;
+  miaWelcomeInput.value = '';
+  welcomeBubble(v, 'u');
+  startWelcomeMission(v);
+  const p = planReply(v);
+  setTimeout(() => welcomeBubble(p.out, 'm', p.tag), 1250);
+}
+const miaWelcomeClose = document.getElementById('miaWelcomeClose');
+if(miaWelcomeClose) miaWelcomeClose.onclick = () => miaWelcome.classList.remove('open');
 miaWelcome.addEventListener('click', e => { if(e.target === miaWelcome) miaWelcome.classList.remove('open'); });
-miaWelcome.querySelectorAll('[data-mia-prompt]').forEach(b => b.onclick = () => launchMiaPrompt(b.dataset.miaPrompt));
-document.getElementById('miaWelcomeSend').onclick = () => launchMiaPrompt(miaWelcomeInput.value.trim());
-miaWelcomeInput.addEventListener('keydown', e => { if(e.key === 'Enter') document.getElementById('miaWelcomeSend').click(); });
+miaWelcome.querySelectorAll('[data-mia-prompt]').forEach(b => b.onclick = () => sendWelcomeMission(b.dataset.miaPrompt));
+document.getElementById('miaWelcomeSend').onclick = () => sendWelcomeMission(miaWelcomeInput.value);
+miaWelcomeInput.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); sendWelcomeMission(miaWelcomeInput.value); } });
 
 const welcomeMissionVideo = document.getElementById('welcomeMissionVideo');
 const welcomeMission = document.getElementById('miaLiveMission');
@@ -1230,16 +1243,14 @@ function startWelcomeMission(task){
 
 window.addEventListener('load', () => {
   const obStep1 = document.getElementById('obStep1');
-  const obCard = document.getElementById('miaWelcomeCard');
-  const showStep = n => { obStep1.style.display = n===1?'block':'none'; obCard.style.display = n===2?'block':'none'; };
-  const firstVisit = !localStorage.getItem('mia-ob-done');
-  showStep(firstVisit ? 1 : 2);
-  document.getElementById('obNext').onclick = () => { localStorage.setItem('mia-ob-done','1'); showStep(2); setTimeout(() => miaWelcomeInput.focus({preventScroll:true}), 80); };
-  document.getElementById('obClose').onclick = () => { localStorage.setItem('mia-ob-done','1'); miaWelcome.classList.remove('open'); };
+  if(obStep1) obStep1.style.display = 'none';
+  const obClose = document.getElementById('obClose');
+  if(obClose) obClose.onclick = () => miaWelcome.classList.remove('open');
   miaWelcome.classList.add('open');
   startWelcomeDemo();
-  if(!firstVisit) setTimeout(() => miaWelcomeInput.focus({preventScroll:true}), 80);
+  setTimeout(() => miaWelcomeInput.focus({preventScroll:true}), 120);
 });
+
 function startWelcomeDemo(){
   const demoTask = "Show me how you would launch an AI product";
   welcomeMissionPrompt.textContent = demoTask;
