@@ -321,6 +321,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .spacewrap{display:block;margin:2px 2px 10px}
 #missionVideo{width:100%;aspect-ratio:21/9;object-fit:cover;display:block;border-radius:14px;border:1px solid rgba(94,234,212,.4);background:#04060c;box-shadow:0 0 30px rgba(94,234,212,.12)}
 .stage-label{text-align:center;font-size:13px;color:var(--teal);margin-top:8px;min-height:20px;letter-spacing:.4px}
+.page-mission-screen{position:relative;overflow:hidden;border-radius:14px}
+.page-mission-screen::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(2,7,12,.78));pointer-events:none}
+.page-mission-overlay{position:absolute;left:12px;right:12px;bottom:10px;z-index:2;display:flex;justify-content:space-between;align-items:end;gap:12px}
+.page-mission-overlay span{font-family:var(--disp);font-size:12px;color:#f1fffd;font-weight:600}
+.page-mission-overlay b{font-size:10px;letter-spacing:.5px;color:var(--teal);font-weight:600;text-align:right}
 .space-progress{height:4px;background:rgba(255,255,255,.07);border-radius:99px;margin-top:6px;overflow:hidden}
 #spaceBar{height:100%;width:0;background:linear-gradient(90deg,#2dd4bf,#a78bfa);border-radius:99px;transition:width .2s}
 
@@ -347,6 +352,33 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .dir-card b{display:block;font-size:14px;letter-spacing:.6px;color:var(--teal)}
 .dir-card span{font-size:12px;color:var(--mut)}
 .dir-card em{display:block;font-style:normal;font-size:11.5px;color:rgba(217,255,249,.55);margin-top:8px;line-height:1.45}
+
+
+/* === MIA LIVE MISSION THEATRE === */
+.mia-live-mission{position:relative;z-index:4;width:100%;max-width:510px;justify-self:end;margin-bottom:12px;padding:11px;border-radius:22px;background:rgba(4,8,15,.76);border:1px solid rgba(94,234,212,.34);box-shadow:0 20px 55px rgba(0,0,0,.4),0 0 45px rgba(94,234,212,.06);backdrop-filter:blur(14px)}
+.mission-topline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:1px 3px 9px;font-size:9px;letter-spacing:1.8px;text-transform:uppercase}
+.mission-kicker{color:var(--teal);font-weight:800;display:flex;align-items:center;gap:7px}
+.mission-kicker i{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal);animation:epulse 1.35s infinite}
+.mission-state{color:rgba(217,255,249,.6);border:1px solid rgba(255,255,255,.1);padding:4px 8px;border-radius:999px}
+.mission-state.live{color:#071613;background:var(--teal);border-color:var(--teal);box-shadow:0 0 18px rgba(94,234,212,.3)}
+.mission-screen{position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(94,234,212,.24);background:#03060b;aspect-ratio:16/7.5}
+#missionVideo,#welcomeMissionVideo{width:100%;height:100%;object-fit:cover;display:block}
+.mission-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:13px 14px;background:linear-gradient(180deg,rgba(0,0,0,0) 32%,rgba(3,6,11,.82) 100%);pointer-events:none}
+.mission-prompt{font-family:var(--disp);font-size:14px;color:#f1fffd;font-weight:600;max-width:85%}
+.mission-stage{margin-top:3px;font-size:10.5px;letter-spacing:.55px;color:var(--teal)}
+.mission-scan{position:absolute;left:0;right:0;top:-20%;height:2px;background:linear-gradient(90deg,transparent,rgba(94,234,212,.8),transparent);box-shadow:0 0 16px rgba(94,234,212,.45);opacity:0;pointer-events:none}
+.mia-live-mission.is-live .mission-scan{opacity:1;animation:missionScan 2.2s linear infinite}
+.mission-rail{display:flex;align-items:center;justify-content:center;gap:7px;padding:8px 4px 1px;font-size:8.5px;letter-spacing:1.2px;color:rgba(154,166,184,.58)}
+.mission-rail b{color:rgba(94,234,212,.42);font-weight:700}
+.mission-rail span.active{color:var(--teal)}
+@keyframes missionScan{to{top:105%}}
+@media(max-width:860px){
+  .mia-live-mission{justify-self:stretch;max-width:none;margin-top:8px}
+}
+@media(max-width:560px){
+  .mission-rail{gap:4px;font-size:7.5px}
+  .mission-prompt{font-size:12.5px}
+}
 
 /* === MIA COMMAND CORE / TOOL MESH === */
 .mia-welcome-card{isolation:isolate}
@@ -458,6 +490,23 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
           <div class="core-bars"><i></i><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
+      <div class="mia-live-mission" id="miaLiveMission">
+        <div class="mission-topline">
+          <span class="mission-kicker"><i></i> MIA MISSION THEATRE</span>
+          <span class="mission-state" id="welcomeMissionState">READY</span>
+        </div>
+        <div class="mission-screen">
+          <video id="welcomeMissionVideo" muted loop playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4"></video>
+          <div class="mission-overlay">
+            <div class="mission-prompt" id="welcomeMissionPrompt">Give Mia a mission. She'll act it out here.</div>
+            <div class="mission-stage" id="welcomeMissionStage">Waiting for your command</div>
+          </div>
+          <div class="mission-scan"></div>
+        </div>
+        <div class="mission-rail">
+          <span class="active">BRIEF</span><b>→</b><span>THINK</span><b>→</b><span>TOOLS</span><b>→</b><span>EXECUTE</span><b>→</b><span>VERIFY</span>
+        </div>
+      </div>
       <div class="mia-welcome-chat">
         <div class="mia-chat-head">
           <span class="mia-chat-signal"><i></i> LIVE MISSION CHAT</span>
@@ -515,7 +564,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
       <div class="chatbar">
         <div class="chat-log" id="chatLog"></div>
         <div class="spacewrap" id="spaceWrap">
-          <video id="missionVideo" autoplay muted loop playsinline preload="auto" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4"></video>
+          <div class="page-mission-screen">
+            <video id="missionVideo" autoplay muted loop playsinline preload="auto" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4"></video>
+            <div class="page-mission-overlay"><span id="missionPrompt">Mia's mission theatre</span><b id="pageMissionStage">Waiting for your command</b></div>
+          </div>
           <div class="stage-label" id="stageLabel">Mia at work · live</div>
           <div class="space-progress"><div id="spaceBar"></div></div>
         </div>
@@ -1043,6 +1095,7 @@ const miaWelcome = document.getElementById('miaWelcome');
 const miaWelcomeInput = document.getElementById('miaWelcomeInput');
 function launchMiaPrompt(v){
   if(!v) return;
+  startWelcomeMission(v);
   miaWelcome.classList.remove('open');
   input.value = v;
   send();
@@ -1054,6 +1107,39 @@ miaWelcome.addEventListener('click', e => { if(e.target === miaWelcome) miaWelco
 miaWelcome.querySelectorAll('[data-mia-prompt]').forEach(b => b.onclick = () => launchMiaPrompt(b.dataset.miaPrompt));
 document.getElementById('miaWelcomeSend').onclick = () => launchMiaPrompt(miaWelcomeInput.value.trim());
 miaWelcomeInput.addEventListener('keydown', e => { if(e.key === 'Enter') document.getElementById('miaWelcomeSend').click(); });
+
+const welcomeMissionVideo = document.getElementById('welcomeMissionVideo');
+const welcomeMission = document.getElementById('miaLiveMission');
+const welcomeMissionPrompt = document.getElementById('welcomeMissionPrompt');
+const welcomeMissionStage = document.getElementById('welcomeMissionStage');
+const welcomeMissionState = document.getElementById('welcomeMissionState');
+let welcomeMissionTimer = null;
+function startWelcomeMission(task){
+  if(!welcomeMission) return;
+  clearInterval(welcomeMissionTimer);
+  welcomeMission.classList.add('is-live');
+  welcomeMissionState.textContent = 'LIVE';
+  welcomeMissionState.classList.add('live');
+  welcomeMissionPrompt.textContent = task;
+  const stages = ['Briefing the mission…','Thinking through the route…','Selecting tools & specialists…','Executing the task…','Verifying the result…','Mission ready for delivery.'];
+  let i=0;
+  welcomeMissionStage.textContent = stages[0];
+  try{
+    welcomeMissionVideo.currentTime = 0;
+    const p = welcomeMissionVideo.play();
+    if(p && p.catch) p.catch(()=>{});
+  }catch(e){}
+  welcomeMissionTimer = setInterval(()=>{
+    i = Math.min(i+1, stages.length-1);
+    welcomeMissionStage.textContent = stages[i];
+    if(i === stages.length-1){
+      clearInterval(welcomeMissionTimer);
+      welcomeMissionState.textContent = 'RESULT READY';
+      welcomeMissionState.classList.add('live');
+    }
+  }, 1250);
+}
+
 window.addEventListener('load', () => {
   miaWelcome.classList.add('open');
   setTimeout(() => miaWelcomeInput.focus({preventScroll:true}), 80);
@@ -1092,6 +1178,10 @@ const SpaceViz = (() => {
     try{ video.currentTime=0; const p=video.play(); if(p&&p.catch) p.catch(()=>{}); }catch(e){}
     t0=performance.now();
     label.textContent=stages[0].label; bar.style.width='4%';
+    const pagePrompt = document.getElementById('missionPrompt');
+    const pageStage = document.getElementById('pageMissionStage');
+    if(pagePrompt) pagePrompt.textContent = (stages[0]?.short || 'Mission') + ' in motion';
+    if(pageStage) pageStage.textContent = stages[0]?.label || 'Mia is working…';
     stageTimer=setInterval(()=>{
       const el=performance.now()-t0;
       const si=Math.min(stages.length-1, Math.floor(el/STAGE_MS));
@@ -1127,6 +1217,7 @@ function planReply(text){
 }
 function send(){
   const v = input.value.trim(); if(!v) return;
+  startWelcomeMission(v);
   bubble(esc(v),'u'); input.value='';
   const p = planReply(v);
   SpaceViz.start(stagesFor(p.key,p.tag), ()=> bubble(esc(p.out),'m',p.tag));
