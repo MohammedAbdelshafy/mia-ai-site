@@ -1197,6 +1197,15 @@ document.getElementById('wSubmit').onclick = async () => {
       body:JSON.stringify({name:n,email:em,plan:miaPlan,source:'site'})});
     saved = r.ok;
   } catch(e){}
+  if(!saved){ /* free shared capture lane: lands in the founder's inbox, one activation click needed */
+    try {
+      const r = await fetch('https://formsubmit.co/ajax/abdelshafyclapps@gmail.com',{method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({name:n, email:em, plan:miaPlan, source:'mia-ai-site',
+          _subject:'New Mia AI waitlist signup · ' + miaPlan})});
+      saved = r.ok;
+    } catch(e){}
+  }
   if(!saved){ /* static-host fallback: this browser only */
     try {
       const list = JSON.parse(localStorage.getItem('mia-waitlist') || '[]');
