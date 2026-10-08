@@ -160,6 +160,11 @@ section{padding:88px 0}
 .ptabs{display:flex;gap:10px;justify-content:center;margin-bottom:24px}
 .ptab{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--mut);padding:10px 22px;border-radius:99px;font-size:14px;cursor:pointer}
 .ptab.active{background:rgba(94,234,212,.12);border-color:rgba(94,234,212,.5);color:var(--txt)}
+.swarm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.swarm-card{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:center;padding-bottom:16px}
+.swarm-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.swarm-card b{display:block;margin-top:12px;letter-spacing:3px;font-size:15px}
+.swarm-card span{display:block;color:var(--mut);font-size:13px;margin-top:6px;padding:0 14px}
 .price-card.featured{border-color:rgba(94,234,212,.55);box-shadow:0 0 44px rgba(94,234,212,.12);position:relative}
 .badge-pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--teal);color:#04211c;font-size:11px;font-weight:800;letter-spacing:1.5px;padding:5px 14px;border-radius:99px}
 .price-card{max-width:520px;margin:0 auto;background:linear-gradient(180deg,rgba(94,234,212,.09),rgba(94,234,212,.02));
@@ -218,7 +223,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   .nav-menu .nav-cta .btn{flex:1;text-align:center;padding:10px 12px;font-size:14px}
   .burger{display:block}
 }
-@media(max-width:560px){.caps{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.caps{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}.swarm-grid{grid-template-columns:1fr}}
 /* mission space-viz */
 .spacewrap{display:none;margin:6px 2px 10px}
 .spacewrap.open{display:block}
@@ -429,6 +434,16 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
     <div class="agent-grid" id="agentGrid"></div>
   </div>
 </section>
+<section id="swarm" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>One commander. A whole swarm.</h2><p>Mia doesn't work alone — she deploys the right face for the mission. Blondes, brunettes, redheads: a crew she controls, matched to whatever the task needs.</p></div>
+    <div class="swarm-grid rv">
+      <div class="swarm-card"><img src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-swarm-blonde.webp" alt="Glow — blonde swarm agent" loading="lazy"><b>GLOW</b><span>Outreach &amp; first impressions — the magnetic one</span></div>
+      <div class="swarm-card"><img src="assets/mia-onduty.webp" alt="Mia — brunette commander" loading="lazy"><b>MIA</b><span>Command, research &amp; ops — the original</span></div>
+      <div class="swarm-card"><img src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-swarm-redhead.webp" alt="Ember — redhead swarm agent" loading="lazy"><b>EMBER</b><span>Creative &amp; build — the bold one</span></div>
+    </div>
+  </div>
+</section>
 
 <section id="devices" style="padding-top:20px">
   <div class="wrap">
@@ -601,8 +616,8 @@ const AGENTS = {
   ]},
   scout: { name: "SCOUT", role: "Lead finder", replies: ["SCOUT on the trail. Tell me your ideal customer and I'll hunt down exactly where they hang out."] },
   research: { name: "SAGE", role: "Research agent", replies: [
-    "SAGE online. I read the whole internet so you don't have to — sources, comparisons, and a clean summary in minutes. What should I dig into?",
-    "On it. In the full build I'd return a sourced brief with links and a verdict. For now: give me a topic and I'll show you how I think."
+    "SAGE here. Straight talk: in this demo I can't browse the live web, so I won't fake sources or facts. In the full build I read everything and cite it. Give me a topic and I'll show you how I'd scope the research.",
+    "Happy to help, honestly: no live browsing from this demo, so no invented citations. Tell me the topic and I'll map out exactly how I'd research it for real."
   ]},
   inbox: { name: "INBOX", role: "Email agent", replies: ["INBOX here. Drafts, triage, follow-ups — your inbox, handled. What needs writing?"] },
   outreach: { name: "PING", role: "Outreach agent", replies: [
@@ -636,7 +651,7 @@ const AGENTS = {
   ]},
   ghost: { name: "GHOST", role: "Ghostwriter", replies: ["GHOST here. I write in YOUR voice — emails, posts, speeches. Give me a sample and a topic."] },
   dream: { name: "DREAM", role: "Storyteller", replies: ["DREAM here. Bedtime stories, fiction, wild ideas — tell me where to take you."] },
-  sky: { name: "SKY", role: "Weather agent", replies: ["SKY here. Forecasts, alerts, plan-around-the-rain. Where should I check?"] },
+  sky: { name: "SKY", role: "Weather agent", replies: ["SKY here. No live forecasts from the demo, and I won't guess the weather. In the full build: forecasts, alerts, plan-around-the-rain. Where should I check?"] },
   verify: { name: "TRUTH", role: "Verify agent", replies: [
     "TRUTH on duty. I fact-check every claim, link, and number before Mia ships anything. Skepticism is my love language — test me.",
     "Nothing leaves this brain unverified. Paste a claim and watch me work."
@@ -653,8 +668,8 @@ const AGENTS = {
   ledger: { name: "LEDGER", role: "Finance agent", replies: ["LEDGER here. Budgets, invoices, cash flow — I keep your money honest. What are we counting?"] },
   ship: { name: "SHIP", role: "Project manager", replies: ["SHIP here. Plans, deadlines, deliverables — I keep every project on course. What's the mission?"] },
   tempo: { name: "TEMPO", role: "Scheduler", replies: ["TEMPO here. Calendars, reminders, routines — your time, optimized. What's on the agenda?"] },
-  cart: { name: "CART", role: "Shopping agent", replies: ["CART here. I hunt the best products, prices, and deals. What are we buying?"] },
-  wire: { name: "WIRE", role: "News briefer", replies: ["WIRE here. The world, distilled — headlines that matter, zero noise. What beat should I cover?"] },
+  cart: { name: "CART", role: "Shopping agent", replies: ["CART here. I can't check live prices in this demo, so no fake deals from me. In the full build I hunt real products at real prices. What are we buying?"] },
+  wire: { name: "WIRE", role: "News briefer", replies: ["WIRE here. I can't pull live headlines in this demo — and I won't invent them. In the full build: the world distilled, zero noise, every story cited. What beat should I cover?"] },
   melody: { name: "MELODY", role: "Music agent", replies: ["MELODY here. Playlists, discovery, vibes for every mood. What are we listening to?"] },
   arcade: { name: "ARCADE", role: "Games agent", replies: ["ARCADE here. Trivia, games, challenges — ready to play? Pick your game."] },
   lingo: { name: "LINGO", role: "Translator", replies: ["LINGO here. Dozens of languages, natural and instant. What should I translate?"] },
@@ -680,15 +695,19 @@ const AGENTS = {
   strike: { name: "STRIKE", role: "Wholesaler Lead Engine \u00b7 $499", flow: ["Define your buy box","Hunt the sellers","Verify & enrich","Deliver the leads"], replies: ["STRIKE here \u2014 Wholesaler Lead Engine ($499). Buy box in, verified seller leads out. What's your market?"] },
   spear: { name: "SPEAR", role: "Cold Outreach Engine \u00b7 $299", flow: ["Build target list","Write the sequences","Launch & track","Book the replies"], replies: ["SPEAR here \u2014 Cold Outreach Engine ($299). Target list, sharp sequences, launched and tracked. Who are we reaching?"] },
   smile: { name: "SMILE", role: "Dental Outreach Pack \u00b7 $750", flow: ["Map the local market","Personalize outreach","Book the consults","Fill the chairs"], replies: ["SMILE here \u2014 Dental Outreach Pack ($750). Local market mapped, outreach personalized, consults booked. Which practice?"] },
-  sprint: { name: "SPRINT", role: "AI Consultancy Sprint \u00b7 from $297", flow: ["Audit your workflows","Find the AI wins","Sprint the build","Handoff & train"], replies: ["SPRINT here \u2014 AI Consultancy Sprint (from $297). I audit your workflows, find the AI wins, and sprint-build them. What does your team do all day?"] }
+    swarm: { name: "SWARM", role: "Mia's deployable crew", flow: ["Reading the mission","Choosing the crew","Deploying the swarm","Reporting back"], replies: [
+    "Swarm power online. One commander, many faces — I deploy the right one for the task: GLOW (blonde) for outreach and first impressions, me for research and ops, EMBER (redhead) for creative and build. Scroll down to meet the crew, then give me the mission.",
+    "The swarm is yours to command. Tell me the mission and I'll send the right faces — charm, command, or fire, wherever each fits best."
+  ] },
+sprint: { name: "SPRINT", role: "AI Consultancy Sprint \u00b7 from $297", flow: ["Audit your workflows","Find the AI wins","Sprint the build","Handoff & train"], replies: ["SPRINT here \u2014 AI Consultancy Sprint (from $297). I audit your workflows, find the AI wins, and sprint-build them. What does your team do all day?"] }
 };
 const MIA = {
-  greet: ["Hey, I'm Mia. This demo runs on a script — the real me commands 51 specialists and does the actual work. Tap an agent below, give us a task, and watch."],
+  greet: ["Hey, I'm Mia — really good to see you. I'll be straight with you: this demo runs on a script, so I can't do real work from here yet, and I'll never fake it. If I don't know something, I'll say so. Tap an agent below, give us a task, and I'll show you exactly how I'd take it on."],
   price: ["Preview is free — 25 launch credits, no card. Pro is $49 a month, or Founding Lifetime at $499: one payment, yours forever. Paid billing starts at public launch."],
-  bye: ["Talk soon."],
+  bye: ["Talk soon — you've got this."],
   fallback: [
-    "In the full build I'd hand that to the right specialist and get it done. This demo is just a taste — the waitlist is open when you're ready.",
-    "Noted. When you're ready for the real thing, the waitlist is open."
+    "I won't guess on that one — no real lookup from this demo, so no made-up answer. In the full build I'd hand it to the right specialist with live sources. The waitlist is open when you're ready.",
+    "Honest answer: I don't know, and I'd rather say so than invent it. Give me a task from the crew and I'll show you the mission flow."
   ]
 };
 let activeAgent = null, rIdx = {};
@@ -711,6 +730,7 @@ function route(text){
   if (hit(["cold outreach"])) return "spear";
   if (hit(["dental","dentist"])) return "smile";
   if (hit(["consultancy","consult","workflow audit","audit my business"])) return "sprint";
+  if (hit(["swarm","deploy the crew","send the crew","my crew","multiple agents","agent team"])) return "swarm";
   if (hit(["social media","instagram","tiktok","twitter","viral","thread"])) return "buzz";
   if (hit(["marketing","campaign","social","ads","advertis","seo","copy","audience"])) return "marketing";
   if (hit(["leads","prospect","find customers","find clients","lead list"])) return "scout";
