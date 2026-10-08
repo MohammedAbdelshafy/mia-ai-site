@@ -33,7 +33,7 @@
   --r:20px; --font:'Inter',system-ui,sans-serif; --disp:'Space Grotesk',var(--font);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}body{overflow-x:clip}
 body{background:var(--bg);color:var(--txt);font-family:var(--font);line-height:1.6;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;z-index:-2;
   background:radial-gradient(1100px 500px at 85% -5%,rgba(45,212,191,.12),transparent 60%),
@@ -220,8 +220,13 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .rv.in{opacity:1;transform:none}
 /* responsive */
 @media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr}
-  .hero-mia{top:80px;bottom:auto;transform:none;height:52svh;width:auto;right:-6%;opacity:.45;z-index:1}
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-mia{top:70px;bottom:auto;height:52svh;width:auto;right:auto;left:50%;transform:translateX(-50%);opacity:.22;z-index:1}
+  .lede{margin-left:auto;margin-right:auto}
+  .caps{margin-left:auto;margin-right:auto}
+  .embody-frame{margin-left:auto;margin-right:auto}
+  .chatbar{margin-left:auto;margin-right:auto}
+  .trycard{max-width:calc(100vw - 44px)}
   .phone-col{margin-top:10px}
   .handnote{right:2%}
   .trycard{left:0}
