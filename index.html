@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Mia AI — Hire the AI Employee | Give AI a body, presence, and world</title>
-<meta name="description" content="Mia isn't software you operate — she's the employee you hire. An embodied AI with departments for research, outreach, build, and verify. Join the private preview — free.">
+<meta name="description" content="Meet Mia AI, your embodied AI employee. Give her a mission, watch her work, and command a specialist agent swarm. Join the private preview.">
 <meta name="theme-color" content="#05070d">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Mia AI","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Embodied AI employee with a visual mission workflow and specialist agent swarm.","url":"https://mohammedabdelshafy.github.io/mia-ai-site/"}</script>
 <link rel="canonical" href="https://mohammedabdelshafy.github.io/mia-ai-site/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mia AI">
@@ -246,7 +247,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 /* === MIA FIRST-CONTACT OVERLAY === */
 .mia-welcome{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(2,4,9,.74);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .35s ease}
 .mia-welcome.open{opacity:1;pointer-events:auto}
-.mia-welcome-card{position:relative;width:min(1120px,100%);min-height:min(720px,calc(100svh - 48px));overflow:hidden;border:1px solid rgba(94,234,212,.28);border-radius:30px;background:radial-gradient(700px 500px at 78% 25%,rgba(45,212,191,.13),transparent 60%),linear-gradient(145deg,#070b14,#0b1120 60%,#07131a);box-shadow:0 40px 140px rgba(0,0,0,.72),0 0 90px rgba(94,234,212,.12)}
+ .mia-welcome-card{position:relative;width:min(1180px,100%);min-height:min(760px,calc(100svh - 36px));overflow:hidden;border:1px solid rgba(94,234,212,.28);border-radius:30px;background:radial-gradient(700px 500px at 78% 25%,rgba(45,212,191,.13),transparent 60%),linear-gradient(145deg,#070b14,#0b1120 60%,#07131a);box-shadow:0 40px 140px rgba(0,0,0,.72),0 0 90px rgba(94,234,212,.12)}
 .mia-welcome-card::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(5,7,13,.97) 7%,rgba(5,7,13,.72) 46%,rgba(5,7,13,.15) 76%),radial-gradient(500px 700px at 76% 42%,rgba(94,234,212,.08),transparent 65%);pointer-events:none}
 .ob-card{position:relative;width:min(1020px,100%);max-height:calc(100svh - 24px);overflow-y:auto;border:1px solid rgba(94,234,212,.28);border-radius:30px;
   background:radial-gradient(700px 500px at 78% 25%,rgba(45,212,191,.13),transparent 60%),linear-gradient(145deg,#070b14,#0b1120 60%,#07131a);
@@ -271,8 +272,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .ob-dots i.on{background:var(--teal);box-shadow:0 0 12px rgba(94,234,212,.6)}
 @media(max-width:760px){.ob-card{padding:30px 22px 26px}.ob-grid{grid-template-columns:1fr;gap:18px}.ob-mia img{width:min(210px,64vw)}.ob-vids{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}}
 .mia-welcome-close{position:absolute;top:18px;right:18px;z-index:5;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(4,8,15,.65);color:var(--txt);font-size:25px;cursor:pointer}
-.mia-welcome-stage{position:absolute;inset:0;display:grid;grid-template-columns:minmax(340px,.9fr) minmax(380px,1.1fr);align-items:center;gap:22px;padding:58px 58px 44px;z-index:2}
-.mia-welcome-copy{max-width:470px}
+.mia-welcome-stage{position:absolute;inset:0;display:grid;grid-template-columns:minmax(340px,.9fr) minmax(500px,1.1fr);align-items:center;gap:34px;padding:54px 54px 38px;z-index:2}
+.mia-welcome-copy{max-width:500px;padding-top:4px}
 .mia-live{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;border:1px solid rgba(94,234,212,.32);background:rgba(94,234,212,.06);color:#cffff8;font-size:11px;letter-spacing:1.7px;text-transform:uppercase;margin-bottom:18px}
 .mia-live i{width:7px;height:7px;border-radius:50%;background:#5eead4;box-shadow:0 0 14px #5eead4;animation:epulse 1.6s infinite}
 .mia-welcome-copy h2{font-family:var(--disp);font-size:clamp(34px,5vw,62px);line-height:1.02;letter-spacing:-1.2px;margin-bottom:14px}
@@ -281,7 +282,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .mia-welcome-scene{position:absolute;right:-5%;bottom:-11%;height:94%;width:56%;pointer-events:none;display:flex;align-items:flex-end;justify-content:center}
 .mia-welcome-scene::after{content:"";position:absolute;left:2%;right:2%;bottom:2%;height:30%;background:radial-gradient(ellipse at center,rgba(94,234,212,.15),transparent 66%);filter:blur(16px)}
 .mia-welcome-scene img{height:100%;width:auto;max-width:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 30px 55px rgba(0,0,0,.55));transform:translateY(2%);mask-image:linear-gradient(90deg,transparent 0%,#000 17%,#000 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 17%,#000 100%)}
-.mia-welcome-chat{position:relative;z-index:4;width:100%;max-width:510px;justify-self:end;background:rgba(6,10,18,.78);border:1px solid rgba(94,234,212,.36);border-radius:24px;padding:16px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 22px 60px rgba(0,0,0,.5),0 0 45px rgba(94,234,212,.08)}
+.mia-welcome-chat{position:relative;z-index:4;width:100%;max-width:560px;justify-self:end;background:rgba(4,9,16,.92);border:1px solid rgba(94,234,212,.36);border-radius:24px;padding:16px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 22px 60px rgba(0,0,0,.5),0 0 45px rgba(94,234,212,.08)}
 .mia-welcome-chat .mia-bubble{padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,rgba(94,234,212,.16),rgba(255,255,255,.045));border:1px solid rgba(94,234,212,.18);font-size:14px;line-height:1.55;margin-bottom:12px}
 .mia-welcome-chat .mia-bubble b{color:var(--teal)}
 .mia-welcome-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
@@ -297,12 +298,14 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .mia-skill-strip{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
 .mia-skill-chip{font-size:10px;letter-spacing:.7px;color:#bdebe4;padding:5px 9px;border:1px solid rgba(94,234,212,.2);border-radius:999px;background:rgba(94,234,212,.04)}
 @media(max-width:860px){
-  .mia-welcome-stage{grid-template-columns:1fr;align-items:start;padding:44px 22px 26px;overflow-y:auto}
-  .mia-welcome-copy{max-width:none;padding-right:48px}
-  .mia-welcome-copy h2{font-size:clamp(34px,10vw,48px)}
-  .mia-welcome-chat{justify-self:stretch;max-width:none;margin-top:auto}
-  .mia-welcome-scene{width:78%;height:61%;right:-13%;bottom:21%}
-  .mia-welcome-copy p{font-size:13.5px}
+  .mia-welcome-stage{grid-template-columns:1fr;align-items:start;padding:34px 18px 20px;overflow-y:auto}
+  .mia-welcome-copy{max-width:none;padding-right:12px}
+  .mia-welcome-copy h2{font-size:clamp(36px,10vw,54px)}
+  .mia-live-mission{order:2}
+  .mia-welcome-chat{order:3;justify-self:stretch;max-width:none;margin-top:8px}
+  .mia-welcome-copy{order:1}
+  .mia-command-core{display:none}
+  .mia-welcome-copy p{font-size:14px}
 }
 @media(max-width:560px){
   .mia-welcome{padding:10px}
@@ -384,13 +387,13 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 
 
 /* === MIA LIVE MISSION THEATRE === */
-.mia-live-mission{position:relative;z-index:4;width:100%;max-width:510px;justify-self:end;margin-bottom:12px;padding:11px;border-radius:22px;background:rgba(4,8,15,.76);border:1px solid rgba(94,234,212,.34);box-shadow:0 20px 55px rgba(0,0,0,.4),0 0 45px rgba(94,234,212,.06);backdrop-filter:blur(14px)}
+.mia-live-mission{position:relative;z-index:4;width:100%;max-width:560px;justify-self:end;margin-bottom:14px;padding:11px;border-radius:22px;background:rgba(4,8,15,.76);border:1px solid rgba(94,234,212,.34);box-shadow:0 20px 55px rgba(0,0,0,.4),0 0 45px rgba(94,234,212,.06);backdrop-filter:blur(14px)}
 .mission-topline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:1px 3px 9px;font-size:9px;letter-spacing:1.8px;text-transform:uppercase}
 .mission-kicker{color:var(--teal);font-weight:800;display:flex;align-items:center;gap:7px}
 .mission-kicker i{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal);animation:epulse 1.35s infinite}
 .mission-state{color:rgba(217,255,249,.6);border:1px solid rgba(255,255,255,.1);padding:4px 8px;border-radius:999px}
 .mission-state.live{color:#071613;background:var(--teal);border-color:var(--teal);box-shadow:0 0 18px rgba(94,234,212,.3)}
-.mission-screen{position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(94,234,212,.24);background:#03060b;aspect-ratio:16/7.5}
+.mission-screen{position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(94,234,212,.34);background:#03060b;aspect-ratio:16/8.2;box-shadow:inset 0 0 50px rgba(94,234,212,.04)}
 #missionVideo,#welcomeMissionVideo{width:100%;height:100%;object-fit:cover;display:block}
 .mission-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:13px 14px;background:linear-gradient(180deg,rgba(0,0,0,0) 32%,rgba(3,6,11,.82) 100%);pointer-events:none}
 .mission-prompt{font-family:var(--disp);font-size:14px;color:#f1fffd;font-weight:600;max-width:85%}
@@ -442,6 +445,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .mia-chat-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:0 2px 10px;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(217,255,249,.56)}
 .mia-chat-signal{display:inline-flex;align-items:center;gap:6px;color:var(--teal);font-weight:700}.mia-chat-signal i{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal);animation:epulse 1.5s infinite}
 .mia-chat-count{letter-spacing:1px;color:rgba(154,166,184,.78);text-align:right}
+.mia-chat-intro{font-size:11.5px;color:rgba(217,255,249,.68);margin:-2px 2px 10px}.mia-chat-intro b{color:var(--teal)}
+.mission-demo-badge{position:absolute;right:12px;top:12px;padding:4px 8px;border-radius:999px;font-size:8px;letter-spacing:1.4px;color:#061312;background:var(--teal);font-weight:800;box-shadow:0 0 16px rgba(94,234,212,.24)}
 .mia-skill-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
 .mia-skill-chip{font:inherit;font-size:9.5px;letter-spacing:.7px;color:#bdebe4;padding:7px 8px;border:1px solid rgba(94,234,212,.18);border-radius:10px;background:rgba(94,234,212,.035);cursor:pointer;text-align:center;transition:.2s}
 .mia-skill-chip:hover{transform:translateY(-1px);border-color:rgba(94,234,212,.48);background:rgba(94,234,212,.08);color:#eafffb}
@@ -452,11 +457,19 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   .mia-welcome-chat{margin-top:8px}
 }
 @media(max-width:560px){
-  .mia-command-core{right:-38%;top:28%;width:125%;height:43%;opacity:.3}
+  .mia-command-core{display:none}
+  .mia-welcome{padding:8px}
+  .mia-welcome-card{min-height:calc(100svh - 16px);border-radius:22px}
+  .mia-welcome-stage{padding:26px 12px 12px;gap:8px}
+  .mia-welcome-copy{padding-right:0}
+  .mia-welcome-copy h2{font-size:35px}
   .mia-chat-head{align-items:flex-start;flex-direction:column;gap:4px}
   .mia-chat-count{text-align:left}
+  .mia-chat-intro{font-size:12px}
   .mia-skill-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mia-welcome-actions{grid-template-columns:1fr}
+  .mission-screen{aspect-ratio:16/8.6}
+  .mission-prompt{font-size:12px}
 }
 
 </style>
@@ -549,8 +562,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
         <div class="mission-screen">
           <video id="welcomeMissionVideo" muted loop playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4"></video>
           <div class="mission-overlay">
-            <div class="mission-prompt" id="welcomeMissionPrompt">Give Mia a mission. She'll act it out here.</div>
-            <div class="mission-stage" id="welcomeMissionStage">Waiting for your command</div>
+            <span class="mission-demo-badge">LIVE DEMO</span>
+            <div class="mission-prompt" id="welcomeMissionPrompt">Mia is ready. Give her something to do.</div>
+            <div class="mission-stage" id="welcomeMissionStage">Watching Mia's workflow in real time</div>
           </div>
           <div class="mission-scan"></div>
         </div>
@@ -560,9 +574,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
       </div>
       <div class="mia-welcome-chat">
         <div class="mia-chat-head">
-          <span class="mia-chat-signal"><i></i> LIVE MISSION CHAT</span>
+          <span class="mia-chat-signal"><i></i> TALK TO MIA</span>
           <span class="mia-chat-count">57 specialists · MCP mesh · verify gate</span>
         </div>
+        <div class="mia-chat-intro">Tell Mia the outcome. <b>Watch the mission above.</b></div>
         <div class="mia-bubble"><b>Mia:</b> Tell me what you want to create. I’ll turn it into a mission.</div>
         <div class="mia-welcome-actions">
           <button type="button" data-mia-prompt="Build me a website"><b>Build</b><span>Website, app, automation</span></button>
@@ -619,7 +634,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
         <div class="spacewrap" id="spaceWrap">
           <div class="page-mission-screen">
             <video id="missionVideo" autoplay muted loop playsinline preload="auto" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4"></video>
-            <div class="page-mission-overlay"><span id="missionPrompt">Mia's mission theatre</span><b id="pageMissionStage">Waiting for your command</b></div>
+            <div class="page-mission-overlay"><span id="missionPrompt">Mia's mission theatre</span><b id="pageMissionStage">Demo ready · Mia is standing by</b></div>
           </div>
           <div class="stage-label" id="stageLabel">Mia at work · live</div>
           <div class="space-progress"><div id="spaceBar"></div></div>
@@ -1202,8 +1217,22 @@ window.addEventListener('load', () => {
   document.getElementById('obNext').onclick = () => { localStorage.setItem('mia-ob-done','1'); showStep(2); setTimeout(() => miaWelcomeInput.focus({preventScroll:true}), 80); };
   document.getElementById('obClose').onclick = () => { localStorage.setItem('mia-ob-done','1'); miaWelcome.classList.remove('open'); };
   miaWelcome.classList.add('open');
+  startWelcomeDemo();
   if(!firstVisit) setTimeout(() => miaWelcomeInput.focus({preventScroll:true}), 80);
 });
+function startWelcomeDemo(){
+  const demoTask = "Show me how you would launch an AI product";
+  welcomeMissionPrompt.textContent = demoTask;
+  welcomeMissionState.textContent = 'DEMO';
+  welcomeMissionState.classList.add('live');
+  welcomeMission.classList.add('is-live');
+  const stages = ['Understanding the goal…','Choosing the right specialists…','Connecting tools…','Building the plan…','Checking the result…','Ready for your mission.'];
+  let i = 0;
+  welcomeMissionStage.textContent = stages[0];
+  try{ welcomeMissionVideo.currentTime = 0; const p = welcomeMissionVideo.play(); if(p && p.catch) p.catch(()=>{}); }catch(e){}
+  clearInterval(welcomeMissionTimer);
+  welcomeMissionTimer = setInterval(()=>{ i = (i + 1) % stages.length; welcomeMissionStage.textContent = stages[i]; }, 1250);
+}
 
 const log = document.getElementById('chatLog'), input = document.getElementById('chatInput');
 function bubble(html, who, tag){
