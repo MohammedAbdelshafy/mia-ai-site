@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mia AI | The 57-Agent Crew</title>
+<meta name="description" content="Meet the crew: 57 specialist agents under Mia's command. Search the directory and tap any card to command that agent.">
+<meta name="theme-color" content="#05070d">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Mia AI","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Embodied AI employee with a visual mission workflow and specialist agent swarm.","url":"https://mohammedabdelshafy.github.io/mia-ai-site/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Mia AI","url":"https://mohammedabdelshafy.github.io/mia-ai-site/","email":"abdelshafyclapps@gmail.com","sameAs":["https://github.com/MohammedAbdelshafy/mia-ai-site"]}</script>
+<link rel="canonical" href="https://mohammedabdelshafy.github.io/mia-ai-site/agents.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mia AI">
+<meta property="og:title" content="Mia AI | The 57-Agent Crew">
+<meta property="og:description" content="Meet the crew: 57 specialist agents under Mia's command. Search the directory and tap any card to command that agent.">
+<meta property="og:image" content="https://mohammedabdelshafy.github.io/mia-ai-site/assets/mia-onduty.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="mia-welcome" id="miaWelcome" role="dialog" aria-modal="true" aria-labelledby="miaWelcomeTitle">
+  <div class="ob-card" id="obStep1">
+    <button class="mia-welcome-close" id="obClose" aria-label="Close">×</button>
+    <div class="ob-grid">
+      <div class="ob-mia">
+        <img src="assets/mia-stand-hi.webp" alt="Mia waving hello">
+        <span class="ob-hi">Wassup! 👋</span>
+      </div>
+      <div class="ob-copy">
+        <div class="mia-live"><i></i> Mia is online</div>
+        <h2>Hey, I'm <span>Mia</span>.</h2>
+        <p>I'm not software you operate — I'm the employee you hire. I run your inbox, calendar, outreach and research, commanding 57 specialists while you watch it all happen.</p>
+        <div class="ob-vids">
+          <div class="ob-vid"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4"></video><span>Her mission</span></div>
+          <div class="ob-vid"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-work.mp4"></video><span>Her work</span></div>
+          <div class="ob-vid"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-deliver.mp4"></video><span>Her delivery</span></div>
+        </div>
+        <button class="btn btn-teal" id="obNext">Take me in →</button>
+        <p class="ob-fine">Live demo — my full brain ships with the private preview.</p>
+        <div class="ob-dots"><i class="on"></i><i></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="mia-welcome-card" id="miaWelcomeCard">
+    <button class="mia-welcome-close" id="miaWelcomeClose" aria-label="Close">×</button>
+    <div class="mia-welcome-stage mia-direct-stage">
+      <div class="mia-welcome-avatar" aria-hidden="true">
+        <img src="assets/mia-stand-hi.webp" alt="">
+        <div class="mia-welcome-speech">What would you like to create today?</div>
+      </div>
+
+      <div class="mia-direct-title">
+        <div class="mia-live"><i></i> Mia is online</div>
+        <h2>Tell me what you want to <span>create.</span></h2>
+        <p>Give me the outcome. I’ll think, route the right specialists, use the right tools, execute, and verify the result.</p>
+      </div>
+
+      <div class="mia-live-mission" id="miaLiveMission">
+        <div class="mission-topline">
+          <span class="mission-kicker"><i></i> MIA MISSION THEATRE</span>
+          <span class="mission-state" id="welcomeMissionState">READY</span>
+        </div>
+        <div class="mission-screen">
+          <video id="welcomeMissionVideo" muted loop playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4"></video>
+          <div class="mission-overlay">
+            <span class="mission-demo-badge">LIVE DEMO</span>
+            <div class="mission-prompt" id="welcomeMissionPrompt">Mia is ready. Give her something to do.</div>
+            <div class="mission-stage" id="welcomeMissionStage">Watching Mia's workflow in real time</div>
+          </div>
+          <div class="mission-scan"></div>
+        </div>
+        <div class="mission-rail">
+          <span class="active">BRIEF</span><b>→</b><span>THINK</span><b>→</b><span>TOOLS</span><b>→</b><span>EXECUTE</span><b>→</b><span>VERIFY</span>
+        </div>
+      </div>
+
+      <div class="mia-welcome-chat">
+        <div class="mia-chat-head">
+          <span class="mia-chat-signal"><i></i> TALK TO MIA</span>
+          <span class="mia-chat-count">57 specialists · MCP mesh · verify gate</span>
+        </div>
+        <div class="mia-chat-intro">Your mission starts here. <b>Mia responds in this box.</b></div>
+        <div class="mia-welcome-log" id="miaWelcomeLog" aria-live="polite">
+          <div class="mia-chat-msg mia-chat-mia"><span>MIA</span><p>Tell me the outcome you want. I’ll turn it into a mission and show you what I’m doing.</p></div>
+        </div>
+        <div class="mia-welcome-actions">
+          <button type="button" data-mia-prompt="Build me a website"><b>Build</b><span>Website, app, automation</span></button>
+          <button type="button" data-mia-prompt="Research this idea"><b>Research</b><span>Investigate, compare, verify</span></button>
+          <button type="button" data-mia-prompt="Connect to GitHub and inspect my repo"><b>GitHub</b><span>Repo, code, issues, delivery</span></button>
+          <button type="button" data-mia-prompt="Use MCP tools to complete this task"><b>MCP Tools</b><span>Connectors, tools, actions</span></button>
+          <button type="button" data-mia-prompt="Think through and execute this mission"><b>Thinking</b><span>Plan, route, execute</span></button>
+          <button type="button" data-mia-prompt="Grow my business"><b>Grow</b><span>Marketing, sales, outreach</span></button>
+        </div>
+        <div class="mia-welcome-input">
+          <input id="miaWelcomeInput" aria-label="Describe what you want to create" placeholder="Describe what you want to create…" maxlength="500" autocomplete="off">
+          <button id="miaWelcomeSend" aria-label="Start mission">↑</button>
+        </div>
+        <div class="mia-welcome-foot">Mia orchestrates. Specialists execute. TRUTH verifies. You stay in control.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<nav>
+  <div class="nav-in">
+    <a class="logo" href="index.html">MIA <b>AI</b></a>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-links"><a href="index.html">Home</a><a href="how.html">How it Works</a><a href="agents.html">Agents</a><a href="watch.html">Watch</a><a href="pricing.html">Pricing</a><a href="index.html#faq">FAQ</a></div>
+      <div class="nav-cta">
+        <a href="#" class="btn btn-ghost" data-modal>Login</a>
+        <a href="#" class="btn btn-teal" data-modal>Hire Mia →</a>
+      </div>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+</nav><section id="agents" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>The crew</h2><p>Every agent has a name and a job — including the specialists behind my Whop products. Tap any card to command that agent.</p></div>
+    <div class="dir-search"><input id="agentSearch" type="search" placeholder="Search 57 agents by name or skill…" aria-label="Search agents" autocomplete="off"><span id="agentCount">57 of 57 agents</span></div>
+    <div class="agent-grid" id="agentGrid"></div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap foot">
+    <div><span class="logo" style="font-size:18px">MIA <b>AI</b></span><div style="margin-top:6px">Give AI a body, presence, and world.</div></div>
+    <div>Contact: <a href="mailto:abdelshafyclapps@gmail.com" style="color:var(--teal)">abdelshafyclapps@gmail.com</a></div>
+    <div>© 2026 Mia AI — Private preview</div>
+  </div>
+</footer><div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="x" id="modalX" aria-label="Close">×</button>
+    <div id="modalForm">
+      <h3 id="modalTitle">Hire Mia to control your digital life</h3>
+      <p id="modalSub">Mia is in private preview — reserve your hire.</p>
+      <ul class="modal-perks">
+        <li>She runs your inbox, calendar &amp; reminders</li>
+        <li>Research, outreach &amp; follow-ups on autopilot</li>
+        <li>57 specialist agents + tool mesh under one command</li>
+        <li>Free demo credits — no card required</li>
+      </ul>
+      <label for="wName">Name</label><input id="wName" placeholder="Your name" autocomplete="name">
+      <label for="wEmail">Email</label><input id="wEmail" type="email" placeholder="you@example.com" autocomplete="email">
+      <button class="btn btn-teal" id="wSubmit">Notify me →</button>
+      <p class="fine" style="text-align:center">No spam, no card. One email when your invite is ready.</p>
+    </div>
+    <div id="modalOk" class="ok" style="display:none">
+      <div class="big">💫</div>
+      <h3>You're on the list!</h3>
+      <p>Watch your inbox — Mia will reach out personally when your wave opens.</p>
+    </div>
+  </div>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>
