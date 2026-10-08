@@ -203,9 +203,16 @@ function sendWelcomeMission(value){
   const v = String(value || '').trim();
   if(!v) return;
   miaWelcomeInput.value = '';
-  welcomeBubble(v, 'u');
+  const picked = (window.miaPickedAgent && window.miaPickedAgent()) || null;
+  welcomeBubble(v, 'u', picked && AGENTS[picked] ? AGENTS[picked].name : null);
   startWelcomeMission(v);
-  const p = planReply(v);
+  let p;
+  if(picked && AGENTS[picked]){
+    const a = AGENTS[picked];
+    p = { out: (a.replies && a.replies[0]) || ('Talking to ' + a.name + '. Tell me what you need.'), tag: a.name };
+  } else {
+    p = planReply(v);
+  }
   setTimeout(() => welcomeBubble(p.out, 'm', p.tag), 1250);
 }
 const miaWelcomeClose = document.getElementById('miaWelcomeClose');
@@ -213,6 +220,17 @@ if(miaWelcomeClose) miaWelcomeClose.onclick = () => miaWelcome.classList.remove(
 miaWelcome.addEventListener('click', e => { if(e.target === miaWelcome) miaWelcome.classList.remove('open'); });
 miaWelcome.querySelectorAll('[data-mia-prompt]').forEach(b => b.onclick = () => sendWelcomeMission(b.dataset.miaPrompt));
 document.getElementById('miaWelcomeSend').onclick = () => sendWelcomeMission(miaWelcomeInput.value);
+/* === AGENT PICKER === */
+(function(){
+  const sel = document.getElementById('miaAgentPick');
+  if(!sel || typeof AGENTS === 'undefined') return;
+  Object.keys(AGENTS).forEach(k => {
+    const o = document.createElement('option');
+    o.value = k; o.textContent = AGENTS[k].name + ' — ' + (AGENTS[k].role || '');
+    sel.appendChild(o);
+  });
+  window.miaPickedAgent = () => sel.value || null;
+})();
 miaWelcomeInput.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); sendWelcomeMission(miaWelcomeInput.value); } });
 
 const welcomeMissionVideo = document.getElementById('welcomeMissionVideo');
