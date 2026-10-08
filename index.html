@@ -165,6 +165,19 @@ section{padding:88px 0}
 .swarm-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
 .swarm-card b{display:block;margin-top:12px;letter-spacing:3px;font-size:15px}
 .swarm-card span{display:block;color:var(--mut);font-size:13px;margin-top:6px;padding:0 14px}
+.phone-mock{display:flex;flex-direction:column;align-items:center;margin:26px 0 10px}
+.phone-frame{width:262px;background:#000;border-radius:46px;padding:13px;box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 60px rgba(94,234,212,.10);position:relative}
+.phone-notch{position:absolute;top:24px;left:50%;transform:translateX(-50%);width:96px;height:24px;background:#000;border-radius:14px;z-index:2}
+.phone-screen{background:radial-gradient(120% 90% at 50% 0%,#0a1220 0%,#05070d 60%);border-radius:34px;overflow:hidden;padding:34px 14px 18px;min-height:480px;display:flex;flex-direction:column;gap:12px}
+.ps-nav{display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.ps-nav b{letter-spacing:1px}.ps-nav b i{color:var(--teal);font-style:normal}
+.ps-nav span{color:var(--teal);font-size:11px}
+.ps-mia{width:100%;aspect-ratio:4/4.6;object-fit:cover;border-radius:18px;border:1px solid rgba(94,234,212,.25)}
+.ps-h{text-align:center}.ps-h b{font-size:17px}.ps-h p{color:var(--mut);font-size:12px;margin:4px 0 0}
+.ps-chat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:10px 12px;font-size:12px;color:var(--mut)}
+.ps-depts{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.ps-depts i{font-style:normal;font-size:10.5px;color:var(--teal);border:1px solid rgba(94,234,212,.3);border-radius:99px;padding:4px 10px}
+.phone-cap{color:var(--mut);font-size:13px;margin-top:14px}
 .price-card.featured{border-color:rgba(94,234,212,.55);box-shadow:0 0 44px rgba(94,234,212,.12);position:relative}
 .badge-pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--teal);color:#04211c;font-size:11px;font-weight:800;letter-spacing:1.5px;padding:5px 14px;border-radius:99px}
 .price-card{max-width:520px;margin:0 auto;background:linear-gradient(180deg,rgba(94,234,212,.09),rgba(94,234,212,.02));
@@ -227,7 +240,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 /* mission space-viz */
 .spacewrap{display:none;margin:6px 2px 10px}
 .spacewrap.open{display:block}
-#missionVideo{width:100%;height:260px;object-fit:cover;display:block;border-radius:14px;border:1px solid rgba(94,234,212,.22);background:#04060c}
+#missionVideo{width:100%;aspect-ratio:16/9;object-fit:contain;display:block;border-radius:14px;border:1px solid rgba(94,234,212,.22);background:#04060c}
 .stage-label{text-align:center;font-size:13px;color:var(--teal);margin-top:8px;min-height:20px;letter-spacing:.4px}
 .space-progress{height:4px;background:rgba(255,255,255,.07);border-radius:99px;margin-top:6px;overflow:hidden}
 #spaceBar{height:100%;width:0;background:linear-gradient(90deg,#2dd4bf,#a78bfa);border-radius:99px;transition:width .2s}
@@ -235,8 +248,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 /* video placements */
 .vidcards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
 @media(max-width:700px){.vidcards{grid-template-columns:1fr}}
-.vidcard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.vidcard video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#04060c}
+.vidcard{background:transparent;border:none;overflow:visible}
+.vidcard video{border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.55),0 0 46px rgba(94,234,212,.08);-webkit-mask-image:radial-gradient(ellipse 94% 94% at 50% 50%,#000 80%,transparent 100%);mask-image:radial-gradient(ellipse 94% 94% at 50% 50%,#000 80%,transparent 100%)}
+.vidcard video{width:100%;aspect-ratio:16/9;object-fit:contain;display:block;background:#04060c}
 .vidcard .vc{padding:14px 16px}
 .vidcard .vc b{display:block;font-size:15px}
 .vidcard .vc span{font-size:13px;color:var(--mut)}
@@ -249,7 +263,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .cta-inner p{color:var(--mut);margin:0 0 22px}
 .meetrow{text-align:center;margin-top:10px}
 .agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.dir-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;text-align:left;color:var(--ink);transition:.2s}
+.dir-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:14px;cursor:pointer;text-align:left;color:var(--ink);transition:.2s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 8px 28px rgba(0,0,0,.25)}
 .dir-card:hover{border-color:var(--teal);transform:translateY(-2px)}
 .dir-card b{display:block;font-size:14px;letter-spacing:.6px;color:var(--teal)}
 .dir-card span{font-size:12px;color:var(--mut)}
@@ -410,19 +424,12 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   </div>
 </header>
 
-<section id="how">
+<section id="watch" style="padding-top:34px">
   <div class="wrap">
-    <div class="sec-head rv"><h2>Watch your employee work</h2><p>Give her a mission, then follow her working journey — across the internet and the world.</p></div>
-    <div class="steps">
-      <div class="step rv"><div class="n">01</div><div class="art"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-8 8H5l-2 2V12a8 8 0 018-8h2a8 8 0 018 8z"/></svg></div><h3>You tell Mia what to do</h3><p>One message. Plain words. She takes it from there.</p></div>
-      <div class="step rv"><div class="n">02</div><div class="art"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14 0 18M12 3c-3 3.5-3 14 0 18"/></svg></div><h3>Mia explores the internet</h3><p>Her Research agent reads, compares, and digests sources in minutes.</p></div>
-      <div class="step rv"><div class="n">03</div><div class="art"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><h3>Her agents get to work</h3><p>Marketing, Build, Content, Outreach — each a specialist, all under her command.</p></div>
-      <div class="step rv"><div class="n">04</div><div class="art"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg></div><h3>Verify checks everything</h3><p>Nothing ships without her Verify agent fact-checking it first.</p></div>
-      <div class="step rv"><div class="n">05</div><div class="art"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div><h3>Real results return</h3><p>Reports, posts, sites, outreach — done, delivered, verified.</p></div>
-    </div>
+    <div class="sec-head rv"><h2>Watch her work</h2><p>Full missions, on camera — flying out, collecting the data, delivering it verified.</p></div>
     <div class="vidcards">
-      <div class="vidcard rv"><video controls playsinline preload="none" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-work.mp4"></video><div class="vc"><b>Watch her work</b><span>Mia at the console, running your mission across the internet.</span></div></div>
-      <div class="vidcard rv"><video controls playsinline preload="none" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-deliver.mp4"></video><div class="vc"><b>Watch her deliver</b><span>Results gathered, verified, and presented — every time.</span></div></div>
+      <div class="vidcard rv"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-work.mp4"></video><div class="vc"><b>Watch her work</b><span>Mia at the console, running your mission across the internet.</span></div></div>
+      <div class="vidcard rv"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-deliver.mp4"></video><div class="vc"><b>Watch her deliver</b><span>Results gathered, verified, and presented — every time.</span></div></div>
     </div>
   </div>
 </section>
@@ -434,6 +441,22 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
     <div class="agent-grid" id="agentGrid"></div>
   </div>
 </section>
+
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Watch your employee work</h2><p>Give her a mission, then follow her working journey — across the internet and the world.</p></div>
+    <div class="steps">
+      <div class="step rv"><div class="n">01</div><div class="art"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-8 8H5l-2 2V12a8 8 0 018-8h2a8 8 0 018 8z"/></svg></div><h3>You tell Mia what to do</h3><p>One message. Plain words. She takes it from there.</p></div>
+      <div class="step rv"><div class="n">02</div><div class="art"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14 0 18M12 3c-3 3.5-3 14 0 18"/></svg></div><h3>Mia explores the internet</h3><p>Her Research agent reads, compares, and digests sources in minutes.</p></div>
+      <div class="step rv"><div class="n">03</div><div class="art"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><h3>Her agents get to work</h3><p>Marketing, Build, Content, Outreach — each a specialist, all under her command.</p></div>
+      <div class="step rv"><div class="n">04</div><div class="art"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg></div><h3>Verify checks everything</h3><p>Nothing ships without her Verify agent fact-checking it first.</p></div>
+      <div class="step rv"><div class="n">05</div><div class="art"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div><h3>Real results return</h3><p>Reports, posts, sites, outreach — done, delivered, verified.</p></div>
+    </div>
+
+  </div>
+</section>
+
 <section id="swarm" style="padding-top:20px">
   <div class="wrap">
     <div class="sec-head rv"><h2>One commander. A whole swarm.</h2><p>Mia doesn't work alone — she deploys the right face for the mission. Blondes, brunettes, redheads: a crew she controls, matched to whatever the task needs.</p></div>
@@ -448,6 +471,19 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 <section id="devices" style="padding-top:20px">
   <div class="wrap">
     <div class="sec-head rv"><h2>Available on all devices</h2><p>Your AI partner with you everywhere.</p></div>
+    <div class="phone-mock rv">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="ps-nav"><b>MIA <i>AI</i></b><span>Hire Mia →</span></div>
+          <img class="ps-mia" src="assets/mia-onduty.webp" alt="Mia on duty">
+          <div class="ps-h"><b>Mia AI</b><p>The employee you hire.</p></div>
+          <div class="ps-chat">What would you like me to do today?</div>
+          <div class="ps-depts"><i>Research</i><i>Build</i><i>Outreach</i><i>Verify</i></div>
+        </div>
+      </div>
+      <p class="phone-cap">Mia on your phone — the same employee, on every device.</p>
+    </div>
     <div class="dev-grid">
       <div class="dev rv"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14 0 18M12 3c-3 3.5-3 14 0 18"/></svg><div><h3>Web App</h3><p>Use in your browser</p></div></div>
       <div class="dev rv"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><div><h3>iOS App <span class="soon">Soon</span></h3><p>Coming soon</p></div></div>
