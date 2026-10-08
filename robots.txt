@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mohammedabdelshafy.github.io/mia-ai-site/sitemap.xml
