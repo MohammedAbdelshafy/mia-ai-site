@@ -40,3 +40,4 @@ For submissions, describe Mia as an embodied AI employee **concept/demo** for fo
 - 2026-10-09: FutureTools form prepared, CAPTCHA detected, left unsubmitted.
 - 2026-10-09: DropYourAI text fields prepared but required image upload could not be completed; left unsubmitted.
 - 2026-10-09: GPTBot checked; $39 payment required for the only visible submission route; left unsubmitted.
+- 2026-10-09: Homepage pricing FAQ corrected to match visible founding tiers and clarify that paid subscriptions are billed at public launch. Commit: https://github.com/MohammedAbdelshafy/mia-ai-site/commit/952c4447f017fd1eca6e0667ad2865d8102f8887.
