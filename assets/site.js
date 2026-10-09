@@ -422,9 +422,9 @@ function stagesFor(key, agentLabel){
   const who = agentLabel || 'Mia';
   return [
     {short:'Brief',   label:'⚡ '+who+' received your mission…'},
-    {short:'Explore', label:'⚡ Flying through the data nebula…'},
-    {short:'Gather',  label:'⚡ '+who+' collecting what matters…'},
-    {short:'Verify',  label:'⚡ Verify agent cross-checking…'},
+    {short:'Launch',  label:'⚡ Flying super fast through the galaxy…'},
+    {short:'Planet',  label:'⚡ Landing on the planet — searching the website…'},
+    {short:'Gather',  label:'⚡ Collecting intel across worlds…'},
     {short:'Deliver', label:'⚡ Returning with results…'}
   ];
 }
