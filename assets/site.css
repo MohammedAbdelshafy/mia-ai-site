@@ -254,7 +254,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .mia-welcome{position:relative;inset:auto;z-index:1;display:block;padding:110px 20px 30px;background:transparent;opacity:1;pointer-events:auto}
 .mia-welcome.open{opacity:1;pointer-events:auto}
 .mia-welcome .mia-welcome-close{display:none}
-.mia-welcome-card{margin:0 auto;max-width:860px}
+.mia-welcome-card{margin:0 auto;max-width:860px;min-height:0!important;max-height:none!important;overflow:visible!important;width:100%!important}
 #obStep1{display:none!important}
 .mia-welcome.open{opacity:1;pointer-events:auto}
  .mia-welcome-card{position:relative;width:min(1180px,100%);min-height:min(760px,calc(100svh - 36px));max-height:calc(100svh - 36px);overflow-y:auto;overflow-x:hidden;border:1px solid rgba(94,234,212,.28);border-radius:30px;background:radial-gradient(700px 500px at 78% 25%,rgba(45,212,191,.13),transparent 60%),linear-gradient(145deg,#070b14,#0b1120 60%,#07131a);box-shadow:0 40px 140px rgba(0,0,0,.72),0 0 90px rgba(94,234,212,.12)}
