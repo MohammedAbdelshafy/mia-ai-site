@@ -86,6 +86,14 @@ const AGENTS = {
   arcade: { name: "ARCADE", role: "Games agent", replies: ["ARCADE here. Trivia, games, challenges — ready to play? Pick your game."] },
   lingo: { name: "LINGO", role: "Translator", replies: ["LINGO here. Dozens of languages, natural and instant. What should I translate?"] },
   tutor: { name: "TUTOR", role: "Teacher", replies: ["TUTOR here. Any subject, explained your way — simple or deep. What are we learning?"] },
+  professor: { name: "PROFESSOR", role: "Genius professor", replies: [
+    "PROFESSOR here — wired into Mia's brain. I teach anything at any depth: first principles, worked examples, the why behind the what. What are we mastering today?",
+    "No surface-level answers from me. Give me a topic and I'll take you from zero to dangerous — structured, rigorous, and actually enjoyable."
+  ]},
+  genius: { name: "GENIUS", role: "Genius engineer", replies: [
+    "GENIUS here — wired into Mia's brain. Systems, architecture, code, infrastructure: I design it, stress-test it, and make it bulletproof. What are we engineering?",
+    "Give me the hard problem. I'll break it down, design the solution, and walk you through every decision like the engineer I am."
+  ]},
   coach: { name: "COACH", role: "Fitness coach", replies: ["COACH here. Workouts, form, motivation — let's get moving. What's the goal?"] },
   chef: { name: "CHEF", role: "Food agent", replies: ["CHEF here. Recipes, meal plans, what's-for-dinner emergencies. What's cooking?"] },
   atlas: { name: "ATLAS", role: "Travel planner", replies: ["ATLAS here. Itineraries, hidden gems, booking logic. Where are we going?"] },
@@ -293,9 +301,35 @@ const welcomeMissionPrompt = document.getElementById('welcomeMissionPrompt');
 const welcomeMissionStage = document.getElementById('welcomeMissionStage');
 const welcomeMissionState = document.getElementById('welcomeMissionState');
 let welcomeMissionTimer = null;
+/* Mia's brain picks the right saved video for each task — a workflow wired to her */
+const BRAIN_VIDEOS = {
+  research: 'https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-galaxy-task.mp4',
+  build: 'https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-demo.mp4',
+  outreach: 'https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-work.mp4',
+  teach: 'https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4',
+  deliver: 'https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-deliver.mp4'
+};
+function pickBrainVideo(task){
+  const t = String(task || '').toLowerCase();
+  if(/research|investigate|find|search|market|idea/.test(t)) return BRAIN_VIDEOS.research;
+  if(/build|website|app|create|make|engineer|code/.test(t)) return BRAIN_VIDEOS.build;
+  if(/market|sale|outreach|grow|business|campaign|email/.test(t)) return BRAIN_VIDEOS.outreach;
+  if(/teach|learn|explain|professor|lesson/.test(t)) return BRAIN_VIDEOS.teach;
+  return BRAIN_VIDEOS.research;
+}
+function wireBrainVideo(task){
+  if(!welcomeMissionVideo) return;
+  const src = pickBrainVideo(task);
+  if(welcomeMissionVideo.dataset.brain !== src){
+    welcomeMissionVideo.dataset.brain = src;
+    welcomeMissionVideo.src = src;
+    welcomeMissionVideo.load();
+  }
+}
 function startWelcomeMission(task){
   if(!welcomeMission) return;
   clearInterval(welcomeMissionTimer);
+  wireBrainVideo(task);
   welcomeMission.classList.add('is-live');
   welcomeMissionState.textContent = 'LIVE';
   welcomeMissionState.classList.add('live');

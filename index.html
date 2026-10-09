@@ -82,31 +82,30 @@
       </div>
 
       <div class="mia-welcome-chat">
+        <div class="mia-welcome-log" id="miaWelcomeLog" aria-live="polite">
+          <div class="mia-chat-msg mia-chat-mia"><span>MIA</span><p>Tell me the outcome you want. I’ll turn it into a mission and show you what I’m doing.</p></div>
+        </div>
+        <div class="mia-welcome-input">
+          <input id="miaWelcomeInput" aria-label="Describe what you want to create" placeholder="Describe what you want to create…" maxlength="500" autocomplete="off">
+          <button id="miaWelcomeSend" aria-label="Start mission">↑</button>
+        </div>
         <div class="mia-chat-head">
           <span class="mia-chat-signal"><i></i> TALK TO MIA</span>
           <span class="mia-chat-count">57 specialists · MCP mesh · verify gate</span>
         </div>
-        <div class="mia-chat-intro">Your mission starts here. <b>Mia responds in this box.</b></div>
-         <div class="mia-agent-pick">
+        <div class="mia-agent-pick">
            <label for="miaAgentPick">Agent</label>
            <select id="miaAgentPick" aria-label="Choose a specialist agent">
              <option value="">Mia decides (auto-route)</option>
            </select>
          </div>
-        <div class="mia-welcome-log" id="miaWelcomeLog" aria-live="polite">
-          <div class="mia-chat-msg mia-chat-mia"><span>MIA</span><p>Tell me the outcome you want. I’ll turn it into a mission and show you what I’m doing.</p></div>
-        </div>
         <div class="mia-welcome-actions">
           <button type="button" data-mia-prompt="Build me a website"><b>Build</b><span>Website, app, automation</span></button>
           <button type="button" data-mia-prompt="Research this idea"><b>Research</b><span>Investigate, compare, verify</span></button>
-          <button type="button" data-mia-prompt="Connect to GitHub and inspect my repo"><b>GitHub</b><span>Repo, code, issues, delivery</span></button>
-          <button type="button" data-mia-prompt="Use MCP tools to complete this task"><b>MCP Tools</b><span>Connectors, tools, actions</span></button>
+          <button type="button" data-mia-prompt="Grow my business with marketing and sales"><b>Grow</b><span>Marketing, sales, outreach</span></button>
+          <button type="button" data-mia-prompt="Engineer a solution for me"><b>Engineer</b><span>Genius engineering</span></button>
+          <button type="button" data-mia-prompt="Teach me like a professor"><b>Professor</b><span>Learn anything</span></button>
           <button type="button" data-mia-prompt="Think through and execute this mission"><b>Thinking</b><span>Plan, route, execute</span></button>
-          <button type="button" data-mia-prompt="Grow my business"><b>Grow</b><span>Marketing, sales, outreach</span></button>
-        </div>
-        <div class="mia-welcome-input">
-          <input id="miaWelcomeInput" aria-label="Describe what you want to create" placeholder="Describe what you want to create…" maxlength="500" autocomplete="off">
-          <button id="miaWelcomeSend" aria-label="Start mission">↑</button>
         </div>
         <div class="mia-welcome-foot">Mia orchestrates. Specialists execute. TRUTH verifies. You stay in control.</div>
       </div>
