@@ -246,8 +246,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
 .ok{text-align:center;padding:10px 0}
 .ok .big{font-size:46px;margin-bottom:10px}
 /* reveal */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
-.rv.in{opacity:1;transform:none}
+.rv{opacity:1;transform:none}
+.js-reveal .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.js-reveal .rv.in{opacity:1;transform:none}
 
 /* === MIA FIRST-CONTACT OVERLAY === */
 /* Welcome is the page hero — inline, not a modal */
