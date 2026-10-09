@@ -326,22 +326,37 @@ function wireBrainVideo(task){
     welcomeMissionVideo.load();
   }
 }
+/* 20-second mission sequence: think video → deliver video, chained */
+const MISSION_SEQ = [
+  'https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-think.mp4',
+  'https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-deliver-run.mp4'
+];
+function playMissionSequence(){
+  if(!welcomeMissionVideo) return;
+  let vi = 0;
+  const playNext = () => {
+    if(vi >= MISSION_SEQ.length) return;
+    welcomeMissionVideo.src = MISSION_SEQ[vi];
+    welcomeMissionVideo.load();
+    const p = welcomeMissionVideo.play();
+    if(p && p.catch) p.catch(()=>{});
+    vi++;
+  };
+  welcomeMissionVideo.onended = () => playNext();
+  welcomeMissionVideo.dataset.brain = 'seq';
+  playNext();
+}
 function startWelcomeMission(task){
   if(!welcomeMission) return;
   clearInterval(welcomeMissionTimer);
-  wireBrainVideo(task);
+  playMissionSequence();
   welcomeMission.classList.add('is-live');
   welcomeMissionState.textContent = 'LIVE';
   welcomeMissionState.classList.add('live');
   welcomeMissionPrompt.textContent = task;
-  const stages = ['Briefing the mission…','Thinking through the route…','Selecting tools & specialists…','Executing the task…','Verifying the result…','Mission ready for delivery.'];
+  const stages = ['Briefing the mission…','Thinking — analyzing your goal…','Thinking — mapping the route…','Selecting tools & specialists…','Gathering intel across worlds…','Executing the task…','Building your result…','Verifying every detail…','Final checks…','Mission ready for delivery.'];
   let i=0;
   welcomeMissionStage.textContent = stages[0];
-  try{
-    welcomeMissionVideo.currentTime = 0;
-    const p = welcomeMissionVideo.play();
-    if(p && p.catch) p.catch(()=>{});
-  }catch(e){}
   welcomeMissionTimer = setInterval(()=>{
     i = Math.min(i+1, stages.length-1);
     welcomeMissionStage.textContent = stages[i];
@@ -350,7 +365,7 @@ function startWelcomeMission(task){
       welcomeMissionState.textContent = 'RESULT READY';
       welcomeMissionState.classList.add('live');
     }
-  }, 1250);
+  }, 2000);
 }
 
 window.addEventListener('load', () => {
@@ -392,12 +407,12 @@ function startWelcomeDemo(){
   welcomeMissionState.textContent = 'DEMO';
   welcomeMissionState.classList.add('live');
   welcomeMission.classList.add('is-live');
-  const stages = ['Understanding the goal…','Choosing the right specialists…','Connecting tools…','Building the plan…','Checking the result…','Ready for your mission.'];
+  const stages = ['Understanding the goal…','Thinking — analyzing the market…','Thinking — mapping the launch…','Choosing the right specialists…','Connecting tools…','Building the plan…','Executing the launch…','Checking the result…','Verifying every detail…','Ready for your mission.'];
   let i = 0;
   welcomeMissionStage.textContent = stages[0];
-  try{ welcomeMissionVideo.currentTime = 0; const p = welcomeMissionVideo.play(); if(p && p.catch) p.catch(()=>{}); }catch(e){}
+  playMissionSequence();
   clearInterval(welcomeMissionTimer);
-  welcomeMissionTimer = setInterval(()=>{ i = (i + 1) % stages.length; welcomeMissionStage.textContent = stages[i]; }, 1250);
+  welcomeMissionTimer = setInterval(()=>{ i = (i + 1) % stages.length; welcomeMissionStage.textContent = stages[i]; }, 2000);
 }
 
 const log = document.getElementById('chatLog'), input = document.getElementById('chatInput');
