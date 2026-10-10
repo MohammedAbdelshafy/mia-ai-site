@@ -80,7 +80,7 @@ app.get('/api/waitlist/count', (req, res) =>
 
 function requireFounder(req, res, next) {
   if (!ADMIN_TOKEN) return res.status(503).json({ ok: false, error: 'founder endpoints disabled: MIA_ADMIN_TOKEN is not configured' });
-  const supplied = String(req.get('authorization') || '').replace(/^Bearer\\s+/i, '');
+  const supplied = String(req.get('authorization') || '').replace(/^Bearer\s+/i, '');
   if (!supplied || supplied !== ADMIN_TOKEN) return res.status(401).json({ ok: false, error: 'unauthorized' });
   next();
 }
