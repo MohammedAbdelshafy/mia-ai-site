@@ -631,3 +631,16 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;color:var(--mut);fon
   border-radius:999px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;
   transition:all .2s;box-shadow:0 0 16px rgba(94,234,212,.1)}
 .demo-scenarios button:hover{background:rgba(94,234,212,.18);box-shadow:0 0 28px rgba(94,234,212,.3);transform:translateY(-2px)}
+
+
+/* Launch sprint: clarity, feedback, and accessible controls */
+.hero-proof{max-width:68ch;margin:18px auto 0;color:var(--mut);font-size:14px;line-height:1.7}
+.demo-scenarios{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0 22px;justify-content:center}
+.demo-scenarios span{font-size:12px;letter-spacing:1.3px;text-transform:uppercase;color:var(--mut);font-weight:700}
+.demo-scenarios button{background:rgba(94,234,212,.08);border:1px solid rgba(94,234,212,.4);color:#f2fffd;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,border-color .2s}
+.demo-scenarios button:hover,.demo-scenarios button:focus-visible{background:rgba(94,234,212,.18);border-color:var(--teal);outline:2px solid transparent;box-shadow:0 0 0 3px rgba(94,234,212,.18)}
+#wSubmit:disabled{opacity:.65;cursor:wait;transform:none}
+#waitlistStatus{min-height:1.5em;color:var(--mut);font-size:13px;margin-top:10px;text-align:center}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+@media(max-width:640px){.hero-proof{font-size:13px;padding:0 4px}.demo-scenarios{align-items:stretch}.demo-scenarios button{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
