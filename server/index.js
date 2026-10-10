@@ -18,6 +18,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data', 'waitlist.json');
 const PLANS = ['preview', 'pro', 'lifetime', 'team', 'agency', 'enterprise'];
+const ADMIN_TOKEN = process.env.MIA_ADMIN_TOKEN || '';
 
 app.use(express.json({ limit: '10kb' }));
 app.use(express.static(path.join(__dirname, '..')));
@@ -77,7 +78,14 @@ app.post('/api/waitlist', rateLimit(10, 60 * 1000), (req, res) => {
 app.get('/api/waitlist/count', (req, res) =>
   res.json({ ok: true, count: load().length }));
 
-app.get('/api/waitlist/stats', (req, res) => {
+function requireFounder(req, res, next) {
+  if (!ADMIN_TOKEN) return res.status(503).json({ ok: false, error: 'founder endpoints disabled: MIA_ADMIN_TOKEN is not configured' });
+  const supplied = String(req.get('authorization') || '').replace(/^Bearer\s+/i, '');
+  if (!supplied || supplied !== ADMIN_TOKEN) return res.status(401).json({ ok: false, error: 'unauthorized' });
+  next();
+}
+
+app.get('/api/waitlist/stats', requireFounder, (req, res) => {
   const list = load();
   const byPlan = {}, bySource = {};
   for (const e of list) {
@@ -87,7 +95,7 @@ app.get('/api/waitlist/stats', (req, res) => {
   res.json({ ok: true, count: list.length, byPlan, bySource });
 });
 
-app.get('/api/waitlist/export', (req, res) => {
+app.get('/api/waitlist/export', requireFounder, (req, res) => {
   const list = load();
   const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
   const csv = ['name,email,plan,source,signed_up_at']

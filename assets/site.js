@@ -246,18 +246,18 @@ document.getElementById('miaWelcomeSend').onclick = () => sendWelcomeMission(mia
 const SCENARIOS = {
   launch: {
     prompt: "Show me how you would launch an AI product",
-    stages: ["Brief received — mapping the launch", "Thinking — positioning & channels", "Tools — reaching across the web", "Executing — building the assets", "Verifying — checking every detail"],
-    reply: "Here's how I'd launch it: I research your market across the web, position against competitors, draft the announcement, line up Product Hunt + HN + dev.to, and verify every link before we go live. Pick me and I'll run the real thing."
+    stages: ["Sample brief received", "Illustrating positioning & channels", "Showing proposed assets", "Previewing the launch checklist", "Sample walkthrough complete"],
+    reply: "Sample plan: define one audience, review three competitors, draft a positioning statement, prepare a launch post, and create a checklist for Product Hunt and developer communities. This is an illustrative answer; this public demo did not browse the web or publish anything."
   },
   research: {
     prompt: "Research the AI coding-assistant market for me",
-    stages: ["Brief received — scoping the market", "Thinking — who are the players?", "Tools — gathering data across planets", "Executing — comparing features & pricing", "Verifying — cross-checking sources"],
-    reply: "Market mapped: I pull from docs, reviews, pricing pages and community chatter across the web — then hand you the players, the gaps, and where you'd win. That's a live mission; say the word."
+    stages: ["Sample brief received", "Defining comparison criteria", "Showing source types to investigate", "Previewing comparison structure", "Sample walkthrough complete"],
+    reply: "Sample research output: compare five products across target users, core features, pricing, integrations, and major gaps. The actual report should cite official pricing/docs and date each source. This preview did not retrieve live data."
   },
   outreach: {
-    prompt: "Plan a cold outreach campaign for my startup",
-    stages: ["Brief received — who are we reaching?", "Thinking — angles & personalization", "Tools — finding verified contacts", "Executing — writing the sequence", "Verifying — checking deliverability"],
-    reply: "Campaign drafted: verified contacts, personalized openers, 4-touch sequence with opt-outs baked in. I don't do spam — every touch earns the reply. Want me to build yours?"
+    prompt: "Plan an outreach campaign for my startup",
+    stages: ["Sample brief received", "Defining audience and offer", "Drafting personalization fields", "Previewing a respectful sequence", "Sample walkthrough complete"],
+    reply: "Sample outreach plan: one relevant initial note, two useful follow-ups, and a final close-the-loop message, with accurate personalization and appropriate opt-out language. No contacts were sourced and no messages were sent by this demo."
   }
 };
 document.querySelectorAll('[data-scenario]').forEach(b => b.onclick = () => {
@@ -280,7 +280,7 @@ document.querySelectorAll('[data-scenario]').forEach(b => b.onclick = () => {
     else { clearInterval(tick); }
   }, 1600);
   startWelcomeMission(s.prompt);
-  setTimeout(() => welcomeBubble(s.reply, 'm', 'DEMO'), s.stages.length * 1600 + 600);
+  setTimeout(() => { welcomeBubble(s.reply, 'm', 'SAMPLE'); if (welcomeMissionState) welcomeMissionState.textContent = 'SAMPLE READY'; }, s.stages.length * 1600 + 600);
 });
 /* === AGENT PICKER === */
 (function(){
@@ -351,10 +351,10 @@ function startWelcomeMission(task){
   clearInterval(welcomeMissionTimer);
   playMissionSequence();
   welcomeMission.classList.add('is-live');
-  welcomeMissionState.textContent = 'LIVE';
+  welcomeMissionState.textContent = 'DEMO';
   welcomeMissionState.classList.add('live');
   welcomeMissionPrompt.textContent = task;
-  const stages = ['Briefing the mission…','Thinking — analyzing your goal…','Thinking — mapping the route…','Selecting tools & specialists…','Gathering intel across worlds…','Executing the task…','Building your result…','Verifying every detail…','Final checks…','Mission ready for delivery.'];
+  const stages = ['Sample brief received…','Illustrating the plan…','Showing proposed steps…','Simulating specialist selection…','Preparing example output…','Public demo only: no external tools run…','Reviewing the illustrative result…','Sample walkthrough complete.'];
   let i=0;
   welcomeMissionStage.textContent = stages[0];
   welcomeMissionTimer = setInterval(()=>{
@@ -362,7 +362,7 @@ function startWelcomeMission(task){
     welcomeMissionStage.textContent = stages[i];
     if(i === stages.length-1){
       clearInterval(welcomeMissionTimer);
-      welcomeMissionState.textContent = 'RESULT READY';
+      welcomeMissionState.textContent = 'SAMPLE READY';
       welcomeMissionState.classList.add('live');
     }
   }, 2000);
@@ -407,7 +407,7 @@ function startWelcomeDemo(){
   welcomeMissionState.textContent = 'DEMO';
   welcomeMissionState.classList.add('live');
   welcomeMission.classList.add('is-live');
-  const stages = ['Understanding the goal…','Thinking — analyzing the market…','Thinking — mapping the launch…','Choosing the right specialists…','Connecting tools…','Building the plan…','Executing the launch…','Checking the result…','Verifying every detail…','Ready for your mission.'];
+  const stages = ['Demo brief received…','Illustrating a possible approach…','Showing proposed steps…','Sample only: no external tools connected…','Preparing an example result…','Sample walkthrough complete.'];
   let i = 0;
   welcomeMissionStage.textContent = stages[0];
   playMissionSequence();
@@ -439,7 +439,7 @@ const SpaceViz = (() => {
     if(finished) return; finished=true;
     clearTimeout(timer); clearTimeout(watchdog); clearInterval(stageTimer);
     try{ video.currentTime=0; const p=video.play(); if(p&&p.catch) p.catch(()=>{}); }catch(e){}
-    label.textContent='Mia at work · live'; bar.style.width='0%';
+    label.textContent='Illustrative workflow · demo'; bar.style.width='0%';
     const d=done; done=null; d&&d();
   }
   function start(s,cb){
@@ -576,31 +576,64 @@ document.querySelectorAll('[data-modal]').forEach(b => b.onclick = e => { e.prev
   modal.classList.add('open'); });
 document.getElementById('modalX').onclick = () => modal.classList.remove('open');
 modal.onclick = e => { if(e.target === modal) modal.classList.remove('open'); };
-document.getElementById('wSubmit').onclick = async () => {
-  const n = document.getElementById('wName').value.trim(), em = document.getElementById('wEmail').value.trim();
-  if(!em || !em.includes('@')) { document.getElementById('wEmail').focus(); document.getElementById('wEmail').style.borderColor = '#f87171'; return; }
+const waitlistSubmit = document.getElementById('wSubmit');
+waitlistSubmit.onclick = async () => {
+  const nameEl = document.getElementById('wName');
+  const emailEl = document.getElementById('wEmail');
+  const n = nameEl.value.trim();
+  const em = emailEl.value.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const statusEl = document.getElementById('waitlistStatus');
+  const originalText = waitlistSubmit.textContent;
+  if (!emailPattern.test(em)) {
+    emailEl.focus();
+    emailEl.style.borderColor = '#f87171';
+    if (statusEl) statusEl.textContent = 'Enter a valid email address.';
+    return;
+  }
+  waitlistSubmit.disabled = true;
+  waitlistSubmit.textContent = 'Sending…';
+  if (statusEl) statusEl.textContent = 'Sending your request…';
   let saved = false;
-  try { /* real backend when the site runs on the Mia server */
-    const r = await fetch('/api/waitlist',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:n,email:em,plan:miaPlan,source:'site'})});
-    saved = r.ok;
-  } catch(e){}
-  if(!saved){ /* free shared capture lane: lands in the founder's inbox, one activation click needed */
+  const apiBase = window.MIA_CONFIG && typeof window.MIA_CONFIG.waitlistApiBase === 'string'
+    ? window.MIA_CONFIG.waitlistApiBase.replace(/\\/$/, '')
+    : '';
+  if (apiBase) {
     try {
-      const r = await fetch('https://formsubmit.co/ajax/abdelshafyclapps@gmail.com',{method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({name:n, email:em, plan:miaPlan, source:'mia-ai-site',
-          _subject:'New Mia AI waitlist signup · ' + miaPlan})});
-      saved = r.ok;
-    } catch(e){}
+      const r = await fetch(apiBase + '/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: n, email: em, plan: miaPlan, source: 'site' })
+      });
+      if (r.ok) {
+        const payload = await r.json();
+        saved = payload.ok === true;
+      }
+    } catch (e) {}
   }
-  if(!saved){ /* static-host fallback: this browser only */
+  if (!saved) {
     try {
-      const list = JSON.parse(localStorage.getItem('mia-waitlist') || '[]');
-      list.push({name:n, email:em, plan:miaPlan, source:'site', at:new Date().toISOString()});
-      localStorage.setItem('mia-waitlist', JSON.stringify(list));
-    } catch(e){}
+      const r = await fetch('https://formsubmit.co/ajax/abdelshafyclapps@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: n, email: em, plan: miaPlan, source: 'mia-ai-site',
+          _subject: 'New Mia AI waitlist signup · ' + miaPlan
+        })
+      });
+      if (r.ok) {
+        const payload = await r.json().catch(() => ({}));
+        saved = payload.success === 'true' || payload.success === true;
+      }
+    } catch (e) {}
   }
+  waitlistSubmit.disabled = false;
+  waitlistSubmit.textContent = originalText;
+  if (!saved) {
+    if (statusEl) statusEl.textContent = 'We could not confirm your signup. Nothing was confirmed. Please retry or email abdelshafyclapps@gmail.com.';
+    return;
+  }
+  if (statusEl) statusEl.textContent = '';
   document.getElementById('modalForm').style.display = 'none';
   document.getElementById('modalOk').style.display = 'block';
 };
