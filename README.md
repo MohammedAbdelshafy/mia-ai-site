@@ -60,3 +60,8 @@ Deploy on any Node host (Render / Railway / Fly / VPS) to make the waitlist full
 ## For partners
 
 Looking for 2–3 design partners who want an expressive front-end on their AI. The embodiment layer — face, voice, personality — is the next platform decision. [Talk to us.](https://mohammedabdelshafy.github.io/mia-ai-site/)
+
+
+## Launch and sales kit
+
+The current launch sprint includes a practical positioning, $499 fixed-scope design-partner pilot, customer qualification questions, LinkedIn launch post, outreach note, sales funnel, and release checklist: [MIA_LAUNCH_MARKETING_KIT.md](MIA_LAUNCH_MARKETING_KIT.md).
