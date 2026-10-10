@@ -63,14 +63,14 @@
 
       <div class="mia-live-mission" id="miaLiveMission">
         <div class="mission-topline">
-          <span class="mission-kicker"><i></i> MIA MISSION THEATRE</span>
+          <span class="mission-kicker"><i></i> MIA MISSION THEATRE · PUBLIC DEMO</span>
           <span class="mission-state" id="welcomeMissionState">READY</span>
         </div>
         <div class="mission-screen">
           <video id="welcomeMissionVideo" muted loop playsinline preload="auto" poster="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-research.jpg" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-think.mp4">
           <div class="mission-cine" aria-hidden="true"><span id="welcomeCineText"></span></div></video>
           <div class="mission-overlay">
-            <span class="mission-demo-badge">LIVE DEMO</span>
+            <span class="mission-demo-badge">SIMULATED DEMO</span>
             <div class="mission-prompt" id="welcomeMissionPrompt">Mia is ready. Give her something to do.</div>
             <div class="mission-stage" id="welcomeMissionStage">Watching Mia's workflow in real time</div>
           </div>
@@ -121,7 +121,7 @@
       <div class="nav-links"><a href="index.html">Home</a><a href="how.html">How it Works</a><a href="agents.html">Agents</a><a href="watch.html">Watch</a><a href="pricing.html">Pricing</a><a href="index.html#faq">FAQ</a></div>
       <div class="nav-cta">
         <a href="#" class="btn btn-ghost" data-modal>Login</a>
-        <a href="#" class="btn btn-teal" data-modal>Hire Mia →</a>
+        <a href="#sample-missions" class="btn btn-teal">Try a sample mission →</a>
       </div>
     </div>
     <button class="burger" id="burger" aria-label="Menu">☰</button>
@@ -131,15 +131,17 @@
     <span class="eyebrow">● Private preview</span>
     <h1>Stop asking AI how. <span class="teal">Tell Mia what to do.</span></h1>
     <p class="tagline">Your AI operator for the digital world.</p>
+    <p class="hero-proof">Try a sample mission. See the plan, review the output, and decide whether Mia fits your workflow. The public preview is simulated; live tool execution is available only where explicitly connected.</p>
     <div class="hero-cta">
       <a href="#" class="btn btn-teal" data-modal>Hire Mia →</a>
-      <a href="watch.html" class="btn btn-ghost">▶ Watch her work</a>
+      <a href="#for-agencies" class="btn btn-ghost">Request a design-partner pilot</a>
     </div>
   </div>
 </section>
-<section class="hero-more">
+<section class="hero-more" id="sample-missions">
   <div class="wrap">
-    <div class="sec-head rv"><h2>Watch her work</h2><p>Every task is a mission. Mia flies through the galaxy, lands on each planet — every website, every source — searches it, and returns with the job done.</p></div>
+    <div class="sec-head rv"><h2>Watch Mia plan a mission</h2><p>Choose a sample below to explore how Mia would approach the job. These public examples illustrate the workflow and do not execute external tools.</p></div>
+    <div class="demo-scenarios rv" aria-label="Sample missions"><span>Try a sample:</span><button type="button" data-scenario="launch">Launch an AI product</button><button type="button" data-scenario="research">Research a market</button><button type="button" data-scenario="outreach">Plan outreach</button></div>
     <div class="task-gallery rv">
       <div class="task-card"><img loading="lazy" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-research.jpg" alt="Mia researching — flying to a planet to search a website"><div class="tc"><b>Research</b><span>She flies to the planet, searches the website, gathers what matters.</span></div></div>
       <div class="task-card"><img loading="lazy" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-outreach.jpg" alt="Mia doing outreach — sending messages across the galaxy"><div class="tc"><b>Outreach</b><span>Messages launch across worlds — personal, at scale.</span></div></div>
@@ -148,7 +150,7 @@
     </div>
     <div class="demo-showcase rv">
       <video controls playsinline preload="none" poster="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-research.jpg" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-galaxy-task.mp4"></video>
-      <div class="vc"><b>Galaxy mission — full video</b><span>Tap to watch Mia fly between planets, searching each website-world. No lag — loads only when you press play.</span></div>
+      <div class="vc"><b>Galaxy mission — full video</b><span>An illustrative animation. It is not evidence of live browsing or task execution.</span></div>
     </div>
     <div class="caps" id="features">
       <div class="cap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Research</div>
@@ -304,7 +306,8 @@
       </ul>
       <label for="wName">Name</label><input id="wName" placeholder="Your name" autocomplete="name">
       <label for="wEmail">Email</label><input id="wEmail" type="email" placeholder="you@example.com" autocomplete="email">
-      <button class="btn btn-teal" id="wSubmit">Notify me →</button>
+      <button class="btn btn-teal" id="wSubmit">Request preview invite →</button>
+      <p id="waitlistStatus" role="status" aria-live="polite"></p>
       <p class="fine" style="text-align:center">No spam, no card. One email when your invite is ready.</p>
     </div>
     <div id="modalOk" class="ok" style="display:none">
