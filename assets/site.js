@@ -595,17 +595,22 @@ waitlistSubmit.onclick = async () => {
   waitlistSubmit.textContent = 'Sending…';
   if (statusEl) statusEl.textContent = 'Sending your request…';
   let saved = false;
-  try {
-    const r = await fetch('/api/waitlist', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: n, email: em, plan: miaPlan, source: 'site' })
-    });
-    if (r.ok) {
-      const payload = await r.json();
-      saved = payload.ok === true;
-    }
-  } catch (e) {}
+  const apiBase = window.MIA_CONFIG && typeof window.MIA_CONFIG.waitlistApiBase === 'string'
+    ? window.MIA_CONFIG.waitlistApiBase.replace(/\\/$/, '')
+    : '';
+  if (apiBase) {
+    try {
+      const r = await fetch(apiBase + '/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: n, email: em, plan: miaPlan, source: 'site' })
+      });
+      if (r.ok) {
+        const payload = await r.json();
+        saved = payload.ok === true;
+      }
+    } catch (e) {}
+  }
   if (!saved) {
     try {
       const r = await fetch('https://formsubmit.co/ajax/abdelshafyclapps@gmail.com', {
