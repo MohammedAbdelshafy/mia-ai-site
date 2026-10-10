@@ -246,7 +246,7 @@ document.getElementById('miaWelcomeSend').onclick = () => sendWelcomeMission(mia
 const SCENARIOS = {
   launch: {
     prompt: "Show me how you would launch an AI product",
-    stages: ["Brief received — mapping the launch", "Thinking — positioning & channels", "Tools — reaching across the web", "Executing — building the assets", "Verifying — checking every detail"],
+    stages: ["Sample brief received", "Illustrating positioning & channels", "Showing proposed assets", "Previewing the launch checklist", "Sample walkthrough complete"],
     reply: "Sample plan: define one audience, review three competitors, draft a positioning statement, prepare a launch post, and create a checklist for Product Hunt and developer communities. This is an illustrative answer; this public demo did not browse the web or publish anything."
   },
   research: {
@@ -255,7 +255,7 @@ const SCENARIOS = {
     reply: "Sample research output: compare five products across target users, core features, pricing, integrations, and major gaps. The actual report should cite official pricing/docs and date each source. This preview did not retrieve live data."
   },
   outreach: {
-    prompt: "Plan a cold outreach campaign for my startup",
+    prompt: "Plan an outreach campaign for my startup",
     stages: ["Sample brief received", "Defining audience and offer", "Drafting personalization fields", "Previewing a respectful sequence", "Sample walkthrough complete"],
     reply: "Sample outreach plan: one relevant initial note, two useful follow-ups, and a final close-the-loop message, with accurate personalization and appropriate opt-out language. No contacts were sourced and no messages were sent by this demo."
   }
@@ -582,7 +582,7 @@ waitlistSubmit.onclick = async () => {
   const emailEl = document.getElementById('wEmail');
   const n = nameEl.value.trim();
   const em = emailEl.value.trim();
-  const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const statusEl = document.getElementById('waitlistStatus');
   const originalText = waitlistSubmit.textContent;
   if (!emailPattern.test(em)) {
