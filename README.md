@@ -65,3 +65,8 @@ Looking for 2–3 design partners who want an expressive front-end on their AI. 
 ## Launch and sales kit
 
 The current launch sprint includes a practical positioning, $499 fixed-scope design-partner pilot, customer qualification questions, LinkedIn launch post, outreach note, sales funnel, and release checklist: [MIA_LAUNCH_MARKETING_KIT.md](MIA_LAUNCH_MARKETING_KIT.md).
+
+
+## Skills and growth playbook
+
+Mia's recommended first-party workflows for organic acquisition, conversion, front-end/accessibility review, browser verification, privacy/integration checks, and conditional NVIDIA-specific development are documented here: [MIA_SKILLS_GROWTH_PLAYBOOK.md](MIA_SKILLS_GROWTH_PLAYBOOK.md). External skills are catalog recommendations until deliberately pinned, reviewed, and installed in a runtime.
