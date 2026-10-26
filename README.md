@@ -1,4 +1,4 @@
-# Mia
+# Mia AI
 
 Mia is a public demo exploring how a work assistant could turn a goal into a clear plan and show the steps involved.
 
@@ -37,4 +37,4 @@ The site and server can run separately. Before exposing the server publicly, pro
 - [Skills and growth playbook](MIA_SKILLS_GROWTH_PLAYBOOK.md)
 - [Assets repository](https://github.com/MohammedAbdelshafy/mia-muse-assets)
 
-The display name in customer-facing copy is **Mia**. The repository slug and URL remain `mia-ai-site`.
+The approved product name is **Mia AI**. The repository slug and URL remain `mia-ai-site`.
