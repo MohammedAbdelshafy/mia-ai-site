@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Mia AI | Stop asking AI how. Tell Mia what to do.</title>
-<meta name="description" content="Meet Mia AI, your embodied AI employee. Give her a mission, watch her work, and command a specialist agent swarm. Join the private preview.">
+<title>Mia | A clearer way to get work done</title>
+<meta name="description" content="Meet Mia, a work-assistant concept. Try a simulated task, review the steps and explore how connected tools could help with research, writing and business work. Live actions depend on the tools and permissions available.">
 <meta name="theme-color" content="#05070d">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Mia AI","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Embodied AI employee with a visual mission workflow and specialist agent swarm.","url":"https://mohammedabdelshafy.github.io/mia-ai-site/"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Mia AI","url":"https://mohammedabdelshafy.github.io/mia-ai-site/","email":"abdelshafyclapps@gmail.com","sameAs":["https://github.com/MohammedAbdelshafy/mia-ai-site"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Mia","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"A work-assistant demo for exploring task plans and connected workflows.","url":"https://mohammedabdelshafy.github.io/mia-ai-site/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Mia","url":"https://mohammedabdelshafy.github.io/mia-ai-site/","email":"abdelshafyclapps@gmail.com","sameAs":["https://github.com/MohammedAbdelshafy/mia-ai-site"]}</script>
 <link rel="canonical" href="https://mohammedabdelshafy.github.io/mia-ai-site/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Mia AI">
-<meta property="og:title" content="Mia AI | Your Embodied AI Employee">
-<meta property="og:description" content="Meet Mia AI, your embodied AI employee. Give her a mission, watch her work, and command a specialist agent swarm. Join the private preview.">
+<meta property="og:site_name" content="Mia">
+<meta property="og:title" content="Mia | A clearer way to work through a task">
+<meta property="og:description" content="Meet Mia, a work-assistant concept. Try a simulated task, review the steps and explore how connected tools could help with research, writing and business work. Live actions depend on the tools and permissions available.">
 <meta property="og:image" content="https://mohammedabdelshafy.github.io/mia-ai-site/assets/mia-onduty.webp">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.json">
@@ -33,16 +33,16 @@
         <span class="ob-hi">Wassup! 👋</span>
       </div>
       <div class="ob-copy">
-        <div class="mia-live"><i></i> Mia is online</div>
+        <div class="mia-live"><i></i> Mia demo</div>
         <h2>Hey, I'm <span>Mia</span>.</h2>
-        <p>I'm not software you operate — I'm the employee you hire. I run your inbox, calendar, outreach and research, commanding 57 specialists while you watch it all happen.</p>
+        <p>Think of me as a work assistant concept. Tell me the outcome you want, review the suggested steps, and choose what happens next. This public preview uses scripted interactions.</p>
         <div class="ob-vids">
           <div class="ob-vid"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4"></video><span>Her mission</span></div>
           <div class="ob-vid"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-work.mp4"></video><span>Her work</span></div>
           <div class="ob-vid"><video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-deliver.mp4"></video><span>Her delivery</span></div>
         </div>
         <button class="btn btn-teal" id="obNext">Take me in →</button>
-        <p class="ob-fine">Live demo — my full brain ships with the private preview.</p>
+        <p class="ob-fine">This public demo is scripted. Live work requires a separately configured and tested runtime.</p>
         <div class="ob-dots"><i class="on"></i><i></i></div>
       </div>
     </div>
@@ -56,14 +56,14 @@
       </div>
 
       <div class="mia-direct-title">
-        <div class="mia-live"><i></i> Mia is online</div>
+        <div class="mia-live"><i></i> Mia demo</div>
         <h2>Tell me what you want to <span>create.</span></h2>
-        <p>Give me the outcome. I’ll think, route the right specialists, use the right tools, execute, and verify the result.</p>
+        <p>Describe the result you want. Explore a suggested plan, see a simulated walkthrough, and review what would need to be connected before real work could happen.</p>
       </div>
 
       <div class="mia-live-mission" id="miaLiveMission">
         <div class="mission-topline">
-          <span class="mission-kicker"><i></i> MIA MISSION THEATRE · PUBLIC DEMO</span>
+          <span class="mission-kicker"><i></i> TASK WALKTHROUGH · PUBLIC DEMO</span>
           <span class="mission-state" id="welcomeMissionState">READY</span>
         </div>
         <div class="mission-screen">
@@ -71,8 +71,8 @@
           <div class="mission-cine" aria-hidden="true"><span id="welcomeCineText"></span></div></video>
           <div class="mission-overlay">
             <span class="mission-demo-badge">SIMULATED DEMO</span>
-            <div class="mission-prompt" id="welcomeMissionPrompt">Mia is ready. Give her something to do.</div>
-            <div class="mission-stage" id="welcomeMissionStage">Watching Mia's workflow in real time</div>
+            <div class="mission-prompt" id="welcomeMissionPrompt">Try a sample task to see the demo flow.</div>
+            <div class="mission-stage" id="welcomeMissionStage">Previewing an example workflow</div>
           </div>
           <div class="mission-scan"></div>
         </div>
@@ -90,8 +90,8 @@
           <button id="miaWelcomeSend" aria-label="Start mission">↑</button>
         </div>
         <div class="mia-chat-head">
-          <span class="mia-chat-signal"><i></i> TALK TO MIA</span>
-          <span class="mia-chat-count">57 specialists · MCP mesh · verify gate</span>
+          <span class="mia-chat-signal"><i></i> TRY THE DEMO</span>
+          <span class="mia-chat-count">Example workflows · review before action</span>
         </div>
         <div class="mia-agent-pick">
            <label for="miaAgentPick">Agent</label>
@@ -107,7 +107,7 @@
           <button type="button" data-mia-prompt="Teach me like a professor"><b>Professor</b><span>Learn anything</span></button>
           <button type="button" data-mia-prompt="Think through and execute this mission"><b>Thinking</b><span>Plan, route, execute</span></button>
         </div>
-        <div class="mia-welcome-foot">Mia orchestrates. Specialists execute. TRUTH verifies. You stay in control.</div>
+        <div class="mia-welcome-foot">See the plan. Review the output. You stay in control.</div>
       </div>
     </div>
   </div>
@@ -116,12 +116,12 @@
 
 <nav>
   <div class="nav-in">
-    <a class="logo" href="index.html">MIA <b>AI</b></a>
+    <a class="logo" href="index.html">MIA</a>
     <div class="nav-menu" id="navMenu">
       <div class="nav-links"><a href="index.html">Home</a><a href="how.html">How it Works</a><a href="agents.html">Agents</a><a href="watch.html">Watch</a><a href="pricing.html">Pricing</a><a href="index.html#faq">FAQ</a></div>
       <div class="nav-cta">
         <a href="#" class="btn btn-ghost" data-modal>Login</a>
-        <a href="#sample-missions" class="btn btn-teal">Try a sample mission →</a>
+        <a href="#sample-missions" class="btn btn-teal">Try a sample workflow →</a>
       </div>
     </div>
     <button class="burger" id="burger" aria-label="Menu">☰</button>
@@ -129,11 +129,11 @@
 </nav><section class="brand-strip" id="home">
   <div class="wrap">
     <span class="eyebrow">● Private preview</span>
-    <h1>Stop asking AI how. <span class="teal">Tell Mia what to do.</span></h1>
-    <p class="tagline">Your AI operator for the digital world.</p>
+    <h1>Start with the outcome. <span class="teal">See the steps before you act.</span></h1>
+    <p class="tagline">A practical demo for turning a goal into clear next steps.</p>
     <p class="hero-proof">Try a sample mission. See the plan, review the output, and decide whether Mia fits your workflow. The public preview is simulated; live tool execution is available only where explicitly connected.</p>
     <div class="hero-cta">
-      <a href="#sample-missions" class="btn btn-teal">Try a sample mission →</a>
+      <a href="#sample-missions" class="btn btn-teal">Try a sample workflow →</a>
       <a href="#for-agencies" class="btn btn-ghost">Request a design-partner pilot</a>
     </div>
   </div>
@@ -146,7 +146,7 @@
       <div class="task-card"><img loading="lazy" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-research.jpg" alt="Mia researching — flying to a planet to search a website"><div class="tc"><b>Research</b><span>She flies to the planet, searches the website, gathers what matters.</span></div></div>
       <div class="task-card"><img loading="lazy" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-outreach.jpg" alt="Mia doing outreach — sending messages across the galaxy"><div class="tc"><b>Outreach</b><span>Messages launch across worlds — personal, at scale.</span></div></div>
       <div class="task-card"><img loading="lazy" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-build.jpg" alt="Mia building — assembling a project piece by piece"><div class="tc"><b>Build</b><span>She assembles your project piece by piece, in front of you.</span></div></div>
-      <div class="task-card"><img loading="lazy" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-deliver.jpg" alt="Mia delivering — returning with completed results"><div class="tc"><b>Deliver</b><span>Verified results, returned to you — every time.</span></div></div>
+      <div class="task-card"><img loading="lazy" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-deliver.jpg" alt="Mia delivering — returning with completed results"><div class="tc"><b>Deliver</b><span>Example of a result handoff.</span></div></div>
     </div>
     <div class="demo-showcase rv">
       <video controls playsinline preload="none" poster="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-task-research.jpg" src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-galaxy-task.mp4"></video>
@@ -160,11 +160,11 @@
       <div class="cap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 01-.4 2.4l2 1.6-2 3.4-2.4-1a7 7 0 01-2 1.2L14 21h-4l-.2-2.4a7 7 0 01-2-1.2l-2.4 1-2 3.4 2-1.6A7 7 0 015 12a7 7 0 01.4-2.4l-2-1.6 2-3.4 2.4 1a7 7 0 012-1.2L10 3h4l.2 2.4a7 7 0 012 1.2l2.4-1 2 3.4-2 1.6c.3.8.4 1.6.4 2.4z"/></svg>Operate</div>
       <div class="cap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg>Verify</div>
     </div>
-    <div class="center-cta rv"><a href="agents.html" class="btn btn-ghost">Meet all 57 specialists →</a></div>
+    <div class="center-cta rv"><a href="agents.html" class="btn btn-ghost">Browse 57 example profiles →</a></div>
   </div>
 </section><section id="pricing-preview" style="padding-top:20px">
   <div class="wrap">
-    <div class="sec-head rv"><h2>Hire Mia your way</h2><p>Start free. Scale when she's indispensable.</p></div>
+    <div class="sec-head rv"><h2>Choose how to try Mia</h2><p>Explore the public demo first. Access, pricing and included features will be confirmed before purchase.</p></div>
     <div class="price-grid rv" style="margin-top:24px">
       <div class="price-card">
         <div class="plan">Preview</div>
@@ -175,7 +175,7 @@
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>All 6 departments</li>
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Custom appearance &amp; voice</li>
         </ul>
-        <button class="btn btn-ghost" data-modal data-plan="preview" style="width:100%">Hire Mia free →</button>
+        <button class="btn btn-ghost" data-modal data-plan="preview" style="width:100%">Request preview access →</button>
       </div>
       <div class="price-card">
         <div class="plan">Pro</div>
@@ -183,10 +183,10 @@
         <p style="color:var(--mut);font-size:14px">For solo founders &amp; freelancers</p>
         <ul>
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>500 credits / month</li>
-          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>57 specialist agents + tool mesh</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Example specialist profiles and tool connections</li>
           <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>Priority mission queue</li>
         </ul>
-        <button class="btn btn-ghost" data-modal data-plan="pro" style="width:100%">Hire Mia Pro →</button>
+        <button class="btn btn-ghost" data-modal data-plan="pro" style="width:100%">Ask about Pro →</button>
       </div>
       <div class="price-card featured">
         <div class="badge-pop">FOR AI COMPANIES</div>
@@ -209,7 +209,7 @@
     <div class="agency-grid rv">
       <div class="agency-card">
         <h3>For AI agencies</h3>
-        <p>Offer embodied AI to your clients as a service. We install Mia on their stack, you keep the relationship. Design-partner onboarding included.</p>
+        <p>Offer a branded assistant experience to your clients. We scope the workflow, confirm the integrations and agree on acceptance criteria before live work starts.</p>
         <button class="btn btn-teal" data-modal data-plan="agency">Become a partner →</button>
       </div>
       <div class="agency-card">
@@ -221,11 +221,11 @@
   </div>
 </section><section id="solutions" style="padding-top:42px">
   <div class="wrap">
-    <div class="sec-head rv"><h2>Start with the job. Mia handles the stack.</h2><p>Meet the three ways people hire Mia: as an AI employee, as an agent command center, or as an automation layer across the tools they already use.</p></div>
+    <div class="sec-head rv"><h2>Start with the task. See the proposed steps.</h2><p>Explore three possible uses: a guided assistant interface, a directory of specialist roles, or connected workflows. Availability depends on implementation, permissions and tested integrations.</p></div>
     <div class="price-grid rv" style="margin-top:24px">
-      <a class="price-card" href="./ai-employee/"><div class="plan">AI Employee</div><div class="amt" style="font-size:34px">Hire a digital teammate</div><p style="color:var(--mut);font-size:14px">Inbox, research, content, sales, operations and follow-through under one command.</p><span class="btn btn-teal" style="margin-top:20px">See how it works →</span></a>
-      <a class="price-card" href="./ai-agent-swarm/"><div class="plan">Agent Swarm</div><div class="amt" style="font-size:34px">One commander. Many specialists.</div><p style="color:var(--mut);font-size:14px">Mia routes missions across specialist agents, tools, MCP connectors and a verification gate.</p><span class="btn btn-ghost" style="margin-top:20px">Explore the swarm →</span></a>
-      <a class="price-card" href="./ai-automation/"><div class="plan">AI Automation</div><div class="amt" style="font-size:34px">Turn repetitive work into missions.</div><p style="color:var(--mut);font-size:14px">Connect research, build, outreach, reporting and delivery into repeatable workflows.</p><span class="btn btn-ghost" style="margin-top:20px">Explore automation →</span></a>
+      <a class="price-card" href="./ai-employee/"><div class="plan">Mia Work Assistant Concept</div><div class="amt" style="font-size:34px">Give your assistant a clearer interface</div><p style="color:var(--mut);font-size:14px">Possible uses include research, content and follow-up when the required tools are configured.</p><span class="btn btn-teal" style="margin-top:20px">Explore the demo →</span></a>
+      <a class="price-card" href="./ai-agent-swarm/"><div class="plan">Specialist Directory</div><div class="amt" style="font-size:34px">Browse example specialist roles.</div><p style="color:var(--mut);font-size:14px">Explore the roles and tools that could support a workflow. Each connection must be configured and checked separately.</p><span class="btn btn-ghost" style="margin-top:20px">Explore the swarm →</span></a>
+      <a class="price-card" href="./ai-automation/"><div class="plan">Workflow Connections</div><div class="amt" style="font-size:34px">Connect a repeatable task step by step.</div><p style="color:var(--mut);font-size:14px">Map the tools, approvals and handoffs needed for a repeatable workflow.</p><span class="btn btn-ghost" style="margin-top:20px">Explore automation →</span></a>
     </div>
   </div>
 </section>
@@ -237,14 +237,14 @@
       <div class="phone-frame">
         <div class="phone-notch"></div>
         <div class="phone-screen">
-          <div class="ps-nav"><b>MIA <i>AI</i></b><span>Hire Mia →</span></div>
+          <div class="ps-nav"><b>MIA <i>AI</i></b><span>Request early access →</span></div>
           <img class="ps-mia" src="assets/mia-onduty.webp" alt="Mia on duty">
-          <div class="ps-h"><b>Mia AI</b><p>The employee you hire.</p></div>
+          <div class="ps-h"><b>Mia</b><p>A concept for a more personal assistant interface.</p></div>
           <div class="ps-chat">What would you like me to do today?</div>
           <div class="ps-depts"><i>Research</i><i>Build</i><i>Outreach</i><i>Verify</i></div>
         </div>
       </div>
-      <p class="phone-cap">Mia on your phone — the same employee, on every device.</p>
+      <p class="phone-cap">A mobile preview of the Mia experience.</p>
     </div>
     <div class="dev-grid">
       <div class="dev rv"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14 0 18M12 3c-3 3.5-3 14 0 18"/></svg><div><h3>Web App</h3><p>Use in your browser</p></div></div>
@@ -253,7 +253,7 @@
     </div>
     <div class="perks rv">
       <div class="perk"><b>25</b><span>Free credits<br>at launch</span></div>
-      <div class="perk"><b>57</b><span>Specialist agents<br>under one Mia</span></div>
+      <div class="perk"><b>57</b><span>Example specialist<br>profiles</span></div>
       <div class="perk"><b>$0</b><span>No credit card<br>to join</span></div>
     </div>
   </div>
@@ -263,8 +263,8 @@
   <div class="wrap">
     <div class="sec-head rv"><h2>Questions</h2><p>Everything you're wondering, answered straight.</p></div>
     <div class="faq">
-      <details class="rv"><summary>What is Mia, exactly?</summary><div class="a">Mia is an AI partner with a face, a voice, and a personality — plus a crew of 57 specialist agents — HYPE, SAGE, PING, FORGE, STORY, TRUTH and thirty more, each with a name and a job that work under her command. You talk to Mia; she delegates to the right specialist and returns verified results.</div></details>
-      <details class="rv"><summary>Is the demo on this page real?</summary><div class="a">The chat demo above is scripted — a taste of the experience. The full Mia brain, with all 57 agents wired in, ships with the private preview. Join the waitlist to be first in.</div></details>
+      <details class="rv"><summary>What is Mia, exactly?</summary><div class="a">Mia is a character-led interface concept with example specialist profiles. The public demo is scripted; each tool and action must be connected and checked separately. The profile list itself does not run tasks.</div></details>
+      <details class="rv"><summary>Is the demo on this page real?</summary><div class="a">The public chat and mission animations are simulated; they do not execute external tools. Live features require a separate runtime, configured connections and verified permissions. Request access to discuss a specific workflow.</div></details>
       <details class="rv"><summary>When does the preview open?</summary><div class="a">We're onboarding founding members in waves. Join the waitlist and you'll get an invite as soon as your wave opens — early members keep founding pricing for life.</div></details>
       <details class="rv"><summary>What will it cost?</summary><div class="a">Preview is free and includes 25 launch credits. Current founding pricing shown on this site is Pro at $49/month and Agency Install at $499/month. Paid subscriptions are billed at public launch, and no card is required to reserve a place. See the pricing page for the one-time Founding Lifetime offer and full business tiers.</div></details>
       <details class="rv"><summary>Which devices are supported?</summary><div class="a">The web app works in any modern browser today, and it's installable on your phone like an app. Native iOS and Android apps are coming next.</div></details>
@@ -276,15 +276,15 @@
       <video autoplay muted loop playsinline src="https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-orbit.mp4"></video>
       <div class="cta-inner">
         <h2>Ready to meet <span style="color:var(--teal)">your</span> Mia?</h2>
-        <p>Join the private preview and command 57 specialist agents.</p>
-        <button class="btn btn-teal" data-open="waitModal">Hire Mia →</button>
+        <p>Request access to the preview and tell us which workflow you'd like to test.</p>
+        <button class="btn btn-teal" data-open="waitModal">Request early access →</button>
       </div>
     </div></div>
   <footer>
   <div class="wrap foot">
-    <div><span class="logo" style="font-size:18px">MIA <b>AI</b></span><div style="margin-top:6px">Give AI a body, presence, and world.</div></div>
+    <div><span class="logo" style="font-size:18px">MIA</span><div style="margin-top:6px">A clearer way to explore task-based assistance.</div></div>
     <div>Contact: <a href="mailto:abdelshafyclapps@gmail.com" style="color:var(--teal)">abdelshafyclapps@gmail.com</a></div>
-    <div>© 2026 Mia AI — Private preview</div>
+    <div>© 2026 Mia — Product preview</div>
   </div>
 </footer><div class="modal" id="vidModal">
   <div class="modal-card" style="width:min(720px,100%)">
@@ -296,12 +296,12 @@
   <div class="modal-card">
     <button class="x" id="modalX" aria-label="Close">×</button>
     <div id="modalForm">
-      <h3 id="modalTitle">Hire Mia to control your digital life</h3>
+      <h3 id="modalTitle">Request a Mia walkthrough</h3>
       <p id="modalSub">Mia is in private preview — reserve your hire.</p>
       <ul class="modal-perks">
         <li>She runs your inbox, calendar &amp; reminders</li>
         <li>Research, outreach &amp; follow-ups on autopilot</li>
-        <li>57 specialist agents + tool mesh under one command</li>
+        <li>Example specialist profiles and tool connections under one command</li>
         <li>Free demo credits — no card required</li>
       </ul>
       <label for="wName">Name</label><input id="wName" placeholder="Your name" autocomplete="name">

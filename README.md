@@ -1,72 +1,40 @@
-# Mia AI — Give AI a Body, Presence, and World
+# Mia
 
-**Live:** https://mohammedabdelshafy.github.io/mia-ai-site/
+Mia is a public demo exploring how a work assistant could turn a goal into a clear plan and show the steps involved.
 
-**Positioning:** Stop asking AI how. Tell Mia what to do. Mia is presented as an AI digital operator that understands outcomes, plans missions, routes specialists, uses connected tools, verifies work, and returns the result.
+**Site:** https://mohammedabdelshafy.github.io/mia-ai-site/
 
-Mia isn't software you operate — she's the employee you hire. An embodiment layer for AI: a persistent face, voice, and expressive reactions wrapped around an agent that actually does work. This repo is her public site: a 5-page experience with a live demo chat, a 57-agent directory, and cinematic mission visuals.
+## What is here
 
-![Mia](https://mohammedabdelshafy.github.io/mia-ai-site/assets/mia-stand-hi.webp)
+- Home page with a scripted task walkthrough
+- A directory of 57 specialist profiles
+- Pages describing the concept, example workflows, videos and plan ideas
+- A small server for collecting waitlist requests
 
-## The pages
+## Important limits
 
-| Page | What it is |
-|------|-----------|
-| [Home](https://mohammedabdelshafy.github.io/mia-ai-site/) | Hero with the live demo chatbox, mission theatre, and Mia herself |
-| [Agents](https://mohammedabdelshafy.github.io/mia-ai-site/agents.html) | All 57 specialist agents with live search — GITHUB, MCP, THINK, WEB, NVIDIA… |
-| [How it works](https://mohammedabdelshafy.github.io/mia-ai-site/how.html) | The mission pipeline: Think → Route → Execute → Verify |
-| [Pricing](https://mohammedabdelshafy.github.io/mia-ai-site/pricing.html) | Free preview, Pro, Founding Lifetime, Team/Agency/Enterprise |
-| [Watch](https://mohammedabdelshafy.github.io/mia-ai-site/watch.html) | Mia on video: the mission, the work, the delivery |
+- The public chat and task visuals are scripted. They do not prove that a live task was executed.
+- Submitting the waitlist is not account creation or paid access.
+- Device control and connected-tool execution are not generally available production features. They depend on a separate, verified runtime and permissions.
+- Prices and plan labels are proposals until the actual features, account access and billing path are confirmed.
+- Do not describe Mia as a live employee, fully autonomous operator, or a working connection to inbox/calendar/accounts unless that capability is live and tested.
 
-## Watch her work
+## Local preview
 
-- **The greeting:** https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-hi-new.mp4
-- **The mission** (planets, data, delivery): https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-mission.mp4
-- **The cosmic intro:** https://raw.githubusercontent.com/MohammedAbdelshafy/mia-muse-assets/main/mia-cosmic-intro.mp4
+This is a static site without a build step. Open `index.html` locally or serve it with a local HTTP server. The optional waitlist API is in `server/`:
 
-## What's inside
-
-- **Live demo chat** — opens on page load, chat-first. Pick any of the 57 agents or let Mia auto-route. Mission theatre reacts to your task above the chatbox.
-- **Mission theatre** — every task plays a cinematic: Mia flies through the data-space (Brief → Think → Tools → Execute → Verify) while the work "happens."
-- **Agent swarm UI** — 57 specialists with real workflow definitions, searchable directory, per-agent chat routing.
-- **Command Core** — THINK / MCP / CODE / WEB / NVIDIA skill visualization in the welcome experience.
-- **Waitlist** — tries `/api/waitlist`, falls back to FormSubmit → inbox, then localStorage. No lead left behind.
-- **PWA** — installable, mobile-first, zero horizontal overflow.
-
-## Frontend
-
-Static site, no build step: 5 HTML pages + `assets/site.css` + `assets/site.js`. The demo chat and agent brain are scripted in-page and labeled as a demo; the full brain ships with the private preview.
-
-## Backend (`server/`)
-
-Real waitlist API — Express + JSON file store:
-
-```
-cd server && npm install && npm start     # serves site + API on :3000
+```bash
+cd server
+npm install
+npm start
 ```
 
-- `GET  /api/health` — liveness
-- `POST /api/waitlist` `{name, email}` — validates, dedupes, stores
+The site and server can run separately. Before exposing the server publicly, protect the waitlist stats and export routes with founder authentication.
 
-Deploy on any Node host (Render / Railway / Fly / VPS) to make the waitlist fully live. **Before deploying:** protect `/api/waitlist/stats` and `/api/waitlist/export` with founder auth.
+## Project materials
 
-## Honesty notes
+- [Launch and sales notes](MIA_LAUNCH_MARKETING_KIT.md)
+- [Skills and growth playbook](MIA_SKILLS_GROWTH_PLAYBOOK.md)
+- [Assets repository](https://github.com/MohammedAbdelshafy/mia-muse-assets)
 
-- "Try for Free" opens the waitlist — no fake accounts or credits exist yet
-- iOS/Android apps are marked "coming soon" — the PWA is the real experience today
-- The on-page chat demo is scripted and says so; the mission visuals are cinematic, not live execution
-- Device control is pre-launch/founding-pilot, not operational software
-
-## For partners
-
-Looking for 2–3 design partners who want an expressive front-end on their AI. The embodiment layer — face, voice, personality — is the next platform decision. [Talk to us.](https://mohammedabdelshafy.github.io/mia-ai-site/)
-
-
-## Launch and sales kit
-
-The current launch sprint includes a practical positioning, $499 fixed-scope design-partner pilot, customer qualification questions, LinkedIn launch post, outreach note, sales funnel, and release checklist: [MIA_LAUNCH_MARKETING_KIT.md](MIA_LAUNCH_MARKETING_KIT.md).
-
-
-## Skills and growth playbook
-
-Mia's recommended first-party workflows for organic acquisition, conversion, front-end/accessibility review, browser verification, privacy/integration checks, and conditional NVIDIA-specific development are documented here: [MIA_SKILLS_GROWTH_PLAYBOOK.md](MIA_SKILLS_GROWTH_PLAYBOOK.md). External skills are catalog recommendations until deliberately pinned, reviewed, and installed in a runtime.
+The display name in customer-facing copy is **Mia**. The repository slug and URL remain `mia-ai-site`.
