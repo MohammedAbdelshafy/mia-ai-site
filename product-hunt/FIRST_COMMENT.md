@@ -1,19 +1,13 @@
-# Product Hunt First Comment
+# Mia — First Comment Draft
 
 Hey Product Hunt 👋
 
-I'm building Mia because I wanted an AI that could do more than give me instructions.
+I'm building Mia around a simple question: can a task-focused interface make it easier to understand what a digital assistant plans to do?
 
-Mia is built around one idea:
-
-**Give her the outcome, not a checklist.**
-
-She can turn a request into a mission, route the right specialists, use connected tools, show the task journey, verify the result, and return the finished work.
-
-We're starting with digital work like research, coding, websites, content, marketing, automation and data.
-
-🎁 Product Hunt community: 14 days free with `MIA14` while the offer is active.
+The public preview shows a simulated walkthrough. It doesn't run external tools yet, and I want to keep that distinction clear while I test the idea.
 
 I'd love feedback on one question:
 
-**What's the first digital task you'd trust Mia to take completely off your plate?**
+**What is one repetitive digital task you'd most like to see handled through a clearer, reviewable workflow?**
+
+*Publish this only when the Product Hunt listing matches the current site and release status. Do not include a free-trial code or paid-plan claim unless the offer has been verified end to end.*
