@@ -1,26 +1,36 @@
-# Mia Product Hunt Launch Video
+# Mia — Demo Video Script
 
-Length: 30–60 seconds
+**Length:** 30–45 seconds  
+**Required label:** SIMULATED DEMO
 
-## Scene 1 — Ask (0–5s)
-User types:
-“Mia, build me a landing page for my AI agency.”
+## Scene 1 — The request (0–5s)
 
-## Scene 2 — Plan (5–12s)
-Mia:
-“Got it. I'll plan the work, route the right capabilities, build the page, and verify it.”
+Show the public demo input.
 
-## Scene 3 — Work (12–35s)
-Mission theatre:
-Brief → Think → Tools → Execute → Verify
+On-screen text: **“Start with the outcome.”**
 
-Show research, tool routing, building, and progress.
+## Scene 2 — Example plan (5–12s)
 
-## Scene 4 — Verify (35–45s)
-Show a verification step and a clean completion state.
+Show the simulated workflow moving through a few proposed steps.
 
-## Scene 5 — Deliver (45–55s)
-Show the finished result and a concise outcome summary.
+Voiceover: “Mia explores a more visual way to plan a task. This walkthrough is an example, not a live tool run.”
 
-## End card (55–60s)
-“Stop asking AI how. Tell Mia what to do.”
+## Scene 3 — Specialist roles (12–25s)
+
+Show the specialist directory and example task categories.
+
+On-screen text: **“Example roles. Connections depend on setup.”**
+
+## Scene 4 — Review (25–35s)
+
+Show the review/handoff part of the concept.
+
+Voiceover: “A real workflow needs working integrations, permission checks and a result you can verify.”
+
+## End card (35–45s)
+
+**Mia — A clearer way to plan digital work.**
+
+**Help shape the first connected workflow.**
+
+Do not show fabricated research, live tool activity, a completed external action or a verification badge as though it happened for real. If a real run is filmed later, preserve the actual output and review it before publication.
