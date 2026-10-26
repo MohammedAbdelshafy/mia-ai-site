@@ -1,15 +1,28 @@
-# Mia AI
+# Mia
 
-Mia AI is an embodied AI digital operator and mission orchestrator. Stop asking AI how. Tell Mia what to do.
+Mia is a work-assistant concept with a character-led interface, guided task intake and example workflow walkthroughs.
+
+**Important:** the public chat and mission animations are scripted. They do not prove that external actions were executed. Real integrations require a separately configured runtime, appropriate permissions, and verification.
 
 ## Core pages
 - https://mohammedabdelshafy.github.io/mia-ai-site/
+- https://mohammedabdelshafy.github.io/mia-ai-site/how.html
+- https://mohammedabdelshafy.github.io/mia-ai-site/agents.html
+- https://mohammedabdelshafy.github.io/mia-ai-site/watch.html
+- https://mohammedabdelshafy.github.io/mia-ai-site/pricing.html
 - https://mohammedabdelshafy.github.io/mia-ai-site/ai-employee/
 - https://mohammedabdelshafy.github.io/mia-ai-site/ai-agent-swarm/
 - https://mohammedabdelshafy.github.io/mia-ai-site/ai-automation/
 
-## Positioning
-Mia turns plain-language outcomes into visible missions: understand, plan, route specialists, use connected tools, execute, verify, and deliver the result.
+## What the demo shows
+- Guided task intake and example plans.
+- A directory of specialist profiles.
+- Illustrative workflow steps, from planning through review and handoff.
+
+## What it does not establish
+- That every profile is connected to a working tool.
+- That the public site can browse, code, send outreach, control devices, or change external accounts.
+- That a live account, subscription, or checkout is available.
 
 ## Topics
-AI employee, AI agent swarm, AI automation, MCP tools, digital operations, research automation, build automation, outreach automation.
+Task planning, assistant interface design, workflow diagrams, specialist roles, connected-tool integrations, human review, and product demos.
