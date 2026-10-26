@@ -2,11 +2,11 @@
 type: repository
 status: active
 owner_repo: MohammedAbdelshafy/mia-ai-site
-product_name: Mia
+product_name: Mia AI
 source_of_truth: https://github.com/MohammedAbdelshafy/mia-ai-site
 ---
 
-# Mia CONTEXT
+# Mia AI CONTEXT
 
 One job: present the current Mia concept honestly and help visitors understand what the demo does and what is not live yet.
 
