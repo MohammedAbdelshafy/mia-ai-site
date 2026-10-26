@@ -1,194 +1,52 @@
-# Mia AI — Product Hunt Launch Kit
+# Mia — Product Launch Notes (Draft Only)
 
-## Core positioning
+## Publishing gate
+
+Do not publish this as a live product launch until the product, onboarding, payment path and any advertised connected actions have been verified end to end. The current public site is a simulated preview; it is not proof that external work has been executed. Any launch page must describe the exact capabilities available to a new user at that time.
+
+## Plain-language positioning
 
 **Product:** Mia
 
-**Tagline:** Stop asking AI how. Tell Mia what to do.
+**Tagline option:** A clearer way to plan digital work.
 
-**Category:** AI digital operator / AI agent / workflow automation / productivity
+**One-line description:** Mia is a character-led interface concept that lets people explore a task plan and a simulated workflow. Real integrations and live actions require a separate, configured runtime and appropriate permissions.
 
-### One-line promise
+## Draft Product Hunt description
 
-> Give Mia the outcome. She turns it into a visible mission and works toward the result.
+Mia explores a more visual way to work with a digital assistant. Instead of a blank text box, visitors can describe an outcome, review a proposed set of steps, and explore a sample workflow. The public preview is simulated; it does not execute external tools. We're looking for feedback on which workflow would be most useful to connect first.
 
-## Product Hunt form
+## What is different?
 
-### Description (<=500 chars)
+The concept puts the task and its steps in view. The page shows an example plan, specialist role profiles, and a review/handoff flow. It should not be described as an autonomous employee or a working collection of integrations until those capabilities are independently verified.
 
-Mia is an AI digital operator that turns requests into real work. Instead of only answering questions, Mia can understand an outcome, plan the task, use connected tools, show what she's doing, verify the work, and deliver the result. From research and coding to websites, content, marketing, automation and data, Mia gives you one interface for getting digital work done.
+## Pricing and offer
 
-### Launch tags
+No free trial, promo code, or paid plan should be announced unless redemption, account access and payment have been tested. Earlier drafts mentioned a 14-day offer and `MIA14`; those are **not approved for publication** unless the owner confirms the offer is live.
 
-1. Artificial Intelligence
-2. AI Workflow Automation
-3. Productivity
-
-### Promo offer
-
-**Offer:** 14 days free
-
-**Promo code:** `MIA14`
-
-**Expiration:** October 31, 2026
-
-Only publish this offer if the redemption flow is live and working.
-
-## Alternative answers
-
-### What is new or different?
-
-Mia moves AI from conversation to execution. Instead of only telling people how to do something, Mia is designed to turn an outcome into a task journey: understand, plan, route the right capability, act through connected tools, verify the work, and return the result. The interface makes that process visible so users can watch the work happen.
-
-### Why Airbyte over alternatives?
-
-We chose Airbyte because Mia benefits from a flexible integration and data-movement layer without locking the product to a single vendor. Airbyte can serve as an integration component while Mia remains the intelligence and orchestration layer above it.
-
-### Why DevReadyKit?
-
-We wanted a UI foundation optimized for SaaS and developer products while keeping the interface flexible enough to support chat, mission visualization, tool execution, progress, results, and an evolving agent environment.
-
-## First maker comment
+## Suggested first comment
 
 Hey Product Hunt 👋
 
-I'm building Mia because I wanted an AI that could do more than give me instructions.
+I'm building Mia around a simple question: can a task-focused interface make it easier to understand what a digital assistant plans to do?
 
-Mia is built around one idea:
-
-**Give her the outcome, not a checklist.**
-
-She can turn a request into a mission, route the right specialists, use connected tools, show the task journey, verify the result, and return the finished work.
-
-We're starting with digital work like research, coding, websites, content, marketing, automation and data.
-
-🎁 Product Hunt community: 14 days free with `MIA14` while the offer is active.
+The public preview shows a simulated walkthrough. It doesn't run external tools yet, and I want to keep that distinction clear while I test the idea.
 
 I'd love feedback on one question:
 
-**What's the first digital task you'd trust Mia to take completely off your plate?**
+**What is one repetitive digital task you'd most like to see handled through a clearer, reviewable workflow?**
 
-## Product Hunt-safe promotion language
+## Video guidance
 
-Use:
+Show the current preview as a **simulated demo**. Use overlays such as “Example plan” and “Illustrative workflow.” Do not fabricate a finished deliverable, live connector activity or verification result. If a real tool is shown later, capture the actual run and confirm that the output is accurate before publishing.
 
-> We just launched Mia on Product Hunt. I'd love your feedback on whether the task-execution experience makes sense.
+## Launch checklist
 
-Avoid:
-
-> Please upvote us.
-
-Do not use vote exchanges, paid votes, automated votes, or mass unsolicited messages.
-
-## Hero story
-
-The launch page should communicate:
-
-**ASK → PLAN → ACT → VERIFY → DELIVER**
-
-The visitor should immediately see Mia plus the task interface, not just a static character.
-
-### Recommended hero copy
-
-**Stop asking AI how. Tell Mia what to do.**
-
-**Your AI operator for the digital world.**
-
-### Demo prompt
-
-> Build me a Product Hunt launch.
-
-Then show the mission theatre progressing through:
-
-**Understand → Plan → Research → Build → Verify → Deliver**
-
-Finish with a concrete outcome.
-
-## Gallery plan
-
-### 01 — The operator
-
-Mia standing beside the task interface.
-
-Caption:
-
-> Tell Mia what you want done.
-
-### 02 — The journey
-
-Show:
-
-> Understand → Plan → Act → Verify → Deliver
-
-### 03 — The tools
-
-Show specialist routing and connected-tool execution.
-
-### 04 — The outcome
-
-Show a finished deliverable, not just a progress animation.
-
-### 05 — Human control
-
-Show approval, verification, task history, or permissions.
-
-## Video storyboard (30–60 sec)
-
-**0–5s**
-
-User types:
-
-> Mia, build me a landing page for my AI agency.
-
-**5–12s**
-
-Mia:
-
-> Got it. I'll plan the work, route the right capabilities, build the page, and verify it.
-
-**12–35s**
-
-Show the mission theatre:
-
-Brief → Think → Tools → Execute → Verify
-
-Show short glimpses of research, code/design, tool use, and verification.
-
-**35–50s**
-
-Show the finished result.
-
-**50–60s**
-
-Mia:
-
-> Done. Here's what I changed and what you can review.
-
-End card:
-
-> **Stop asking AI how. Tell Mia what to do.**
-
-## Launch-day checklist
-
-- [ ] Product is live and usable
-- [ ] Demo works without dead-end buttons
-- [ ] Product Hunt description matches actual capabilities
-- [ ] Pricing/offer is real
-- [ ] First maker comment is posted
-- [ ] Gallery has 4–5 useful images
-- [ ] 30–60 sec demo video is ready
-- [ ] Landing page has one primary CTA
-- [ ] Respond to real comments quickly
-- [ ] Ask for feedback, not votes
-- [ ] Track traffic, signups, activation, and paid conversions
-- [ ] Follow up with users after launch
-
-## Strategic message
-
-Mia should not be presented as just another chatbot.
-
-The category story is:
-
-> **Mia is an AI operator that turns instructions into completed digital work.**
-
-The implementation details—models, connectors, data infrastructure, agent frameworks—support the story but should not become the story.
+- [ ] Verify the live demo on mobile and desktop.
+- [ ] Confirm every CTA's destination and test the form end to end.
+- [ ] Confirm account creation and billing before advertising any plan.
+- [ ] Verify each integration and permission used in a demo.
+- [ ] Label scripted interactions and illustrative footage.
+- [ ] Ensure page copy matches the current release.
+- [ ] Track real visits, submissions, qualified conversations and paid pilots separately.
+- [ ] Ask for product feedback, not votes.
