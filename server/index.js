@@ -1,109 +1,76 @@
-/* Mia AI backend — serves the static site + waitlist API.
-   Run:  cd server && npm install && npm start   (serves on PORT or 3000)
-   The frontend POSTs to /api/waitlist when served from here;
-   on static hosts (GitHub Pages) it falls back to browser-local storage.
-
-   Endpoints:
-     GET  /api/health            service heartbeat
-     POST /api/waitlist          {name, email, plan?, source?} -> signup
-     GET  /api/waitlist/count    {count}
-     GET  /api/waitlist/stats    {count, byPlan, bySource}  (founder view)
-     GET  /api/waitlist/export   CSV download of the waitlist (founder view)
-*/
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-const DATA_FILE = path.join(__dirname, 'data', 'waitlist.json');
-const PLANS = ['preview', 'pro', 'lifetime', 'team', 'agency', 'enterprise'];
-const ADMIN_TOKEN = process.env.MIA_ADMIN_TOKEN || '';
-
-app.use(express.json({ limit: '10kb' }));
-app.use(express.static(path.join(__dirname, '..')));
-
-/* ---------- tiny in-memory rate limiter (per IP) ---------- */
-const hits = new Map();
-function rateLimit(max, windowMs) {
-  return (req, res, next) => {
-    const now = Date.now();
-    const key = req.ip || 'unknown';
-    const arr = (hits.get(key) || []).filter(t => now - t < windowMs);
-    arr.push(now);
-    hits.set(key, arr);
-    if (arr.length > max)
-      return res.status(429).json({ ok: false, error: 'slow down a little' });
-    next();
-  };
+'use strict';
+// MIA API: private Postgres storage; only known public assets are served.
+const express=require('express'),crypto=require('node:crypto'),path=require('node:path');
+const {Pool}=require('pg');
+const {normalizeSignup,persistSignup,ValidationError}=require('./waitlist_logic');
+const app=express();app.disable('x-powered-by');
+const root=path.resolve(__dirname,'..'),port=Number(process.env.PORT)||3000;
+const token=process.env.MIA_ADMIN_TOKEN||'';
+const allowed=new Set((process.env.MIA_ALLOWED_ORIGINS||'https://mohammedabdelshafy.github.io,http://localhost:3000').split(',').map(s=>s.trim()).filter(Boolean));
+const db=process.env.DATABASE_URL?new Pool({connectionString:process.env.DATABASE_URL,max:2,connectionTimeoutMillis:5000}):null;
+app.use('/assets',express.static(path.join(root,'assets'),{dotfiles:'deny',index:false}));
+app.get('/',(req,res)=>res.sendFile(path.join(root,'index.html')));
+const pages=new Set(['index.html','how.html','pricing.html','agents.html','watch.html']);
+app.get('/:page',(req,res,next)=>pages.has(req.params.page)?res.sendFile(path.join(root,req.params.page)):next());
+const sections=new Set(['ai-employee','ai-agent-swarm','ai-automation']);
+app.get('/:section/',(req,res,next)=>sections.has(req.params.section)?res.sendFile(path.join(root,req.params.section,'index.html')):next());
+for(const f of ['robots.txt','sitemap.xml','manifest.json'])app.get('/'+f,(req,res)=>res.sendFile(path.join(root,f)));
+function cors(req,res,next){
+ const origin=req.get('origin');
+ if(origin&&!allowed.has(origin))return res.status(403).json({ok:false,error:'origin not allowed'});
+ if(origin){res.set('Access-Control-Allow-Origin',origin);res.set('Vary','Origin');res.set('Access-Control-Allow-Headers','Content-Type');res.set('Access-Control-Allow-Methods','POST, OPTIONS');}
+ if(req.method==='OPTIONS')return res.sendStatus(204);next();
 }
-
-/* ---------- storage ---------- */
-function load() {
-  try {
-    const d = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-    return Array.isArray(d) ? d : [];
-  } catch (e) { return []; }
+const requests=new Map();
+function limit(req,res,next){
+ const now=Date.now(),id=req.ip||'unknown';
+ for(const [k,v] of requests)if(v.until<=now)requests.delete(k);
+ const x=requests.get(id)||{until:now+60000,count:0};x.count++;requests.set(id,x);
+ if(x.count>8){res.set('Retry-After',String(Math.ceil((x.until-now)/1000)));return res.status(429).json({ok:false,error:'too many requests'});}next();
 }
-function save(list) {
-  fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
-  fs.writeFileSync(DATA_FILE, JSON.stringify(list, null, 2));
+function founder(req,res,next){
+ if(!token)return res.status(503).json({ok:false,error:'founder access not configured'});
+ const supplied=(req.get('authorization')||'').replace(/^Bearer\s+/i,'');
+ const a=crypto.createHash('sha256').update(supplied).digest(),b=crypto.createHash('sha256').update(token).digest();
+ if(!supplied||!crypto.timingSafeEqual(a,b))return res.status(401).json({ok:false,error:'unauthorized'});next();
 }
-function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
-function cleanPlan(p) {
-  const v = String(p || 'preview').trim().toLowerCase();
-  return PLANS.includes(v) ? v : 'preview';
-}
-
-/* ---------- routes ---------- */
-app.get('/api/health', (req, res) =>
-  res.json({ ok: true, service: 'mia-ai', time: new Date().toISOString() }));
-
-app.post('/api/waitlist', rateLimit(10, 60 * 1000), (req, res) => {
-  const name = String(req.body.name || '').trim().slice(0, 80);
-  const email = String(req.body.email || '').trim().toLowerCase().slice(0, 120);
-  const plan = cleanPlan(req.body.plan);
-  const source = String(req.body.source || 'site').trim().slice(0, 40);
-  if (!validEmail(email))
-    return res.status(400).json({ ok: false, error: 'valid email required' });
-  const list = load();
-  if (list.some(e => e.email === email))
-    return res.json({ ok: true, duplicate: true });
-  list.push({ name, email, plan, source, at: new Date().toISOString(), ip: req.ip });
-  try { save(list); }
-  catch (e) { return res.status(500).json({ ok: false, error: 'storage failed' }); }
-  res.json({ ok: true, plan });
+function ready(req,res,next){if(!db)return res.status(503).json({ok:false,error:'signup database not configured'});next();}
+app.get('/api/health',async(req,res)=>{
+ if(!db)return res.status(503).json({ok:false,database:'unconfigured'});
+ try{await db.query('SELECT 1');res.json({ok:true,database:'ready'});}
+ catch(_){res.status(503).json({ok:false,database:'unavailable'});}
 });
-
-app.get('/api/waitlist/count', (req, res) =>
-  res.json({ ok: true, count: load().length }));
-
-function requireFounder(req, res, next) {
-  if (!ADMIN_TOKEN) return res.status(503).json({ ok: false, error: 'founder endpoints disabled: MIA_ADMIN_TOKEN is not configured' });
-  const supplied = String(req.get('authorization') || '').replace(/^Bearer\s+/i, '');
-  if (!supplied || supplied !== ADMIN_TOKEN) return res.status(401).json({ ok: false, error: 'unauthorized' });
-  next();
-}
-
-app.get('/api/waitlist/stats', requireFounder, (req, res) => {
-  const list = load();
-  const byPlan = {}, bySource = {};
-  for (const e of list) {
-    byPlan[e.plan || 'preview'] = (byPlan[e.plan || 'preview'] || 0) + 1;
-    bySource[e.source || 'site'] = (bySource[e.source || 'site'] || 0) + 1;
-  }
-  res.json({ ok: true, count: list.length, byPlan, bySource });
+app.options('/api/waitlist',cors);
+app.post('/api/waitlist',cors,express.json({limit:'8kb'}),limit,ready,async(req,res)=>{
+ try{const r=await persistSignup(db,normalizeSignup(req.body));res.status(r.duplicate?200:201).json(r);}
+ catch(e){
+  if(e instanceof ValidationError)return res.status(400).json({ok:false,error:e.message});
+  console.error('mia waitlist persistence error',e&&e.code?e.code:'unknown');
+  res.status(503).json({ok:false,error:'signup could not be confirmed'});
+ }
 });
-
-app.get('/api/waitlist/export', requireFounder, (req, res) => {
-  const list = load();
-  const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
-  const csv = ['name,email,plan,source,signed_up_at']
-    .concat(list.map(e => [e.name, e.email, e.plan, e.source, e.at].map(q).join(',')))
-    .join('\n');
-  res.setHeader('Content-Type', 'text/csv');
-  res.setHeader('Content-Disposition', 'attachment; filename="mia-waitlist.csv"');
-  res.send(csv);
+app.get('/api/waitlist/count',founder,ready,async(req,res)=>{
+ try{const r=await db.query('SELECT count(*)::int AS count FROM mia_private.waitlist');res.json({ok:true,count:r.rows[0].count});}
+ catch(_){res.status(503).json({ok:false,error:'database unavailable'});}
 });
-
-app.listen(PORT, () => console.log('Mia AI server listening on :' + PORT));
+app.get('/api/waitlist/stats',founder,ready,async(req,res)=>{
+ try{const [p,s]=await Promise.all([db.query('SELECT plan,count(*)::int AS count FROM mia_private.waitlist GROUP BY plan'),db.query('SELECT source,count(*)::int AS count FROM mia_private.waitlist GROUP BY source')]);
+ const byPlan={},bySource={};for(const x of p.rows)byPlan[x.plan]=x.count;for(const x of s.rows)bySource[x.source]=x.count;
+ res.json({ok:true,count:p.rows.reduce((n,x)=>n+x.count,0),byPlan,bySource});}
+ catch(_){res.status(503).json({ok:false,error:'database unavailable'});}
+});
+function csv(v){let s=String(v==null?'':v);if(/^\s*[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}
+app.get('/api/waitlist/export',founder,ready,async(req,res)=>{
+ try{const q=await db.query('SELECT name,email,plan,source,created_at FROM mia_private.waitlist ORDER BY created_at DESC LIMIT 10000');
+ const rows=q.rows.map(x=>[x.name,x.email,x.plan,x.source,new Date(x.created_at).toISOString()].map(csv).join(','));
+ res.set('Content-Type','text/csv; charset=utf-8');res.set('Cache-Control','no-store');res.set('Content-Disposition','attachment; filename="mia-waitlist.csv"');
+ res.send(['name,email,plan,source,signed_up_at',...rows].join('\n'));}
+ catch(_){res.status(503).json({ok:false,error:'database unavailable'});}
+});
+app.use((e,req,res,next)=>{
+ if(e&&e.type==='entity.too.large')return res.status(413).json({ok:false,error:'request too large'});
+ if(e instanceof SyntaxError&&e.status===400)return res.status(400).json({ok:false,error:'invalid JSON'});
+ next(e);
+});
+if(require.main===module)app.listen(port,()=>console.log('MIA API listening on '+port));
+module.exports=app;
