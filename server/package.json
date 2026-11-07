@@ -1,1 +1,18 @@
-{"dependencies":{"express":"^4.19.2"},"description":"Mia AI backend — serves the site and the waitlist API","main":"index.js","name":"mia-ai-server","scripts":{"start":"node index.js"},"version":"1.0.0"}
+{
+  "name": "mia-ai-server",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Mia AI durable waitlist API",
+  "main": "index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "express": "4.21.2",
+    "pg": "8.23.1"
+  }
+}
