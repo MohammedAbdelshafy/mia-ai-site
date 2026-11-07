@@ -123,7 +123,7 @@ sprint: { name: "SPRINT", role: "AI Consultancy Sprint \u00b7 from $297", flow: 
 };
 const MIA = {
   greet: ["Hey, I'm Mia — really good to see you. I'll be straight with you: this demo runs on a script, so I can't do real work from here yet, and I'll never fake it. If I don't know something, I'll say so. Tap an agent below, give us a task, and I'll show you exactly how I'd take it on."],
-  price: ["Preview is free — 25 launch credits, no card. Pro is $49 a month, or Founding Lifetime at $499: one payment, yours forever. Paid billing starts at public launch."],
+  price: ["The public demo is free to explore. Paid plans are proposals only; access and billing are not live on this site."],
   bye: ["Talk soon — you've got this."],
   fallback: [
     "I won't guess on that one — no real lookup from this demo, so no made-up answer. In the full build I'd hand it to the right specialist with live sources. The waitlist is open when you're ready.",
@@ -562,11 +562,11 @@ vidModal.addEventListener('click', e => { if(e.target===vidModal){ vidModal.clas
 const modal = document.getElementById('modal');
 let miaPlan = 'preview';
 const PLAN_COPY = {
-  preview:    ["Hire Mia to control your digital life", "Mia is in private preview — reserve your hire."],
-  pro:        ["Reserve Mia Pro", "Lock founding-member pricing for life. $49/mo when we launch."],
-  lifetime:   ["Claim Founding Lifetime", "One payment of $499. Yours forever."],
-  team:       ["Hire Mia for your team", "$149/mo for 5 devices when we launch."],
-  agency:     ["Scale your agency with Mia", "$499/mo for 20 devices when we launch."],
+  preview: ["Request a Mia preview", "Explore a scripted demo; no account is created here."],
+  pro: ["Discuss proposed Pro access", "No plan or billing is activated here."],
+  lifetime: ["Ask about a founding offer", "No payment is accepted through this demo."],
+  team: ["Request a team workflow pilot", "Scope and availability must be verified."],
+  agency: ["Request a branded assistant pilot", "One workflow is scoped and reviewed before implementation."],
   enterprise: ["Apply for Enterprise Install", "Custom fleet install — onboarding by application."]
 };
 document.querySelectorAll('[data-modal]').forEach(b => b.onclick = e => { e.preventDefault(); miaPlan = b.dataset.plan || 'preview';
@@ -595,42 +595,41 @@ waitlistSubmit.onclick = async () => {
   waitlistSubmit.textContent = 'Sending…';
   if (statusEl) statusEl.textContent = 'Sending your request…';
   let saved = false;
-  const apiBase = window.MIA_CONFIG && typeof window.MIA_CONFIG.waitlistApiBase === 'string'
-    ? window.MIA_CONFIG.waitlistApiBase.replace(/\\/$/, '')
-    : '';
-  if (apiBase) {
-    try {
-      const r = await fetch(apiBase + '/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: n, email: em, plan: miaPlan, source: 'site' })
-      });
-      if (r.ok) {
-        const payload = await r.json();
-        saved = payload.ok === true;
-      }
-    } catch (e) {}
-  }
-  if (!saved) {
-    try {
-      const r = await fetch('https://formsubmit.co/ajax/abdelshafyclapps@gmail.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          name: n, email: em, plan: miaPlan, source: 'mia-ai-site',
-          _subject: 'New Mia AI waitlist signup · ' + miaPlan
-        })
-      });
-      if (r.ok) {
-        const payload = await r.json().catch(() => ({}));
-        saved = payload.success === 'true' || payload.success === true;
-      }
-    } catch (e) {}
-  }
-  waitlistSubmit.disabled = false;
+   const apiBase = window.MIA_CONFIG && typeof window.MIA_CONFIG.waitlistApiBase === 'string'
+     ? window.MIA_CONFIG.waitlistApiBase.replace(/\/$/, '')
+     : '';
+   // Require a first-party database receipt. No local browser storage or
+   // third-party fallback can claim a successful waitlist registration.
+   if (apiBase && (/^https:\/\//.test(apiBase) || /^http:\/\/localhost(?::\d+)?$/.test(apiBase))) {
+     try {
+       const params = new URLSearchParams(window.location.search);
+       const controller = new AbortController();
+       const timeout = setTimeout(() => controller.abort(), 12000);
+       try {
+         const r = await fetch(apiBase + '/api/waitlist', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           signal: controller.signal,
+           body: JSON.stringify({
+             name: n, email: em, plan: miaPlan, source: 'mia_site',
+             consent_version: 'preview_inquiry_v1', marketing_opt_in: false,
+             utm_source: (params.get('utm_source') || '').slice(0, 100),
+             utm_medium: (params.get('utm_medium') || '').slice(0, 100),
+             utm_campaign: (params.get('utm_campaign') || '').slice(0, 100)
+           })
+         });
+         if (r.ok) {
+           const receipt = await r.json();
+           saved = receipt.ok === true && typeof receipt.lead_id === 'string' &&
+                   typeof receipt.event_id === 'string';
+         }
+       } finally { clearTimeout(timeout); }
+     } catch (_) { /* keep the form open for retry */ }
+   }
+   waitlistSubmit.disabled = false;
   waitlistSubmit.textContent = originalText;
   if (!saved) {
-    if (statusEl) statusEl.textContent = 'We could not confirm your signup. Nothing was confirmed. Please retry or email abdelshafyclapps@gmail.com.';
+    if (statusEl) statusEl.textContent = !apiBase ? 'Preview requests are not ready yet. Please email abdelshafyclapps@gmail.com.' : 'Could not confirm your request. Nothing was saved as successful. Please retry or email abdelshafyclapps@gmail.com.';
     return;
   }
   if (statusEl) statusEl.textContent = '';
